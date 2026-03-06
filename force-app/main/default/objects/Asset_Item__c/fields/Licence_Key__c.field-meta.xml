@@ -4,7 +4,7 @@
     <description>Encrypted licence key for the asset. Not exposed to Experience Cloud portal users — FLS restricted on all portal-facing permission sets.</description>
     <externalId>false</externalId>
     <label>Licence Key</label>
-    <length>255</length>
+    <length>175</length>
     <maskChar>asterisk</maskChar>
     <maskType>all</maskType>
     <required>false</required>

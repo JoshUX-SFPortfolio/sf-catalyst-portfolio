@@ -19,5 +19,5 @@
     </nameField>
     <pluralLabel>Projects</pluralLabel>
     <searchLayouts/>
-    <sharingModel>Private</sharingModel>
+    <sharingModel>ControlledByParent</sharingModel>
 </CustomObject>

@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Account__c</fullName>
-    <deleteConstraint>Restrict</deleteConstraint>
     <description>Master-detail relationship to the Account this portal user group belongs to. Drives OWD sharing (Controlled by Parent).</description>
     <externalId>false</externalId>
     <label>Account</label>

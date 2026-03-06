@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
     <fullName>Account__c</fullName>
-    <deleteConstraint>Restrict</deleteConstraint>
     <description>Master-detail relationship to the Account this project belongs to. Drives OWD sharing via Account role hierarchy.</description>
     <externalId>false</externalId>
     <label>Account</label>
