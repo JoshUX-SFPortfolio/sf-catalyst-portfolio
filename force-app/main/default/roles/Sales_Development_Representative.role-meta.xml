@@ -3,8 +3,8 @@
     <fullName>Sales_Development_Representative</fullName>
     <caseAccessLevel>Read</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <label>Sales Development Representative</label>
     <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Sales Development Representative</name>
     <opportunityAccessLevel>Read</opportunityAccessLevel>
     <parentRole>Sales_Manager</parentRole>
 </Role>

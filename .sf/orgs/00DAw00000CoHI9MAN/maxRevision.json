@@ -1,6 +1,6 @@
 {
     "fileVersion": 0,
-    "serverMaxRevisionCounter": 114,
+    "serverMaxRevisionCounter": 115,
     "sourceMembers": {
         "CustomField__Asset_Item__c.Account__c": {
             "memberType": "CustomField",
@@ -570,6 +570,12 @@
             "memberType": "ContentAsset",
             "serverRevisionCounter": 109,
             "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "Role__CEO": {
+            "memberType": "Role",
+            "serverRevisionCounter": 115,
+            "lastRetrievedFromServer": 115,
             "isNameObsolete": false
         }
     }

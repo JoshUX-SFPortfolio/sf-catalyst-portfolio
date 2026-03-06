@@ -3,7 +3,7 @@
     <fullName>CEO</fullName>
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <label>Chief Executive Officer</label>
     <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Chief Executive Officer</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
 </Role>

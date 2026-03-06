@@ -3,8 +3,8 @@
     <fullName>VP_of_Customer_Success</fullName>
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <label>VP of Customer Success</label>
     <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>VP of Customer Success</name>
     <opportunityAccessLevel>Read</opportunityAccessLevel>
     <parentRole>CEO</parentRole>
 </Role>

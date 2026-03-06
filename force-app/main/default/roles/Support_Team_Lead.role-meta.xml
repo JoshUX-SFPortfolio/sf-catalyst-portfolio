@@ -3,8 +3,8 @@
     <fullName>Support_Team_Lead</fullName>
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <label>Support Team Lead</label>
     <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Support Team Lead</name>
     <opportunityAccessLevel>Read</opportunityAccessLevel>
     <parentRole>VP_of_Customer_Success</parentRole>
 </Role>

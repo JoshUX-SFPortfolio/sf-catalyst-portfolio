@@ -3,8 +3,8 @@
     <fullName>Account_Executive</fullName>
     <caseAccessLevel>Read</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <label>Account Executive</label>
     <mayForecastManagerShare>false</mayForecastManagerShare>
+    <name>Account Executive</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
     <parentRole>Sales_Manager</parentRole>
 </Role>
