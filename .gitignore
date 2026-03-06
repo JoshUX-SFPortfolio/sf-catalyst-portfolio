@@ -1,19 +1,53 @@
 # Salesforce DX
 .sfdx/
 .localdevserver/
+**/__localDev/**
+
+# SFDX auth files — never commit credentials
+**/authinfo/**
+*.pem
+server.key
+jwt.key
+
+# Environment & secrets
+.env
+.env.*
 
 # Node
 node_modules/
 npm-debug.log
+yarn-error.log
+package-lock.json
 
 # VS Code
 .vscode/settings.json
 .vscode/launch.json
 
+# IntelliJ / JetBrains
+.idea/
+*.iml
+
 # macOS
 .DS_Store
 **/.DS_Store
 
+# Windows
+Thumbs.db
+ehthumbs.db
+
+# Compiled / generated LWC assets
+**/staticresources/**/*.resource.meta.xml-e
+**/__tests__/coverage/
+**/.nyc_output/
+
+# Experience Cloud compiled output
+.localdevserver/
+**/digitalExperiences/**/.sfdx/
+
+# Org-specific scratch org session files
+**/lwc/**/*.css.map
+
+# Claude local config (not project source)
 # Environment & secrets
 .env
 *.pem
