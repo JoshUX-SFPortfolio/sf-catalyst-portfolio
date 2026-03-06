@@ -3,8 +3,8 @@
     <fullName>Account_Executive</fullName>
     <caseAccessLevel>Read</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>Account Executive — reports to Sales Manager. Owns their Accounts and Opportunities. Private OWD means no cross-AE visibility.</description>
     <label>Account Executive</label>
+<description>Account Executive — reports to Sales Manager. Owns their Accounts and Opportunities. Private OWD means no cross-AE visibility.</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
     <parentRole>Sales_Manager</parentRole>

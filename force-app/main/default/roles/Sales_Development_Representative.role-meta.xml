@@ -3,8 +3,8 @@
     <fullName>Sales_Development_Representative</fullName>
     <caseAccessLevel>Read</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>Sales Development Representative — reports to Sales Manager. Owns their Leads. Private Lead OWD means no cross-SDR visibility.</description>
     <label>Sales Development Representative</label>
+<description>Sales Development Representative — reports to Sales Manager. Owns their Leads. Private Lead OWD means no cross-SDR visibility.</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <opportunityAccessLevel>Read</opportunityAccessLevel>
     <parentRole>Sales_Manager</parentRole>

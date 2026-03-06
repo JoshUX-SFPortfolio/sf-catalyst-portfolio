@@ -2,6 +2,7 @@
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <sharingCriteriaRules>
         <fullName>Customer_Accounts_To_Service</fullName>
+        <label>Customer Accounts To Service</label>
         <accessLevel>Read</accessLevel>
         <accountSettings>
             <caseAccessLevel>Edit</caseAccessLevel>

@@ -3,8 +3,8 @@
     <fullName>VP_of_Sales</fullName>
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>VP of Sales (Priya Sharma) — reports to CEO. Full visibility over all Sales Manager, Account Executive, and SDR records via role hierarchy.</description>
     <label>VP of Sales</label>
+<description>VP of Sales (Priya Sharma) — reports to CEO. Full visibility over all Sales Manager, Account Executive, and SDR records via role hierarchy.</description>
     <mayForecastManagerShare>true</mayForecastManagerShare>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
     <parentRole>CEO</parentRole>

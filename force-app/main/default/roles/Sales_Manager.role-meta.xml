@@ -3,8 +3,8 @@
     <fullName>Sales_Manager</fullName>
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <description>Sales Manager — reports to VP of Sales. Manages Account Executives and SDRs. Pipeline and forecast visibility over subordinates via role hierarchy.</description>
     <label>Sales Manager</label>
+<description>Sales Manager — reports to VP of Sales. Manages Account Executives and SDRs. Pipeline and forecast visibility over subordinates via role hierarchy.</description>
     <mayForecastManagerShare>true</mayForecastManagerShare>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
     <parentRole>VP_of_Sales</parentRole>

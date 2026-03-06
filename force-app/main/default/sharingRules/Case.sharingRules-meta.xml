@@ -2,6 +2,7 @@
 <SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
     <sharingOwnerRules>
         <fullName>Cases_To_Account_Team</fullName>
+        <label>Cases To Account Team</label>
         <accessLevel>Edit</accessLevel>
         <description>Shares all Cases with account team members to enable coordinated client response across sales and service. Req: MKT-REQ-SRVC-004.</description>
         <sharedTo>
