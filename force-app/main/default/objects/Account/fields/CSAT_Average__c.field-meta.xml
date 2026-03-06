@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CSAT_Average__c</fullName>
+    <description>Average CSAT score (1–5) across all completed Feedback_Survey__c records for this account. Calculated by AccountHealthScoreService — native Roll-Up Summary not used because Feedback_Survey__c relates to Account via Contact (not direct Master-Detail). Input to Health_Score__c. Req: MKT-REQ-SALES-010.</description>
+    <externalId>false</externalId>
+    <label>CSAT Average</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

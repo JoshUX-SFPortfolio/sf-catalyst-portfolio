@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Survey_NPSRange</fullName>
+    <active>true</active>
+    <description>Enforces that NPS Score is within the valid range of 0–10 when a value is provided.</description>
+    <errorConditionFormula>NOT(ISBLANK(NPS_Score__c)) &amp;&amp; (NPS_Score__c &lt; 0 || NPS_Score__c &gt; 10)</errorConditionFormula>
+    <errorMessage>NPS Score must be between 0 and 10.</errorMessage>
+</ValidationRule>

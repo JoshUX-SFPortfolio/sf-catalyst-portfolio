@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opp_ProposalSentGate</fullName>
+    <active>true</active>
+    <description>Enforces that Contract Length, Decision Date, and Economic Buyer are set before advancing the opportunity to Proposal Sent stage. Req: MKT-REQ-SALES-013.</description>
+    <errorConditionFormula>ISCHANGED(StageName) &amp;&amp; ISPICKVAL(StageName, &apos;Proposal Sent&apos;) &amp;&amp; (ISPICKVAL(Contract_Length__c, &apos;&apos;) || ISBLANK(Decision_Date__c) || ISBLANK(Economic_Buyer__c))</errorConditionFormula>
+    <errorMessage>Contract Length, Decision Date, and Economic Buyer are required before advancing to Proposal Sent.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,522 @@
+{
+    "fileVersion": 0,
+    "serverMaxRevisionCounter": 97,
+    "sourceMembers": {
+        "CustomField__Asset_Item__c.Account__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 1,
+            "lastRetrievedFromServer": 1,
+            "isNameObsolete": false
+        },
+        "CustomObject__Asset_Item__c": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 84,
+            "lastRetrievedFromServer": 84,
+            "isNameObsolete": false
+        },
+        "CustomField__Portal_User_Group__c.Account__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 3,
+            "lastRetrievedFromServer": 3,
+            "isNameObsolete": false
+        },
+        "CustomObject__Portal_User_Group__c": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 87,
+            "lastRetrievedFromServer": 87,
+            "isNameObsolete": false
+        },
+        "CustomField__Project__c.Account__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 5,
+            "lastRetrievedFromServer": 5,
+            "isNameObsolete": false
+        },
+        "CustomObject__Project__c": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 88,
+            "lastRetrievedFromServer": 88,
+            "isNameObsolete": false
+        },
+        "CustomField__Account.Annual_Contract_Value__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 7,
+            "lastRetrievedFromServer": 7,
+            "isNameObsolete": false
+        },
+        "CustomField__Account.Billing_Account_ID__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 8,
+            "lastRetrievedFromServer": 8,
+            "isNameObsolete": false
+        },
+        "CustomField__Account.CSAT_Average__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 9,
+            "lastRetrievedFromServer": 9,
+            "isNameObsolete": false
+        },
+        "CustomField__Account.Contract_Renewal_Date__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 10,
+            "lastRetrievedFromServer": 10,
+            "isNameObsolete": false
+        },
+        "CustomField__Account.Duplicate_Domain_Flag__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 11,
+            "lastRetrievedFromServer": 11,
+            "isNameObsolete": false
+        },
+        "CustomField__Account.Health_Score__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 12,
+            "lastRetrievedFromServer": 12,
+            "isNameObsolete": false
+        },
+        "CustomField__Account.Modules_Purchased__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 13,
+            "lastRetrievedFromServer": 13,
+            "isNameObsolete": false
+        },
+        "CustomField__Account.Open_Case_Count__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 14,
+            "lastRetrievedFromServer": 14,
+            "isNameObsolete": false
+        },
+        "CustomField__Account.Platform_Usage_Index__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 15,
+            "lastRetrievedFromServer": 15,
+            "isNameObsolete": false
+        },
+        "CustomField__Account.Primary_Platform_Contact__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 16,
+            "lastRetrievedFromServer": 16,
+            "isNameObsolete": false
+        },
+        "CustomObject__Account": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 17,
+            "lastRetrievedFromServer": 17,
+            "isNameObsolete": false
+        },
+        "CustomField__Account.Subscription_Tier__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 18,
+            "lastRetrievedFromServer": 18,
+            "isNameObsolete": false
+        },
+        "CustomField__Asset_Item__c.Activation_Date__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 19,
+            "lastRetrievedFromServer": 19,
+            "isNameObsolete": false
+        },
+        "CustomField__Asset_Item__c.Asset_Type__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 20,
+            "lastRetrievedFromServer": 20,
+            "isNameObsolete": false
+        },
+        "CustomField__Asset_Item__c.Contact__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 21,
+            "lastRetrievedFromServer": 21,
+            "isNameObsolete": false
+        },
+        "CustomField__Asset_Item__c.Expiry_Date__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 23,
+            "lastRetrievedFromServer": 23,
+            "isNameObsolete": false
+        },
+        "CustomField__Asset_Item__c.Licence_Key__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 24,
+            "lastRetrievedFromServer": 24,
+            "isNameObsolete": false
+        },
+        "CustomField__Asset_Item__c.Module__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 25,
+            "lastRetrievedFromServer": 25,
+            "isNameObsolete": false
+        },
+        "CustomField__Asset_Item__c.Status__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 26,
+            "lastRetrievedFromServer": 26,
+            "isNameObsolete": false
+        },
+        "CustomField__Case.Affected_Module__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 27,
+            "lastRetrievedFromServer": 27,
+            "isNameObsolete": false
+        },
+        "CustomField__Case.Auto_Link_Status__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 28,
+            "lastRetrievedFromServer": 28,
+            "isNameObsolete": false
+        },
+        "CustomField__Case.CSAT_Sent__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 29,
+            "lastRetrievedFromServer": 29,
+            "isNameObsolete": false
+        },
+        "CustomField__Case.Resolution_Summary__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 30,
+            "lastRetrievedFromServer": 30,
+            "isNameObsolete": false
+        },
+        "CustomField__Case.SLA_Tier_at_Creation__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 31,
+            "lastRetrievedFromServer": 31,
+            "isNameObsolete": false
+        },
+        "CustomField__Case.Urgency__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 32,
+            "lastRetrievedFromServer": 32,
+            "isNameObsolete": false
+        },
+        "CustomField__Contact.Is_Portal_Active__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 33,
+            "lastRetrievedFromServer": 33,
+            "isNameObsolete": false
+        },
+        "CustomField__Contact.Portal_User_Type__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 34,
+            "lastRetrievedFromServer": 34,
+            "isNameObsolete": false
+        },
+        "CustomField__Contact.Portal_Welcome_Sent__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 35,
+            "lastRetrievedFromServer": 35,
+            "isNameObsolete": false
+        },
+        "CustomField__Contact.Role_at_Catalyst__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 36,
+            "lastRetrievedFromServer": 36,
+            "isNameObsolete": false
+        },
+        "CustomField__Domain_Exclusion__mdt.Domain__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 37,
+            "lastRetrievedFromServer": 37,
+            "isNameObsolete": false
+        },
+        "CustomField__Feedback_Survey__c.CSAT_Score__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 38,
+            "lastRetrievedFromServer": 38,
+            "isNameObsolete": false
+        },
+        "CustomField__Feedback_Survey__c.Case__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 39,
+            "lastRetrievedFromServer": 39,
+            "isNameObsolete": false
+        },
+        "CustomObject__Feedback_Survey__c": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 86,
+            "lastRetrievedFromServer": 86,
+            "isNameObsolete": false
+        },
+        "CustomField__Feedback_Survey__c.Comments__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 41,
+            "lastRetrievedFromServer": 41,
+            "isNameObsolete": false
+        },
+        "CustomField__Feedback_Survey__c.Completed_Date__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 42,
+            "lastRetrievedFromServer": 42,
+            "isNameObsolete": false
+        },
+        "CustomField__Feedback_Survey__c.Contact__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 43,
+            "lastRetrievedFromServer": 43,
+            "isNameObsolete": false
+        },
+        "CustomField__Feedback_Survey__c.NPS_Score__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 45,
+            "lastRetrievedFromServer": 45,
+            "isNameObsolete": false
+        },
+        "CustomField__Feedback_Survey__c.Sent_Date__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 46,
+            "lastRetrievedFromServer": 46,
+            "isNameObsolete": false
+        },
+        "CustomField__Feedback_Survey__c.Status__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 47,
+            "lastRetrievedFromServer": 47,
+            "isNameObsolete": false
+        },
+        "CustomField__Feedback_Survey__c.Survey_Type__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 48,
+            "lastRetrievedFromServer": 48,
+            "isNameObsolete": false
+        },
+        "CustomField__Lead.Activity_Count__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 49,
+            "lastRetrievedFromServer": 49,
+            "isNameObsolete": false
+        },
+        "CustomField__Lead.Area_of_Interest__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 50,
+            "lastRetrievedFromServer": 50,
+            "isNameObsolete": false
+        },
+        "CustomField__Lead.Lead_Score__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 51,
+            "lastRetrievedFromServer": 51,
+            "isNameObsolete": false
+        },
+        "CustomField__Opportunity.Contract_Length__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 52,
+            "lastRetrievedFromServer": 52,
+            "isNameObsolete": false
+        },
+        "CustomField__Opportunity.Decision_Date__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 53,
+            "lastRetrievedFromServer": 53,
+            "isNameObsolete": false
+        },
+        "CustomField__Opportunity.Economic_Buyer__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 54,
+            "lastRetrievedFromServer": 54,
+            "isNameObsolete": false
+        },
+        "CustomObject__Opportunity": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 55,
+            "lastRetrievedFromServer": 55,
+            "isNameObsolete": false
+        },
+        "CustomField__Opportunity.Loss_Notes__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 56,
+            "lastRetrievedFromServer": 56,
+            "isNameObsolete": false
+        },
+        "CustomField__Opportunity.Loss_Reason__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 57,
+            "lastRetrievedFromServer": 57,
+            "isNameObsolete": false
+        },
+        "CustomField__Opportunity.Max_Discount_Pct__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 58,
+            "lastRetrievedFromServer": 58,
+            "isNameObsolete": false
+        },
+        "CustomField__Opportunity.Proposed_ACV__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 59,
+            "lastRetrievedFromServer": 59,
+            "isNameObsolete": false
+        },
+        "CustomField__Portal_User_Group__c.Contact__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 60,
+            "lastRetrievedFromServer": 60,
+            "isNameObsolete": false
+        },
+        "CustomField__Portal_User_Group__c.Is_Active__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 62,
+            "lastRetrievedFromServer": 62,
+            "isNameObsolete": false
+        },
+        "CustomField__Portal_User_Group__c.Last_Login__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 63,
+            "lastRetrievedFromServer": 63,
+            "isNameObsolete": false
+        },
+        "CustomField__Portal_User_Group__c.Portal_Role__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 64,
+            "lastRetrievedFromServer": 64,
+            "isNameObsolete": false
+        },
+        "CustomField__Project__c.Description__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 65,
+            "lastRetrievedFromServer": 65,
+            "isNameObsolete": false
+        },
+        "CustomField__Project__c.End_Date__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 66,
+            "lastRetrievedFromServer": 66,
+            "isNameObsolete": false
+        },
+        "CustomField__Project__c.Opportunity__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 67,
+            "lastRetrievedFromServer": 67,
+            "isNameObsolete": false
+        },
+        "CustomField__Project__c.Project_Manager__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 69,
+            "lastRetrievedFromServer": 69,
+            "isNameObsolete": false
+        },
+        "CustomField__Project__c.Start_Date__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 71,
+            "lastRetrievedFromServer": 71,
+            "isNameObsolete": false
+        },
+        "CustomField__Project__c.Status__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 72,
+            "lastRetrievedFromServer": 72,
+            "isNameObsolete": false
+        },
+        "CustomField__Service_Region__c.Account__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 73,
+            "lastRetrievedFromServer": 73,
+            "isNameObsolete": false
+        },
+        "CustomObject__Service_Region__c": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 89,
+            "lastRetrievedFromServer": 89,
+            "isNameObsolete": false
+        },
+        "CustomField__Service_Region__c.Country__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 75,
+            "lastRetrievedFromServer": 75,
+            "isNameObsolete": false
+        },
+        "CustomField__Service_Region__c.Primary_Contact__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 76,
+            "lastRetrievedFromServer": 76,
+            "isNameObsolete": false
+        },
+        "CustomField__Service_Region__c.Region__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 78,
+            "lastRetrievedFromServer": 78,
+            "isNameObsolete": false
+        },
+        "CustomField__Service_Region__c.State_Province__c": {
+            "memberType": "CustomField",
+            "serverRevisionCounter": 79,
+            "lastRetrievedFromServer": 79,
+            "isNameObsolete": false
+        },
+        "CustomMetadata__Domain_Exclusion.gmail_com": {
+            "memberType": "CustomMetadata",
+            "serverRevisionCounter": 80,
+            "lastRetrievedFromServer": 80,
+            "isNameObsolete": false
+        },
+        "CustomMetadata__Domain_Exclusion.hotmail_com": {
+            "memberType": "CustomMetadata",
+            "serverRevisionCounter": 81,
+            "lastRetrievedFromServer": 81,
+            "isNameObsolete": false
+        },
+        "CustomMetadata__Domain_Exclusion.outlook_com": {
+            "memberType": "CustomMetadata",
+            "serverRevisionCounter": 82,
+            "lastRetrievedFromServer": 82,
+            "isNameObsolete": false
+        },
+        "CustomMetadata__Domain_Exclusion.yahoo_com": {
+            "memberType": "CustomMetadata",
+            "serverRevisionCounter": 83,
+            "lastRetrievedFromServer": 83,
+            "isNameObsolete": false
+        },
+        "CustomObject__Domain_Exclusion__mdt": {
+            "memberType": "CustomObject",
+            "serverRevisionCounter": 85,
+            "lastRetrievedFromServer": 85,
+            "isNameObsolete": false
+        },
+        "ValidationRule__Case.Case_CSATGate": {
+            "memberType": "ValidationRule",
+            "serverRevisionCounter": 90,
+            "lastRetrievedFromServer": 90,
+            "isNameObsolete": false
+        },
+        "ValidationRule__Case.Case_ResolutionSummaryRequired": {
+            "memberType": "ValidationRule",
+            "serverRevisionCounter": 91,
+            "lastRetrievedFromServer": 91,
+            "isNameObsolete": false
+        },
+        "ValidationRule__Feedback_Survey__c.Survey_CSATRange": {
+            "memberType": "ValidationRule",
+            "serverRevisionCounter": 92,
+            "lastRetrievedFromServer": 92,
+            "isNameObsolete": false
+        },
+        "ValidationRule__Feedback_Survey__c.Survey_NPSRange": {
+            "memberType": "ValidationRule",
+            "serverRevisionCounter": 93,
+            "lastRetrievedFromServer": 93,
+            "isNameObsolete": false
+        },
+        "ValidationRule__Lead.Lead_ConversionGate": {
+            "memberType": "ValidationRule",
+            "serverRevisionCounter": 94,
+            "lastRetrievedFromServer": 94,
+            "isNameObsolete": false
+        },
+        "ValidationRule__Lead.Lead_QualifiedFieldsRequired": {
+            "memberType": "ValidationRule",
+            "serverRevisionCounter": 95,
+            "lastRetrievedFromServer": 95,
+            "isNameObsolete": false
+        },
+        "ValidationRule__Opportunity.Opp_ClosedLostRequiresReason": {
+            "memberType": "ValidationRule",
+            "serverRevisionCounter": 96,
+            "lastRetrievedFromServer": 96,
+            "isNameObsolete": false
+        },
+        "ValidationRule__Opportunity.Opp_ProposalSentGate": {
+            "memberType": "ValidationRule",
+            "serverRevisionCounter": 97,
+            "lastRetrievedFromServer": 97,
+            "isNameObsolete": false
+        }
+    }
+}

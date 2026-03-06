@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Loss_Reason__c</fullName>
+    <description>Primary reason the opportunity was lost. Required when Stage is set to Closed Lost (enforced by Opp_ClosedLostRequiresReason validation rule). Drives win/loss analysis reporting. Req: MKT-REQ-SALES-016.</description>
+    <externalId>false</externalId>
+    <label>Loss Reason</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Competitor — Named</fullName>
+                <default>false</default>
+                <label>Competitor — Named</label>
+            </value>
+            <value>
+                <fullName>Price</fullName>
+                <default>false</default>
+                <label>Price</label>
+            </value>
+            <value>
+                <fullName>Timing</fullName>
+                <default>false</default>
+                <label>Timing</label>
+            </value>
+            <value>
+                <fullName>No Decision</fullName>
+                <default>false</default>
+                <label>No Decision</label>
+            </value>
+            <value>
+                <fullName>Product Gap</fullName>
+                <default>false</default>
+                <label>Product Gap</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

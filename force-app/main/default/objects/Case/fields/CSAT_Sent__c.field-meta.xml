@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CSAT_Sent__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>Set to true when the post-close CSAT survey flow dispatches a Feedback_Survey__c record. Required before closing a case (enforced by Case_CSATGate validation rule). Req: MKT-REQ-SRVC-006.</description>
+    <externalId>false</externalId>
+    <label>CSAT Sent</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>
