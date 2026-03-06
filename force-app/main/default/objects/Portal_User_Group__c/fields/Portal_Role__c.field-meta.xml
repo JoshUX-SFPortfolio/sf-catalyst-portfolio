@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Portal_Role__c</fullName>
+    <description>Role of the portal user within their Account. Account Admin can manage other portal users; Standard User has self-service access only.</description>
+    <externalId>false</externalId>
+    <label>Portal Role</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Account Admin</fullName>
+                <default>false</default>
+                <label>Account Admin</label>
+            </value>
+            <value>
+                <fullName>Standard User</fullName>
+                <default>true</default>
+                <label>Standard User</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>
