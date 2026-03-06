@@ -62,3 +62,4 @@ server.key
 
 # Claude local config
 .claude/
+.sf/ git -C /Users/murdadrum/Salesforce/SF-Portfolio status --short
