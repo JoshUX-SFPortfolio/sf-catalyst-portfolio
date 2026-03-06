@@ -3,7 +3,7 @@
     <fullName>Sales_Manager</fullName>
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
-    <mayForecastManagerShare>true</mayForecastManagerShare>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
     <name>Sales Manager</name>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
     <parentRole>VP_of_Sales</parentRole>

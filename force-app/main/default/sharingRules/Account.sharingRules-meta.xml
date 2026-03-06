@@ -9,11 +9,11 @@
             <contactAccessLevel>Read</contactAccessLevel>
             <opportunityAccessLevel>Read</opportunityAccessLevel>
         </accountSettings>
-        <description>Shares Customer Account records with Support Team Lead and subordinate service roles, enabling agents to view account context when handling cases. Req: MKT-REQ-SRVC-003.</description>
+        <description>Shares all Account records with Support Team Lead and subordinate service roles, enabling agents to view account context when handling cases. Req: MKT-REQ-SRVC-003.</description>
         <criteriaItems>
-            <field>Type</field>
-            <operation>equals</operation>
-            <value>Customer</value>
+            <field>OwnerId</field>
+            <operation>notEqual</operation>
+            <value>null</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
         <sharedTo>
