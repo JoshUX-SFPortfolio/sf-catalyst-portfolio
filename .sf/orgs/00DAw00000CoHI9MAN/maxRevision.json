@@ -1,6 +1,6 @@
 {
     "fileVersion": 0,
-    "serverMaxRevisionCounter": 97,
+    "serverMaxRevisionCounter": 114,
     "sourceMembers": {
         "CustomField__Asset_Item__c.Account__c": {
             "memberType": "CustomField",
@@ -516,6 +516,60 @@
             "memberType": "ValidationRule",
             "serverRevisionCounter": 97,
             "lastRetrievedFromServer": 97,
+            "isNameObsolete": false
+        },
+        "LightningExperienceTheme__CatalystEMCdrkgrn": {
+            "memberType": "LightningExperienceTheme",
+            "serverRevisionCounter": 102,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "BrandingSet__LEXTHEMINGCatalystEMCdrkgrn": {
+            "memberType": "BrandingSet",
+            "serverRevisionCounter": 100,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ContentAsset__Catalyst_SF_Brand_WM_dark_green2x": {
+            "memberType": "ContentAsset",
+            "serverRevisionCounter": 98,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "LightningExperienceTheme__CatalystEMCdrkTrans": {
+            "memberType": "LightningExperienceTheme",
+            "serverRevisionCounter": 112,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ContentAsset__Catalyst_SF_Brand_WM_dark_theme": {
+            "memberType": "ContentAsset",
+            "serverRevisionCounter": 103,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "ContentAsset__Catalyst_SF_Brand_WM_dark_theme2x": {
+            "memberType": "ContentAsset",
+            "serverRevisionCounter": 104,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "BrandingSet__LEXTHEMINGCatalystEMCdrktheme": {
+            "memberType": "BrandingSet",
+            "serverRevisionCounter": 114,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": false
+        },
+        "LightningExperienceTheme__CatalystEMCdrktheme": {
+            "memberType": "LightningExperienceTheme",
+            "serverRevisionCounter": 110,
+            "lastRetrievedFromServer": null,
+            "isNameObsolete": true
+        },
+        "ContentAsset__Catalyst_WM_transparent_grn": {
+            "memberType": "ContentAsset",
+            "serverRevisionCounter": 109,
+            "lastRetrievedFromServer": null,
             "isNameObsolete": false
         }
     }

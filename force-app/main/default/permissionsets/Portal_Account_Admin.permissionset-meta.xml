@@ -3,7 +3,6 @@
     <description>Portal — Account Admin. Grants portal Account Admin users read/write on Cases and read on Subscription data. Also allows managing portal users within their own Account. Req: MKT-REQ-EXP-005.</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Portal — Account Admin</label>
-    <license>CustomerCommunityPlus</license>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Sales_Development_Representative</fullName>
     <caseAccessLevel>Read</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
     <description>Sales Development Representative — reports to Sales Manager. Owns their Leads. Private Lead OWD means no cross-SDR visibility.</description>

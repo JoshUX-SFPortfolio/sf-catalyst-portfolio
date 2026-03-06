@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Support_Team_Lead</fullName>
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
     <description>Support Team Lead (Chris Park) — reports to VP of Customer Success. Manages all Support Agent sub-roles. SLA compliance and queue management visibility.</description>

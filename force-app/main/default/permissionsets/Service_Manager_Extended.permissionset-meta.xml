@@ -22,8 +22,4 @@
         <object>Feedback_Survey__c</object>
         <viewAllRecords>true</viewAllRecords>
     </objectPermissions>
-    <userPermissions>
-        <enabled>true</enabled>
-        <name>ViewAllData</name>
-    </userPermissions>
 </PermissionSet>

@@ -15,7 +15,6 @@
             <value>Customer</value>
         </criteriaItems>
         <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
-        <name>Customer Accounts To Service</name>
         <sharedTo>
             <roleAndSubordinates>Support_Team_Lead</roleAndSubordinates>
         </sharedTo>

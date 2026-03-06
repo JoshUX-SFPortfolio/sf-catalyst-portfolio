@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Support_Agent_Onboarding</fullName>
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Read</contactAccessLevel>
-    <description>Support Agent — Onboarding — reports to Support Team Lead. Handles new client onboarding cases. Private Case OWD; access via queue membership.</description>
-    <label>Support Agent — Onboarding</label>
+    <description>Support Agent - Onboarding — reports to Support Team Lead. Handles new client onboarding cases. Private Case OWD; access via queue membership.</description>
+    <label>Support Agent - Onboarding</label>
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <opportunityAccessLevel>Read</opportunityAccessLevel>
     <parentRole>Support_Team_Lead</parentRole>

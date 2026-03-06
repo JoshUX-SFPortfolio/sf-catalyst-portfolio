@@ -3,7 +3,6 @@
     <description>Portal — Standard User. Grants portal Standard Users read/write on their own Cases and read on Knowledge and their own Subscription data. Req: MKT-REQ-EXP-006.</description>
     <hasActivationRequired>false</hasActivationRequired>
     <label>Portal — Standard User</label>
-    <license>CustomerCommunityPlus</license>
     <objectPermissions>
         <allowCreate>true</allowCreate>
         <allowDelete>false</allowDelete>
