@@ -4,7 +4,6 @@
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
     <label>Support Team Lead</label>
-<description>Support Team Lead (Chris Park) — reports to VP of Customer Success. Manages all Support Agent sub-roles. SLA compliance and queue management visibility.</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <opportunityAccessLevel>Read</opportunityAccessLevel>
     <parentRole>VP_of_Customer_Success</parentRole>

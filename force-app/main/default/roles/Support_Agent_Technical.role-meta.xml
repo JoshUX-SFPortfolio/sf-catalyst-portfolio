@@ -4,7 +4,6 @@
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Read</contactAccessLevel>
     <label>Support Agent - Technical</label>
-<description>Support Agent - Technical — reports to Support Team Lead. Handles technical integration and platform issues. Private Case OWD; access via queue membership.</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <opportunityAccessLevel>Read</opportunityAccessLevel>
     <parentRole>Support_Team_Lead</parentRole>

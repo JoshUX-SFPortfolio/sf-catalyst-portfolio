@@ -4,7 +4,6 @@
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Read</contactAccessLevel>
     <label>Support Agent - Billing</label>
-<description>Support Agent - Billing — reports to Support Team Lead. Handles billing and contract queries. Private Case OWD; access via queue membership.</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <opportunityAccessLevel>Read</opportunityAccessLevel>
     <parentRole>Support_Team_Lead</parentRole>

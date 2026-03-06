@@ -5,6 +5,9 @@
         <label>Cases To Account Team</label>
         <accessLevel>Edit</accessLevel>
         <description>Shares all Cases with account team members to enable coordinated client response across sales and service. Req: MKT-REQ-SRVC-004.</description>
+        <sharedFrom>
+            <allInternalUsers>true</allInternalUsers>
+        </sharedFrom>
         <sharedTo>
             <allInternalUsers>true</allInternalUsers>
         </sharedTo>

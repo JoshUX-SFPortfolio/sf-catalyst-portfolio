@@ -4,7 +4,6 @@
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
     <label>Chief Executive Officer</label>
-<description>Chief Executive Officer — top of the Catalyst role hierarchy. Full visibility across all subordinate records via role-based sharing.</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <opportunityAccessLevel>Edit</opportunityAccessLevel>
 </Role>

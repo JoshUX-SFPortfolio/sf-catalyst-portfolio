@@ -4,7 +4,6 @@
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Read</contactAccessLevel>
     <label>Support Agent - Onboarding</label>
-<description>Support Agent - Onboarding — reports to Support Team Lead. Handles new client onboarding cases. Private Case OWD; access via queue membership.</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <opportunityAccessLevel>Read</opportunityAccessLevel>
     <parentRole>Support_Team_Lead</parentRole>

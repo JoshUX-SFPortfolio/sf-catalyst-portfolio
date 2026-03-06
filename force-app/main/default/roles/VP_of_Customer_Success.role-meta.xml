@@ -4,7 +4,6 @@
     <caseAccessLevel>Edit</caseAccessLevel>
     <contactAccessLevel>Edit</contactAccessLevel>
     <label>VP of Customer Success</label>
-<description>VP of Customer Success (Daniel Torres) — reports to CEO. Full visibility over Support Team Lead and all Support Agent records via role hierarchy.</description>
     <mayForecastManagerShare>false</mayForecastManagerShare>
     <opportunityAccessLevel>Read</opportunityAccessLevel>
     <parentRole>CEO</parentRole>
