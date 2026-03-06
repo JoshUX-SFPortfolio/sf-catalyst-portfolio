@@ -48,4 +48,17 @@ ehthumbs.db
 **/lwc/**/*.css.map
 
 # Claude local config (not project source)
+# Environment & secrets
+.env
+*.pem
+server.key
+
+# Compiled / generated
+**/staticresources/**/*.resource.meta.xml-e
+**/__tests__/
+
+# Org-specific scratch org files
+**/lwc/**/*.css.map
+
+# Claude local config
 .claude/
