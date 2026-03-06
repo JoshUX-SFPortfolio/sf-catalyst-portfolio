@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Auto_Link_Status__c</fullName>
+    <description>Indicates whether the case was automatically linked to an account/contact by CaseTriggerHandler email domain matching. Pending Manual Review cases surface in the service manager queue for manual resolution. Req: MKT-REQ-SRVC-002.</description>
+    <externalId>false</externalId>
+    <label>Auto-Link Status</label>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Picklist</type>
+    <valueSet>
+        <restricted>true</restricted>
+        <valueSetDefinition>
+            <sorted>false</sorted>
+            <value>
+                <fullName>Linked</fullName>
+                <default>false</default>
+                <label>Linked</label>
+            </value>
+            <value>
+                <fullName>Pending Manual Review</fullName>
+                <default>false</default>
+                <label>Pending Manual Review</label>
+            </value>
+            <value>
+                <fullName>Not Applicable</fullName>
+                <default>false</default>
+                <label>Not Applicable</label>
+            </value>
+        </valueSetDefinition>
+    </valueSet>
+</CustomField>

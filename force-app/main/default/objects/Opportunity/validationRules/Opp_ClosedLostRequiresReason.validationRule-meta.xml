@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Opp_ClosedLostRequiresReason</fullName>
+    <active>true</active>
+    <description>Enforces that a Loss Reason is provided when closing an opportunity as Lost. Drives win/loss reporting accuracy. Req: MKT-REQ-SALES-016.</description>
+    <errorConditionFormula>ISCHANGED(StageName) &amp;&amp; ISPICKVAL(StageName, &apos;Closed Lost&apos;) &amp;&amp; ISBLANK(Loss_Reason__c)</errorConditionFormula>
+    <errorMessage>Loss Reason is required when closing an opportunity as Lost.</errorMessage>
+</ValidationRule>
