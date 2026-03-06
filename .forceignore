@@ -1,0 +1,22 @@
+# .forceignore — controls what SFDX ignores during push/pull
+
+# Managed package metadata
+**/wave/**
+**/featureParameters/**
+
+# Experience Cloud compiled assets (regenerated on deploy)
+**/experiences/**/config/**
+**/digitalExperiences/**/.sfdx/**
+
+# Standard objects we don't want to overwrite in target org
+**/objects/Activity/**
+**/objects/CaseHistory/**
+**/objects/ContactHistory/**
+**/objects/AccountHistory/**
+**/objects/OpportunityHistory/**
+
+# Test data files (loaded separately via SFDX data commands)
+**/data/**
+
+# Project docs — not deployable metadata
+**/projectDocs/**

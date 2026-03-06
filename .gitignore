@@ -1,0 +1,30 @@
+# Salesforce DX
+.sfdx/
+.localdevserver/
+
+# Node
+node_modules/
+npm-debug.log
+
+# VS Code
+.vscode/settings.json
+.vscode/launch.json
+
+# macOS
+.DS_Store
+**/.DS_Store
+
+# Environment & secrets
+.env
+*.pem
+server.key
+
+# Compiled / generated
+**/staticresources/**/*.resource.meta.xml-e
+**/__tests__/
+
+# Org-specific scratch org files
+**/lwc/**/*.css.map
+
+# Claude local config
+.claude/
