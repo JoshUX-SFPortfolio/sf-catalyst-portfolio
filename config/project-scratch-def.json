@@ -1,0 +1,24 @@
+{
+  "orgName": "SF Portfolio — Marketing Vertical",
+  "edition": "Developer",
+  "features": [
+    "EnableSetPasswordInApi",
+    "Communities",
+    "Sites",
+    "SiteDotCom",
+    "Knowledge"
+  ],
+  "settings": {
+    "lightningExperienceSettings": {
+      "enableS1DesktopEnabled": true
+    },
+    "caseSettings": {
+      "emailToCase": {
+        "enableEmailToCase": true
+      }
+    },
+    "omniChannelSettings": {
+      "enableOmniChannel": true
+    }
+  }
+}

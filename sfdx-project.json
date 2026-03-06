@@ -1,0 +1,12 @@
+{
+  "packageDirectories": [
+    {
+      "path": "force-app",
+      "default": true
+    }
+  ],
+  "name": "SF-Portfolio",
+  "namespace": "",
+  "sfdcLoginUrl": "https://orgfarm-2c5a84acfb-dev-ed.develop.my.salesforce.com",
+  "sourceApiVersion": "62.0"
+}
