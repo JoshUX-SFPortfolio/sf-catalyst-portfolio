@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Edit</caseAccessLevel>
+    <contactAccessLevel>Read</contactAccessLevel>
+    <description>Support Agent — Technical — reports to Support Team Lead. Handles technical integration and platform issues. Private Case OWD; access via queue membership.</description>
+    <label>Support Agent — Technical</label>
+    <mayForecastManagerShare>false</mayForecastManagerShare>
+    <opportunityAccessLevel>Read</opportunityAccessLevel>
+    <parentRole>Support_Team_Lead</parentRole>
+</Role>

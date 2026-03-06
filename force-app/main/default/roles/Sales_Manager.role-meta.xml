@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Role xmlns="http://soap.sforce.com/2006/04/metadata">
+    <caseAccessLevel>Edit</caseAccessLevel>
+    <contactAccessLevel>Edit</contactAccessLevel>
+    <description>Sales Manager — reports to VP of Sales. Manages Account Executives and SDRs. Pipeline and forecast visibility over subordinates via role hierarchy.</description>
+    <label>Sales Manager</label>
+    <mayForecastManagerShare>true</mayForecastManagerShare>
+    <opportunityAccessLevel>Edit</opportunityAccessLevel>
+    <parentRole>VP_of_Sales</parentRole>
+</Role>
