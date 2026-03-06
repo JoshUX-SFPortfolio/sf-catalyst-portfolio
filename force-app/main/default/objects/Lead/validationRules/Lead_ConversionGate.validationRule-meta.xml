@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Lead_ConversionGate</fullName>
+    <active>true</active>
+    <description>Prevents lead conversion unless Status is Qualified and at least 3 activities have been logged. Activity_Count__c is maintained by LeadService via trigger. Req: MKT-REQ-SALES-005.</description>
+    <errorConditionFormula>NOT(ISNEW()) &amp;&amp; ISCHANGED(IsConverted) &amp;&amp; IsConverted = TRUE &amp;&amp; (ISPICKVAL(Status, &apos;Qualified&apos;) = FALSE || Activity_Count__c &lt; 3)</errorConditionFormula>
+    <errorMessage>A lead cannot be converted unless Status is Qualified and at least 3 activities are logged.</errorMessage>
+</ValidationRule>

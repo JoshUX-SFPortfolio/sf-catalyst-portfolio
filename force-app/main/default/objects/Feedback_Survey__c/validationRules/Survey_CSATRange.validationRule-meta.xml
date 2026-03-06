@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Survey_CSATRange</fullName>
+    <active>true</active>
+    <description>Enforces that CSAT Score is within the valid range of 1–5 when a value is provided. Protects AccountHealthScoreService calculation from out-of-range inputs.</description>
+    <errorConditionFormula>NOT(ISBLANK(CSAT_Score__c)) &amp;&amp; (CSAT_Score__c &lt; 1 || CSAT_Score__c &gt; 5)</errorConditionFormula>
+    <errorMessage>CSAT Score must be between 1 and 5.</errorMessage>
+</ValidationRule>

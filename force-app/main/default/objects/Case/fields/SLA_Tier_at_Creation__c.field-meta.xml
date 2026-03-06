@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>SLA_Tier_at_Creation__c</fullName>
+    <description>Snapshot of Account.Subscription_Tier__c at the time the case was created. Populated by CaseTriggerHandler on insert (before save). Preserved for SLA reporting accuracy even if the account tier changes mid-case. Req: MKT-REQ-SRVC-007.</description>
+    <externalId>false</externalId>
+    <label>SLA Tier at Creation</label>
+    <length>50</length>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Text</type>
+    <unique>false</unique>
+</CustomField>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Resolution_Summary__c</fullName>
+    <description>Summary of how the case was resolved. Required before setting Status to Resolved (enforced by Case_ResolutionSummaryRequired validation rule). Used for knowledge article seeding and SLA reporting. Req: MKT-REQ-SRVC-005.</description>
+    <externalId>false</externalId>
+    <label>Resolution Summary</label>
+    <length>2000</length>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>LongTextArea</type>
+    <visibleLines>5</visibleLines>
+</CustomField>

@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Primary_Platform_Contact__c</fullName>
+    <deleteConstraint>SetNull</deleteConstraint>
+    <description>Primary technical or business contact at the account for Catalyst platform matters. Displayed on account health dashboard. Req: MKT-REQ-SALES-008.</description>
+    <externalId>false</externalId>
+    <label>Primary Platform Contact</label>
+    <referenceTo>Contact</referenceTo>
+    <relationshipLabel>Accounts (Primary Platform Contact)</relationshipLabel>
+    <relationshipName>Primary_Platform_Contact_Accounts</relationshipName>
+    <required>false</required>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Lookup</type>
+</CustomField>

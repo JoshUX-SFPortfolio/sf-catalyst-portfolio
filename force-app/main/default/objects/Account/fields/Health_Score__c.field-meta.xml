@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Health_Score__c</fullName>
+    <description>Composite account health score 0–100. Calculated by AccountHealthScoreService: CSAT avg (25%) + open case inverse (25%) + platform usage index (25%) + renewal proximity (25%). Updated on Case close and by scheduled batch. Req: MKT-REQ-SALES-010.</description>
+    <externalId>false</externalId>
+    <label>Health Score</label>
+    <precision>3</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>

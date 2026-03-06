@@ -1,24 +1,31 @@
 {
-  "orgName": "SF Portfolio — Marketing Vertical",
+  "orgName": "Catalyst Portfolio — Master Template",
   "edition": "Developer",
   "features": [
     "EnableSetPasswordInApi",
     "Communities",
-    "Sites",
-    "SiteDotCom",
-    "Knowledge"
+    "ServiceCloud",
+    "Entitlements"
   ],
   "settings": {
     "lightningExperienceSettings": {
       "enableS1DesktopEnabled": true
     },
     "caseSettings": {
-      "emailToCase": {
-        "enableEmailToCase": true
-      }
+      "emailToCase": true,
+      "webToCase": true
+    },
+    "knowledgeSettings": {
+      "enableKnowledge": true
     },
     "omniChannelSettings": {
       "enableOmniChannel": true
+    },
+    "chatterSettings": {
+      "enableChatter": true
+    },
+    "entitlementSettings": {
+      "enableEntitlements": true
     }
   }
 }

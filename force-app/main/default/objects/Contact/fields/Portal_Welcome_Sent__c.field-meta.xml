@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Portal_Welcome_Sent__c</fullName>
+    <defaultValue>false</defaultValue>
+    <description>True when the portal welcome email has been sent to this contact. Checked by the provisioning flow to prevent duplicate welcome emails on re-provisioning. Req: MKT-REQ-EXP-001.</description>
+    <externalId>false</externalId>
+    <label>Welcome Email Sent</label>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Checkbox</type>
+</CustomField>

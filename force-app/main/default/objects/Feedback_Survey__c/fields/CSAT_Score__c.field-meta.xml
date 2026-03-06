@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>CSAT_Score__c</fullName>
+    <description>Customer satisfaction score on a 1–5 scale. Validated by VR to enforce range. Feeds Account Health Score CSAT component via AccountHealthScoreService.</description>
+    <externalId>false</externalId>
+    <label>CSAT Score</label>
+    <precision>1</precision>
+    <required>false</required>
+    <scale>0</scale>
+    <trackHistory>false</trackHistory>
+    <trackTrending>false</trackTrending>
+    <type>Number</type>
+    <unique>false</unique>
+</CustomField>
