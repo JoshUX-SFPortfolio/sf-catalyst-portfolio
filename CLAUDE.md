@@ -205,6 +205,7 @@ Modules: `SALES` · `SRVC` · `EXP` · `NFR`
 | MKT-DDT-1.0 | Data-Driven Testing Examples | ✅ Complete |
 | MKT-PTS-1.0 | Performance Testing Suite | ✅ Complete |
 | MKT-DRP-1.0 | Deployment & Release Plan | ✅ Complete |
+| MKT-LL-1.0 | Lessons Learned — All Phases | Active — Living Document |
 
 ---
 
@@ -249,6 +250,22 @@ CI/CD is intentionally deferred until `main` is tagged `v1.0`. See `projectDocs/
 - Format: `[type]: brief description` — e.g. `feat: add case entitlement assignment flow`
 - Types: `feat` · `fix` · `refactor` · `test` · `docs` · `config` · `[core-update]`
 - Commit after every logical unit of work — never commit a broken state to any branch
+
+---
+
+## Phase Close Checklist
+
+Complete these steps in order at the end of every phase:
+
+1. Deploy succeeds with 0 errors
+2. Commit all phase files on the feature branch
+3. Create PR — fill out the template fully (it is a portfolio artefact)
+4. Squash-merge to `develop`, delete the feature branch
+5. Update `CLAUDE.md` — active phase, completed phase list
+6. Update `MEMORY.md` — phase status table, any new gotchas
+7. Append to `projectDocs/MKT-LL-1.0_Catalyst.md` — one entry per resolved problem from this phase
+8. Commit `CLAUDE.md` + `MEMORY.md` + `MKT-LL-1.0_Catalyst.md` together on `develop`:
+   `docs: phase A.N close — update CLAUDE.md, MEMORY.md, lessons learned`
 
 ---
 
