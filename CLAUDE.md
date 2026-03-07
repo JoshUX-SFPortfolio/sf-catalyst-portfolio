@@ -22,8 +22,8 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 
 ## Current Status
 
-**Active phase:** A.5 — LWC Component Library (in progress, deploy + PR pending)
-**Next:** A.6 Reports & Dashboards
+**Active phase:** A.6 — Reports & Dashboards
+**Next:** A.7 Experience Cloud
 
 **Completed phases:**
 
@@ -31,7 +31,7 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 - A.2 Core Object Model ✅ — PR #3 merged to `develop`
 - A.3 Security Model ✅ — PR #4 merged to `develop`
 - A.4 Automation Library ✅ — PR #5 merged to `develop`
-- A.5 LWC Components ⏳ — built, awaiting deploy validation + PR
+- A.5 LWC Components ✅ — PR #6 merged to `develop`
 
 **Pinned for follow-up project (do not suggest):**
 - Figma design / design system
