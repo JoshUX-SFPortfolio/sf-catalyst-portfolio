@@ -1,0 +1,51 @@
+<template>
+    <div class="catalyst-deflection">
+        <div class="slds-box slds-box_x-small slds-theme_shade">
+            <h3 class="slds-text-heading_small slds-m-bottom_small">
+                <lightning-icon icon-name="utility:knowledge_base" size="x-small" class="slds-m-right_x-small"></lightning-icon>
+                Did you try our Knowledge Base?
+            </h3>
+
+            <template if:true={isSearching}>
+                <lightning-spinner alternative-text="Searching articles" size="small"></lightning-spinner>
+            </template>
+
+            <template if:true={hasResults}>
+                <p class="slds-text-body_small slds-m-bottom_small">Articles that may help:</p>
+                <ul class="slds-list_dotted">
+                    <template for:each={articles} for:item="article">
+                        <li key={article.Id} class="slds-m-bottom_x-small">
+                            <a href={article.articleUrl}
+                               target="_self"
+                               class="slds-text-link"
+                               data-id={article.Id}
+                               onclick={handleArticleClick}>
+                                {article.Title}
+                            </a>
+                            <p class="slds-text-body_small slds-text-color_weak">{article.Summary}</p>
+                        </li>
+                    </template>
+                </ul>
+                <div class="slds-m-top_small slds-text-align_center">
+                    <p class="slds-text-body_small slds-m-bottom_x-small">Did an article resolve your issue?</p>
+                    <lightning-button-group>
+                        <lightning-button label="Yes, thanks!" variant="success" onclick={handleDeflected}></lightning-button>
+                        <lightning-button label="No, I still need help" onclick={handleNotDeflected}></lightning-button>
+                    </lightning-button-group>
+                </div>
+            </template>
+
+            <template if:true={isEmpty}>
+                <p class="slds-text-body_small slds-text-color_weak">
+                    Start typing your subject above to see relevant articles.
+                </p>
+                <lightning-button
+                    label="Browse Knowledge Base"
+                    variant="base"
+                    class="slds-m-top_small"
+                    onclick={handleBrowseKnowledge}>
+                </lightning-button>
+            </template>
+        </div>
+    </div>
+</template>

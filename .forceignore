@@ -20,3 +20,6 @@
 
 # Project docs — not deployable metadata
 **/projectDocs/**
+
+# Jest test files — not deployable LWC metadata
+**/__tests__/**

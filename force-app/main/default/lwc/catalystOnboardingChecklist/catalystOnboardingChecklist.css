@@ -1,0 +1,12 @@
+.catalyst-onboarding-checklist .catalyst-step_complete {
+    text-decoration: line-through;
+    opacity: 0.6;
+}
+
+.catalyst-onboarding-checklist .catalyst-step {
+    border-bottom: 1px solid var(--lwc-colorBorderSeparator, #dddbda);
+}
+
+.catalyst-onboarding-checklist .catalyst-step:last-child {
+    border-bottom: none;
+}

@@ -1,0 +1,38 @@
+{
+    "name": "sf-catalyst-portfolio",
+    "version": "1.0.0",
+    "description": "Catalyst Marketing Technologies — Salesforce Portfolio (MTF)",
+    "private": true,
+    "scripts": {
+        "test:unit": "lwc-jest",
+        "test:unit:watch": "lwc-jest --watch",
+        "test:unit:debug": "lwc-jest --debug",
+        "test:unit:coverage": "lwc-jest --coverage"
+    },
+    "devDependencies": {
+        "@salesforce/sfdx-lwc-jest": "^3.1.0",
+        "@lwc/jest-transformer": "^3.1.0"
+    },
+    "jest": {
+        "testMatch": [
+            "**/__tests__/**/*.js"
+        ],
+        "moduleFileExtensions": [
+            "js",
+            "html",
+            "css"
+        ],
+        "moduleNameMapper": {
+            "^@salesforce/apex$": "<rootDir>/force-app/test/jest-mocks/apex.js",
+            "^@salesforce/apex/(.+)$": "<rootDir>/force-app/test/jest-mocks/apex.js",
+            "^lightning/navigation$": "<rootDir>/force-app/test/jest-mocks/lightning/navigation.js",
+            "^lightning/platformShowToastEvent$": "<rootDir>/force-app/test/jest-mocks/lightning/platformShowToastEvent.js"
+        },
+        "transform": {
+            "^.+\\.js$": "@salesforce/sfdx-lwc-jest/jest-transformer",
+            "^.+\\.html$": "@salesforce/sfdx-lwc-jest/jest-transformer",
+            "^.+\\.css$": "<rootDir>/force-app/test/jest-mocks/css.js"
+        },
+        "testEnvironment": "jsdom"
+    }
+}

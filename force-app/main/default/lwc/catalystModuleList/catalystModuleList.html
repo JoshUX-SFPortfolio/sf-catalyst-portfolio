@@ -1,0 +1,51 @@
+<template>
+    <lightning-card title="Active Modules" icon-name="standard:product">
+        <div class="slds-p-around_medium catalyst-module-list">
+
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading modules" size="small"></lightning-spinner>
+            </template>
+
+            <template if:true={hasModules}>
+                <ul class="slds-has-dividers_bottom-space">
+                    <template for:each={modules} for:item="mod">
+                        <li key={mod.Id} class="slds-item catalyst-module-item">
+                            <div class="slds-grid slds-grid_vertical-align-center">
+                                <div class="slds-col">
+                                    <div class="slds-media slds-media_center">
+                                        <div class="slds-media__figure">
+                                            <lightning-icon
+                                                icon-name={mod.moduleIcon}
+                                                size="small"
+                                                alternative-text={mod.Module__c}>
+                                            </lightning-icon>
+                                        </div>
+                                        <div class="slds-media__body">
+                                            <p class="slds-text-body_regular slds-text-color_default">
+                                                {mod.Module__c}
+                                            </p>
+                                            <p class="slds-text-body_small slds-text-color_weak">
+                                                Active since
+                                                <lightning-formatted-date-time
+                                                    value={mod.activationDateIso}
+                                                    year="numeric" month="short" day="2-digit">
+                                                </lightning-formatted-date-time>
+                                            </p>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="slds-col slds-no-flex">
+                                    <lightning-badge label="Active" class="slds-theme_success"></lightning-badge>
+                                </div>
+                            </div>
+                        </li>
+                    </template>
+                </ul>
+            </template>
+
+            <template if:true={isEmpty}>
+                <p class="slds-text-body_small slds-text-color_weak">No active module licences found.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>
