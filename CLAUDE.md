@@ -22,8 +22,8 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 
 ## Current Status
 
-**Active phase:** A.6 — Reports & Dashboards
-**Next:** A.7 Experience Cloud
+**Active phase:** A.7 — Experience Cloud
+**Next:** A.8 Agentforce
 
 **Completed phases:**
 
@@ -32,6 +32,7 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 - A.3 Security Model ✅ — PR #4 merged to `develop`
 - A.4 Automation Library ✅ — PR #5 merged to `develop`
 - A.5 LWC Components ✅ — PR #6 merged to `develop`
+- A.6 Reports & Dashboards ✅ — PR #7 merged to `develop`
 
 **Pinned for follow-up project (do not suggest):**
 - Figma design / design system
