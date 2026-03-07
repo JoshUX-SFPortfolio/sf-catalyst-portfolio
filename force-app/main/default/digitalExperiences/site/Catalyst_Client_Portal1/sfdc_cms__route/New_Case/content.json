@@ -1,0 +1,12 @@
+{
+  "type": "sfdc_cms__route",
+  "title": "New Case",
+  "contentBody": {
+    "activeViewId": "newCase",
+    "configurationTags": [],
+    "pageAccess": "RequiresLogin",
+    "routeType": "standard",
+    "urlPrefix": "cases/new"
+  },
+  "urlName": "new-case"
+}
