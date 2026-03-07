@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Dashboard xmlns="http://soap.sforce.com/2006/04/metadata">
+    <backgroundEndColor>#FFFFFF</backgroundEndColor>
+    <backgroundFadeDirection>Diagonal</backgroundFadeDirection>
+    <backgroundStartColor>#FFFFFF</backgroundStartColor>
+
+    <dashboardGridLayout>
+        <dashboardGridComponents>
+            <colSpan>4</colSpan>
+            <columnIndex>0</columnIndex>
+            <rowIndex>0</rowIndex>
+            <rowSpan>4</rowSpan>
+            <dashboardComponent>
+                <componentType>Gauge</componentType>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>false</enableHover>
+                <expandOthers>false</expandOthers>
+                <gaugeMax>500000</gaugeMax>
+                <gaugeMin>0</gaugeMin>
+                <header>My Quota Attainment</header>
+                <indicatorLowColor>#FF0000</indicatorLowColor>
+                <indicatorMiddleColor>#FFAA00</indicatorMiddleColor>
+                <indicatorHighColor>#00AA00</indicatorHighColor>
+                <report>Catalyst_Sales_Reports/Rep_Quota_Attainment</report>
+                <showValues>true</showValues>
+                <title>Closed Won — Current FY</title>
+                <useReportChart>true</useReportChart>
+            </dashboardComponent>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>8</colSpan>
+            <columnIndex>4</columnIndex>
+            <rowIndex>0</rowIndex>
+            <rowSpan>4</rowSpan>
+            <dashboardComponent>
+
+                <componentType>Table</componentType>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <header>My Open Pipeline</header>
+                <indicatorLowColor>#FF0000</indicatorLowColor>
+                <indicatorMiddleColor>#FFAA00</indicatorMiddleColor>
+                <indicatorHighColor>#00AA00</indicatorHighColor>
+                <maxValuesDisplayed>15</maxValuesDisplayed>
+                <report>Catalyst_Sales_Reports/Rep_My_Open_Pipeline</report>
+                <sortBy>RowLabelAscending</sortBy>
+                <title>Open Opportunities — Mine</title>
+                <useReportChart>false</useReportChart>
+            </dashboardComponent>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>0</columnIndex>
+            <rowIndex>4</rowIndex>
+            <rowSpan>4</rowSpan>
+            <dashboardComponent>
+                <chartAxisRange>Auto</chartAxisRange>
+                <componentType>Bar</componentType>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <enableHover>true</enableHover>
+                <expandOthers>false</expandOthers>
+                <header>Activities This Week</header>
+                <legendPosition>Bottom</legendPosition>
+                <maxValuesDisplayed>5</maxValuesDisplayed>
+                <report>Catalyst_Sales_Reports/Rep_Activities_This_Week</report>
+                <showPercentage>false</showPercentage>
+                <showValues>true</showValues>
+                <sortBy>RowValueDescending</sortBy>
+                <title>My Activities — Last 7 Days by Type</title>
+                <useReportChart>true</useReportChart>
+            </dashboardComponent>
+        </dashboardGridComponents>
+        <dashboardGridComponents>
+            <colSpan>6</colSpan>
+            <columnIndex>6</columnIndex>
+            <rowIndex>4</rowIndex>
+            <rowSpan>4</rowSpan>
+            <dashboardComponent>
+
+                <componentType>Table</componentType>
+                <displayUnits>Auto</displayUnits>
+                <drillEnabled>false</drillEnabled>
+                <drillToDetailEnabled>false</drillToDetailEnabled>
+                <header>Renewal Risk Accounts</header>
+                <indicatorLowColor>#FF0000</indicatorLowColor>
+                <indicatorMiddleColor>#FFAA00</indicatorMiddleColor>
+                <indicatorHighColor>#00AA00</indicatorHighColor>
+                <maxValuesDisplayed>10</maxValuesDisplayed>
+                <report>Catalyst_Sales_Reports/Rep_Renewal_Risk_Accounts</report>
+                <sortBy>RowLabelAscending</sortBy>
+                <title>Renewal Risk Accounts</title>
+                <useReportChart>false</useReportChart>
+            </dashboardComponent>
+        </dashboardGridComponents>
+        <rowHeight>100</rowHeight>
+        <numberOfColumns>12</numberOfColumns>
+        
+    </dashboardGridLayout>
+    <description>Self-service performance dashboard for Account Executives — quota attainment, open pipeline, weekly activity counts, and at-risk renewal accounts. MKT-REQ-SALES-020</description>
+    <isGridLayout>true</isGridLayout>
+    <runningUser>josh.45ca40001658@agentforce.com</runningUser>
+    <textColor>#000000</textColor>
+    <title>Rep Performance Dashboard</title>
+    <titleColor>#000000</titleColor>
+    <titleSize>12</titleSize>
+</Dashboard>
