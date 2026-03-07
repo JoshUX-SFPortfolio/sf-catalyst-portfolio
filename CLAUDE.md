@@ -22,8 +22,16 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 
 ## Current Status
 
-**Active phase:** A.1 — SFDX project setup  
-**Next:** A.2 Core object model
+**Active phase:** A.5 — LWC Component Library (in progress, deploy + PR pending)
+**Next:** A.6 Reports & Dashboards
+
+**Completed phases:**
+
+- A.1 Project Setup ✅
+- A.2 Core Object Model ✅ — PR #3 merged to `develop`
+- A.3 Security Model ✅ — PR #4 merged to `develop`
+- A.4 Automation Library ✅ — PR #5 merged to `develop`
+- A.5 LWC Components ⏳ — built, awaiting deploy validation + PR
 
 **Pinned for follow-up project (do not suggest):**
 - Figma design / design system

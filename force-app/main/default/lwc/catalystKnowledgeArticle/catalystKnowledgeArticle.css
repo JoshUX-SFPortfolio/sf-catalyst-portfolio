@@ -1,0 +1,8 @@
+.catalyst-knowledge-article .article-body {
+    line-height: 1.6;
+}
+
+.catalyst-knowledge-article .catalyst-article-footer {
+    border-top: 1px solid var(--lwc-colorBorderSeparator, #dddbda);
+    padding-top: var(--lwc-spacingMedium, 1rem);
+}

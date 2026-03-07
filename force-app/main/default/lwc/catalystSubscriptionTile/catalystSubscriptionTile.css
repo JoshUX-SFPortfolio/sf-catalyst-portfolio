@@ -1,0 +1,20 @@
+.catalyst-subscription-tile .tier-badge {
+    font-size: 0.875rem;
+    padding: var(--lwc-spacingXSmall, 0.25rem) var(--lwc-spacingSmall, 0.5rem);
+    border-radius: var(--lwc-borderRadiusMedium, 4px);
+}
+
+.catalyst-subscription-tile .tier-badge_enterprise {
+    background-color: var(--lwc-colorBackgroundHighlight, #1b5297);
+    color: #fff;
+}
+
+.catalyst-subscription-tile .tier-badge_professional {
+    background-color: var(--lwc-colorBrandDark, #005fb2);
+    color: #fff;
+}
+
+.catalyst-subscription-tile .tier-badge_starter {
+    background-color: var(--lwc-colorBorder, #dddbda);
+    color: var(--lwc-colorTextDefault, #3e3e3c);
+}

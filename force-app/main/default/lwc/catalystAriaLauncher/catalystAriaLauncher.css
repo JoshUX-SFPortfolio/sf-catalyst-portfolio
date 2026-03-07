@@ -1,0 +1,56 @@
+.catalyst-aria-launcher {
+    position: fixed;
+    bottom: var(--lwc-spacingLarge, 1.5rem);
+    right: var(--lwc-spacingLarge, 1.5rem);
+    z-index: 9000;
+}
+
+.aria-fab__button {
+    display: flex;
+    align-items: center;
+    gap: var(--lwc-spacingXSmall, 0.25rem);
+    background-color: var(--lwc-colorBrand, #0070d2);
+    color: #fff;
+    border: none;
+    border-radius: 2rem;
+    padding: var(--lwc-spacingSmall, 0.5rem) var(--lwc-spacingMedium, 1rem);
+    cursor: pointer;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.2);
+    transition: background-color 0.2s ease;
+}
+
+.aria-fab__button:hover {
+    background-color: var(--lwc-colorBrandDark, #005fb2);
+}
+
+.aria-fab__label {
+    font-weight: 700;
+    font-size: 0.8125rem;
+    letter-spacing: 0.03em;
+}
+
+.aria-chat-panel {
+    position: absolute;
+    bottom: 4rem;
+    right: 0;
+    width: 340px;
+    background: #fff;
+    border-radius: var(--lwc-borderRadiusMedium, 4px);
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.16);
+    overflow: hidden;
+}
+
+.aria-chat-panel__header {
+    background-color: var(--lwc-colorBrand, #0070d2);
+    color: #fff;
+    padding: var(--lwc-spacingSmall, 0.5rem) var(--lwc-spacingMedium, 1rem);
+}
+
+.aria-chat-panel__subtitle {
+    color: rgba(255, 255, 255, 0.8);
+}
+
+.aria-chat-panel__body {
+    min-height: 200px;
+    padding: var(--lwc-spacingMedium, 1rem);
+}

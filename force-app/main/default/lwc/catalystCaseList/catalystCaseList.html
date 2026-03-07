@@ -1,0 +1,93 @@
+<template>
+    <div class="catalyst-case-list">
+        <!-- Header -->
+        <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_medium">
+            <div class="slds-col">
+                <h2 class="slds-text-heading_medium">My Cases</h2>
+            </div>
+            <div class="slds-col slds-no-flex">
+                <lightning-button
+                    label="New Case"
+                    variant="brand"
+                    onclick={handleNewCase}>
+                </lightning-button>
+            </div>
+        </div>
+
+        <!-- Status Filter -->
+        <div class="slds-m-bottom_medium">
+            <lightning-combobox
+                label="Filter by Status"
+                variant="label-inline"
+                value={selectedStatus}
+                options={statusOptions}
+                onchange={handleStatusChange}>
+            </lightning-combobox>
+        </div>
+
+        <!-- Error State -->
+        <template if:true={error}>
+            <div class="slds-notify slds-notify_alert slds-alert_error" role="alert">
+                <span class="slds-assistive-text">Error</span>
+                <h2>{error}</h2>
+            </div>
+        </template>
+
+        <!-- Loading State -->
+        <template if:true={isLoading}>
+            <lightning-spinner alternative-text="Loading cases" size="medium"></lightning-spinner>
+        </template>
+
+        <!-- Empty State -->
+        <template if:true={isEmpty}>
+            <div class="slds-illustration slds-illustration_small slds-m-top_large">
+                <div class="slds-illustration__figure">
+                    <lightning-icon icon-name="standard:case" size="large"></lightning-icon>
+                </div>
+                <div class="slds-illustration__body slds-m-top_medium">
+                    <p class="slds-text-body_regular">No cases found. Need help? Open a new case.</p>
+                </div>
+            </div>
+        </template>
+
+        <!-- Case Table -->
+        <template if:true={hasCases}>
+            <lightning-datatable
+                key-field="Id"
+                data={pagedCases}
+                columns={columns}
+                hide-checkbox-column
+                onrowaction={handleRowAction}
+                sorted-by={sortedBy}
+                sorted-direction={sortDirection}
+                onsort={handleSort}>
+            </lightning-datatable>
+
+            <!-- Pagination -->
+            <div class="slds-grid slds-grid_vertical-align-center slds-m-top_medium catalyst-pagination">
+                <div class="slds-col">
+                    <p class="slds-text-body_small">
+                        Showing {pageStart}–{pageEnd} of {totalCases} cases
+                    </p>
+                </div>
+                <div class="slds-col slds-no-flex">
+                    <lightning-button-group>
+                        <lightning-button
+                            label="Previous"
+                            icon-name="utility:chevronleft"
+                            disabled={isFirstPage}
+                            onclick={handlePrevPage}>
+                        </lightning-button>
+                        <lightning-button
+                            label="Next"
+                            icon-name="utility:chevronright"
+                            icon-position="right"
+                            disabled={isLastPage}
+                            onclick={handleNextPage}>
+                        </lightning-button>
+                    </lightning-button-group>
+                </div>
+            </div>
+        </template>
+    </div>
+</template>

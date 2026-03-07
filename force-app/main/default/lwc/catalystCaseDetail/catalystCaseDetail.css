@@ -1,0 +1,7 @@
+.catalyst-case-detail {
+    padding: var(--lwc-spacingMedium, 1rem);
+}
+
+.case-description {
+    white-space: pre-wrap;
+}
