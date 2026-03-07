@@ -22,8 +22,8 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 
 ## Current Status
 
-**Active phase:** A.8 — Agentforce
-**Next:** A.9 MTF Stabilisation
+**Active phase:** A.9 — MTF Stabilisation
+**Next:** TBD
 
 **Completed phases:**
 
@@ -34,6 +34,7 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 - A.5 LWC Components ✅ — PR #6 merged to `develop`
 - A.6 Reports & Dashboards ✅ — PR #7 merged to `develop`
 - A.7 Experience Cloud ✅ — PR #8 merged to `develop`
+- A.8 Agentforce ✅ — PR #9 merged to `develop`
 
 **Pinned for follow-up project (do not suggest):**
 - Figma design / design system

@@ -6,7 +6,7 @@
 | **Document** | Lessons Learned — All Phases |
 | **Owner** | Portfolio Developer |
 | **Status** | Active — Living Document |
-| **Last Updated** | A.7 Experience Cloud |
+| **Last Updated** | A.8 Agentforce |
 
 ---
 
@@ -80,6 +80,16 @@ This document records every technical problem encountered during development, it
 | LL-044 | A.7 — Experience Cloud | geoBotsAllowed is not a valid sfdc_cms__site property |
 | LL-045 | A.7 — Experience Cloud | Network profile names use display name, not API name |
 | LL-046 | A.7 — Experience Cloud | New routes cannot be created via Metadata API in BYO LWR |
+| LL-047 | A.8 — Agentforce | @InvocableMethod — only one per Apex class |
+| LL-048 | A.8 — Agentforce | GenAiFunction invocationTarget is class name only, not ClassName.methodName |
+| LL-049 | A.8 — Agentforce | GenAiFunction requires bundle folder structure (SDR adapter: bundle) |
+| LL-050 | A.8 — Agentforce | GenAiFunction deploy fails if Apex @InvocableMethod not yet in org |
+| LL-051 | A.8 — Agentforce | GenAiPlugin requires developerName and language fields |
+| LL-052 | A.8 — Agentforce | GenAiPlugin genAiFunctions element format: child contains functionName |
+| LL-053 | A.8 — Agentforce | GenAiPlugin deploy fails if referenced GenAiFunctions not deployed first |
+| LL-054 | A.8 — Agentforce | GenAiPlanner→GenAiPlugin link set via Agentforce Builder UI (not Metadata API) |
+| LL-055 | A.8 — Agentforce | GenAiPromptTemplate type is a restricted picklist — requires UI configuration |
+| LL-056 | A.8 — Agentforce | PermissionSet fieldPermissions on required MasterDetail fields rejected |
 
 ---
 
@@ -644,3 +654,137 @@ This document records every technical problem encountered during development, it
 **Root Cause:** The Build Your Own (LWR) Experience Cloud template does not support creating new routes via the Metadata API. This is a platform-enforced limitation. New pages must be created through the Experience Builder UI, after which the resulting metadata can be retrieved and managed via the Metadata API.
 
 **Solution:** Create all new pages in Experience Builder UI first. Then retrieve the metadata (`sf project retrieve start --metadata "DigitalExperienceBundle:site/SiteName"`), commit the retrieved files, and manage subsequent updates via the Metadata API. Document page designs as repository artefacts so the UI creation step is guided.
+
+---
+
+## A.8 — Agentforce
+
+### LL-047 — @InvocableMethod — only one per Apex class
+
+**Phase:** A.8 — Agentforce
+
+**Problem:** Initial design placed three `@InvocableMethod` methods (`getCaseStatus`, `getOnboardingProgress`, `escalateToAgent`) in a single `AriaActionController` class. Deploy failed: `Only one method per type can be defined with: InvocableMethod`.
+
+**Root Cause:** Salesforce platform constraint — only one `@InvocableMethod` annotation is permitted per Apex class. Each `@InvocableMethod` must have distinct input/output types and cannot be co-located in the same class.
+
+**Solution:** Split into three separate Apex classes: `AriaGetCaseStatus`, `AriaGetOnboardingProgress`, `AriaEscalateToAgent`. The original class was rewritten as a shared utility (`AriaActionController`) with helper methods only.
+
+---
+
+### LL-048 — GenAiFunction invocationTarget is class name only
+
+**Phase:** A.8 — Agentforce
+
+**Problem:** GenAiFunction XML files had `<invocationTarget>AriaGetCaseStatus.getCaseStatus</invocationTarget>` (ClassName.methodName format). Deploy failed: `InvocableTarget not found`.
+
+**Root Cause:** The `invocationTarget` for Apex-backed GenAi functions is the **Apex class name only** — matching the value registered in the Actions API at `/services/data/v62.0/actions/custom/apex`. The method name is implicit.
+
+**Solution:** Use just the class name: `<invocationTarget>AriaGetCaseStatus</invocationTarget>`. Confirm valid values via: `curl .../services/data/v62.0/actions/custom/apex | python3 -c "import json,sys; [print(a['name']) for a in json.load(sys.stdin)['actions']]"`.
+
+---
+
+### LL-049 — GenAiFunction requires bundle folder structure
+
+**Phase:** A.8 — Agentforce
+
+**Problem:** Placed GenAiFunction XML files as flat files (`genAiFunctions/GetCaseStatus.genAiFunction-meta.xml`). CLI returned `ExpectedSourceFilesError` — could not map files to type.
+
+**Root Cause:** The SDR (Source Deploy Retrieve) registry marks `GenAiFunction` as `adapter: bundle` with `strictDirectoryName: true`. This requires each function to be in its own named subdirectory: `genAiFunctions/<DeveloperName>/<DeveloperName>.genAiFunction-meta.xml`. The org's SOAP `describeMetadata` response shows a suffix, but the local CLI registry takes precedence for source deploy.
+
+**Solution:** Structure as: `force-app/main/default/genAiFunctions/GetCaseStatus/GetCaseStatus.genAiFunction-meta.xml`. This applies to `GenAiPlannerBundle` as well (though that type was not deployable via Metadata API — see LL-054).
+
+---
+
+### LL-050 — GenAiFunction deploy fails if Apex @InvocableMethod not yet in org
+
+**Phase:** A.8 — Agentforce
+
+**Problem:** Attempted to deploy GenAiFunctions before Apex classes were deployed. Deploy failed with `InvocableTarget not found` even though class names were correct.
+
+**Root Cause:** GenAiFunction metadata references Apex `@InvocableMethod` actions by their registered name. If the Apex class has not been deployed, the action does not exist in the org's action registry and the reference fails at deploy time.
+
+**Solution:** Always deploy Apex classes first, then deploy GenAiFunction metadata. Verify the action is registered: `curl .../services/data/v62.0/actions/custom/apex` — the class name must appear in the response before GenAiFunctions can reference it.
+
+---
+
+### LL-051 — GenAiPlugin requires developerName and language fields
+
+**Phase:** A.8 — Agentforce
+
+**Problem:** Initial GenAiPlugin XML omitted `developerName` and `language`. Two separate deploy failures: first `Required field is missing: developerName`, then `Required field is missing: language`.
+
+**Root Cause:** `GenAiPlugin` metadata requires both `developerName` (the API name) and `language` (locale code) in addition to `masterLabel`, `pluginType`, `description`, and `scope`.
+
+**Solution:** Include `<developerName>ClientSelfService</developerName>` and `<language>en_US</language>` in the XML. Element order: `description`, `developerName`, `language`, `masterLabel`, `pluginType`, `scope`, then `genAiFunctions`.
+
+---
+
+### LL-052 — GenAiPlugin genAiFunctions child element format
+
+**Phase:** A.8 — Agentforce
+
+**Problem:** Multiple incorrect element formats tried for function references in GenAiPlugin: `<genAiFunctions><genAiFunction>`, `<functions><functionName>`, `<genAiFunctions>DeveloperName</genAiFunctions>` (flat text). All produced schema parse errors or missing field errors.
+
+**Root Cause:** The correct format is `<genAiFunctions>` as a repeating parent element with `<functionName>` as the child, referencing the GenAiFunction developer name. The Tooling API object `GenAiPluginFunctionDef` has a `Function` field — the XML maps this as `<functionName>`.
+
+**Solution:**
+
+```xml
+<genAiFunctions>
+    <functionName>GetCaseStatus</functionName>
+</genAiFunctions>
+<genAiFunctions>
+    <functionName>GetOnboardingProgress</functionName>
+</genAiFunctions>
+<genAiFunctions>
+    <functionName>EscalateToAgent</functionName>
+</genAiFunctions>
+```
+
+---
+
+### LL-053 — GenAiPlugin deploy fails if referenced GenAiFunctions not deployed first
+
+**Phase:** A.8 — Agentforce
+
+**Problem:** Deployed GenAiPlugin with `<functionName>` references before GenAiFunctions existed in the org. Deploy returned an "unexpected error" with error code `-2081102045` (no line number — server-side failure, not a parse error).
+
+**Root Cause:** GenAiPlugin validates that the referenced `GenAiFunction` developer names exist in the org at deploy time. If they don't exist, the server-side validation fails with an opaque error.
+
+**Solution:** Deploy GenAiFunctions first, verify they are in the org (`sf data query --use-tooling-api -q "SELECT DeveloperName FROM GenAiFunctionDefinition"`), then deploy GenAiPlugin.
+
+---
+
+### LL-054 — GenAiPlanner→GenAiPlugin link set via Agentforce Builder UI
+
+**Phase:** A.8 — Agentforce
+
+**Problem:** Attempted to link `GenAiPlanner` to `GenAiPlugin` via XML element `<genAiPlugins>`. Multiple element names tried (`<plugin>`, `<pluginName>`, `<genAiPlugin>`, flat text `ClientSelfService`). Each produced a different parse or reference error.
+
+**Root Cause:** The `GenAiPlannerFunctionDef.Plugin` field is a **dynamic restricted picklist** populated from the `GenAiPluginDefinition` registry. Newly deployed plugins are not immediately available in this picklist due to caching. Additionally, the correct XML element structure for linking a planner to a plugin is not settable via Metadata API in API version 62.0 — this link is managed through the Agentforce Builder UI.
+
+**Solution:** Deploy `GenAiPlanner` with only `masterLabel`, `description`, and `plannerType`. After deployment, navigate to Setup → Agents → select the planner → assign the plugin topic in Agentforce Builder. Do not attempt to set `genAiPlugins` in the Planner XML for API v62.0.
+
+---
+
+### LL-055 — GenAiPromptTemplate type is a restricted picklist requiring UI configuration
+
+**Phase:** A.8 — Agentforce
+
+**Problem:** GenAiPromptTemplate requires a `<type>` element referencing a `GenAiPromptTemplateType` record. Multiple values attempted (`einstein_gpt__default`, `AiCopilot__SystemPrompt`, etc.) — all rejected as `bad value for restricted picklist field`. `GenAiPromptTemplateType` records are not queryable via SOQL or Tooling API. No REST endpoint exposes valid type values.
+
+**Root Cause:** The `GenAiPromptTemplate.Type` picklist is an internal lookup to `GenAiPromptTemplateType` platform records. These records are managed by Salesforce and the correct developer name values depend on what managed packages are installed in the org. They are not exposed through any queryable API.
+
+**Solution:** Author the full prompt template content in the XML file (`<templateVersions><content>...</content><status>Published</status></templateVersions>`). Deploy without the `<type>` element (produces validation error about missing type). The `type` must be selected in the Agentforce Builder UI or Prompt Builder when creating the agent. Alternatively, retrieve the template after creating it in the UI to capture the correct type value for future deployments.
+
+---
+
+### LL-056 — PermissionSet fieldPermissions on required MasterDetail fields rejected
+
+**Phase:** A.8 — Agentforce
+
+**Problem:** Added a `fieldPermissions` entry for `Project__c.Account__c` in `Agentforce_Service_User.permissionset-meta.xml`. Deploy failed: `You cannot deploy to a required field: Project__c.Account__c`.
+
+**Root Cause:** `Project__c.Account__c` is a required `MasterDetail` field — the platform does not allow modifying FLS grants on required fields. Required fields always have implicit read access regardless of FLS settings.
+
+**Solution:** Remove all `fieldPermissions` entries for required fields (MasterDetail relationship fields, required custom fields). Only include FLS grants for optional/nullable fields.
