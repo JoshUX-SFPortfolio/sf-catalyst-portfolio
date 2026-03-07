@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Get Case Status</masterLabel>
+    <description>Returns the authenticated Catalyst portal user's open support cases including case number, subject, status, and last modified date. Use this when a client asks about their support cases, ticket status, or outstanding issues. MKT-REQ-EXP-012, MKT-REQ-EXP-013.</description>
+    <invocationTargetType>apex</invocationTargetType>
+    <invocationTarget>AriaGetCaseStatus</invocationTarget>
+    <isConfirmationRequired>false</isConfirmationRequired>
+</GenAiFunction>
