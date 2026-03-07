@@ -1,0 +1,5 @@
+{
+  "apiName" : "Cases",
+  "type" : "sfdc_cms__route",
+  "path" : "routes"
+}

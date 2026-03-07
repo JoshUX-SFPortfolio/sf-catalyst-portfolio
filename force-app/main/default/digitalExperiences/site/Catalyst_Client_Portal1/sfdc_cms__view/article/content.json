@@ -1,0 +1,80 @@
+{
+  "type": "sfdc_cms__view",
+  "title": "Article",
+  "contentBody": {
+    "component": {
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": {
+                "backgroundImageConfig": "",
+                "backgroundImageOverlay": "rgba(0,0,0,0)",
+                "componentSpacerSize": "",
+                "layoutDirectionDesktop": "row",
+                "layoutDirectionMobile": "column",
+                "layoutDirectionTablet": "column",
+                "maxContentWidth": "",
+                "sectionColumnGutterWidth": "",
+                "sectionConfig": "{\"UUID\":\"f1b2c3d4-0001-4001-f001-000000000006\",\"columns\":[{\"UUID\":\"f1b2c3d4-0002-4001-f001-000000000006\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}",
+                "sectionMinHeight": "",
+                "sectionVerticalAlign": "flex-start"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "attributes": {
+                        "urlName": "{!articleId}"
+                      },
+                      "definition": "c:catalystKnowledgeArticle",
+                      "id": "f1b2c3d4-0003-4001-f001-000000000006",
+                      "type": "component"
+                    }
+                  ],
+                  "id": "f1b2c3d4-0002-4001-f001-000000000006",
+                  "name": "col1",
+                  "title": "Column 1",
+                  "type": "region"
+                }
+              ],
+              "definition": "community_layout:section",
+              "id": "f1b2c3d4-0001-4001-f001-000000000006",
+              "type": "component"
+            }
+          ],
+          "id": "f1b2c3d4-0006-4001-f001-000000000006",
+          "name": "content",
+          "title": "Content",
+          "type": "region"
+        },
+        {
+          "children": [
+            {
+              "attributes": {
+                "customHeadTags": "",
+                "description": "Read a Catalyst knowledge base article.",
+                "pageTitle": "Article | Catalyst Client Portal",
+                "recordId": "{!recordId}"
+              },
+              "definition": "community_builder:seoAssistant",
+              "id": "f1b2c3d4-0007-4001-f001-000000000006",
+              "type": "component"
+            }
+          ],
+          "id": "f1b2c3d4-0008-4001-f001-000000000006",
+          "name": "sfdcHiddenRegion",
+          "title": "sfdcHiddenRegion",
+          "type": "region"
+        }
+      ],
+      "definition": "community_layout:sldsFlexibleLayout",
+      "id": "f1b2c3d4-0009-4001-f001-000000000006",
+      "type": "component"
+    },
+    "dataProviders": [],
+    "themeLayoutType": "Inner",
+    "viewType": "standard"
+  },
+  "urlName": "article"
+}

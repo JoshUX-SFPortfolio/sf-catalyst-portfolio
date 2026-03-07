@@ -1,0 +1,12 @@
+{
+  "type": "sfdc_cms__route",
+  "title": "Knowledge",
+  "contentBody": {
+    "activeViewId": "knowledge",
+    "configurationTags": [],
+    "pageAccess": "RequiresLogin",
+    "routeType": "standard",
+    "urlPrefix": "knowledge"
+  },
+  "urlName": "knowledge"
+}

@@ -1,0 +1,69 @@
+/*
+ * Catalyst Client Portal — Global Styles
+ * Brand: Catalyst Marketing Technologies, Inc.
+ * SLDS 2 design token overrides for LWR site
+ */
+
+/* Import Inter font from Google Fonts CDN */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+html,
+body {
+    height: 100%;
+}
+
+html {
+    background: #0A0E1A;
+}
+
+body {
+    margin: 0;
+    font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    background-color: #0A0E1A;
+    color: #ffffff;
+}
+
+/* Catalyst brand CSS custom properties */
+:root {
+    --catalyst-bg-obsidian: #0A0E1A;
+    --catalyst-bg-navy: #0D1B2A;
+    --catalyst-bg-slate: #1A2744;
+    --catalyst-brand-blue: #0176D3;
+    --catalyst-accent-cyan: #00C2E0;
+    --catalyst-accent-teal: #00A99D;
+    --catalyst-text-primary: #ffffff;
+    --catalyst-text-secondary: #8896A5;
+    --catalyst-success: #10B981;
+    --catalyst-warning: #F59E0B;
+    --catalyst-error: #EF4444;
+    --catalyst-card-padding: 24px;
+    --catalyst-border-radius: 8px;
+}
+
+/* Card/surface styles */
+.catalyst-card {
+    background-color: var(--catalyst-bg-navy);
+    border-radius: var(--catalyst-border-radius);
+    padding: var(--catalyst-card-padding);
+    border: 1px solid var(--catalyst-bg-slate);
+}
+
+/* Navigation styles */
+.catalyst-nav {
+    background-color: var(--catalyst-bg-navy);
+    border-bottom: 1px solid var(--catalyst-bg-slate);
+}
+
+/* Accent highlight */
+.catalyst-accent {
+    color: var(--catalyst-accent-cyan);
+}
+
+/* Override LWR default link colours */
+a, .dxp-link {
+    color: var(--catalyst-accent-cyan);
+}
+
+a:hover, .dxp-link:hover {
+    color: var(--catalyst-brand-blue);
+}
