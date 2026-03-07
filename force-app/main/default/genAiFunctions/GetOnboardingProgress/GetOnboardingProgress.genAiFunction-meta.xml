@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Get Onboarding Progress</masterLabel>
+    <description>Returns the authenticated Catalyst portal user's onboarding completion percentage, their next incomplete onboarding step, and the project name. Use this when a client asks about their onboarding status, setup progress, or next steps. MKT-REQ-EXP-012, MKT-REQ-EXP-013.</description>
+    <invocationTargetType>apex</invocationTargetType>
+    <invocationTarget>AriaGetOnboardingProgress</invocationTarget>
+    <isConfirmationRequired>false</isConfirmationRequired>
+</GenAiFunction>

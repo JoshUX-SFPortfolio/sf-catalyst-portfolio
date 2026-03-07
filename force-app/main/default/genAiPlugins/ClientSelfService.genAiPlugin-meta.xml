@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlugin xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Help authenticated Catalyst clients with knowledge questions, support case status, onboarding guidance, and escalation to human agents. Out of scope: pricing, contract negotiation, product roadmap, account changes. MKT-REQ-EXP-013.</description>
+    <developerName>ClientSelfService</developerName>
+    <language>en_US</language>
+    <masterLabel>Client Self-Service</masterLabel>
+    <pluginType>Topic</pluginType>
+    <scope>You help authenticated Catalyst Marketing Technologies clients self-serve on their subscription, support cases, and onboarding journey. You search the knowledge base for answers, retrieve their open case status, check their onboarding progress, and escalate to a human agent when needed.</scope>
+    <genAiFunctions>
+        <functionName>GetCaseStatus</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>GetOnboardingProgress</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
+        <functionName>EscalateToAgent</functionName>
+    </genAiFunctions>
+</GenAiPlugin>
