@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Onboarding</fullName>
+    <active>true</active>
+    <description>Onboarding cases — new customer setup, data migration assistance, and initial configuration.</description>
+    <label>Onboarding</label>
+    <businessProcess>Catalyst_Support_Process</businessProcess>
+</RecordType>

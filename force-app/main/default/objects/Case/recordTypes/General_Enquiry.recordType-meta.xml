@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>General_Enquiry</fullName>
+    <active>true</active>
+    <description>General enquiries — how-to questions, documentation requests, and non-urgent support.</description>
+    <label>General Enquiry</label>
+    <businessProcess>Catalyst_Support_Process</businessProcess>
+</RecordType>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Feature_Request</fullName>
+    <active>true</active>
+    <description>Feature requests — product enhancement suggestions submitted by customers via the portal or support team.</description>
+    <label>Feature Request</label>
+    <businessProcess>Catalyst_Support_Process</businessProcess>
+</RecordType>
