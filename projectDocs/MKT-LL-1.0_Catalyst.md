@@ -98,8 +98,9 @@ This document records every technical problem encountered during development, it
 | LL-062 | B.4 — Sample Data Load | MultiselectPicklist Bulk API import must use semicolon separators, not commas |
 | LL-063 | B.4 — Sample Data Load | numberRecordsProcessed:None is a Bulk API 2.0 display quirk — verify counts via SOQL |
 | LL-064 | B.5 — Per-Vertical Agent | Agentforce Builder rejects Apex invocable actions with collection outputs — error -1458072159 |
-| LL-065 | B.5 — Per-Virtual Agent | GenAiPlanner metadata deploys GenAiPlannerDefinition but does NOT create an AIApplication in Agentforce Studio |
+| LL-065 | B.5 — Per-Vertical Agent | GenAiPlanner metadata deploys GenAiPlannerDefinition but does NOT create an AIApplication in Agentforce Studio |
 | LL-066 | B.6 — SDLC Phase 3: Quality | SDLC quality docs (TPQA, BDD, DDT, PTS) authored in B.1 as living documents — mark Complete at B.6 gate with actual test run evidence |
+| LL-067 | B.7 — SDLC Phase 4: Delivery | DRP and PTS authored ahead of deployment in B.1 — fill in confirmed deploy date at B.7 gate; no TBD values should remain in released docs |
 
 ---
 
@@ -947,3 +948,19 @@ Restructuring the three failing actions to return a single `Result` with one `St
 - B.6 gate ("All tests pass") formally met: 83 tests, 0 failures, Run ID `707gL00000dWsJo`
 
 **For future verticals:** Continue the same pattern — author quality docs early, stamp Complete at B.6 with the actual test run ID as evidence. This preserves documentation breadth while maintaining audit traceability.
+
+---
+
+## B.7 — SDLC Phase 4: Delivery
+
+### LL-067 — DRP authored ahead of deployment — confirm deploy date at B.7 gate
+
+**Phase:** B.7 — SDLC Phase 4: Delivery
+
+**Problem:** MKT-DRP-1.0 was produced in full during B.1 to front-load portfolio artefacts. The "Planned Deploy Date" field was left as "TBD — post scratch org build completion" since the build had not started. By B.7, all metadata had been deployed across B.2–B.5.
+
+**Root Cause:** Same living-document pattern as B.6 quality docs. The DRP is authored as a planning document and stamped with actuals at the delivery gate.
+
+**Solution:** Updated the Planned Deploy Date to `2026-03-08` with the note "all phases deployed to `sf-portfolio` org". No other TBD values remained in the document.
+
+**For future verticals:** The DRP is the appropriate place to record: (1) the confirmed deploy date, (2) any deviations from the planned deployment sequence, (3) rollback decisions taken. Review all TBD fields before closing B.7.
