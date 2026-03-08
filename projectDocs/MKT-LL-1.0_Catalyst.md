@@ -6,7 +6,7 @@
 | **Document** | Lessons Learned — All Phases |
 | **Owner** | Portfolio Developer |
 | **Status** | Active — Living Document |
-| **Last Updated** | A.9 MTF Stabilisation |
+| **Last Updated** | CI/CD — Workflow 1+2 |
 
 ---
 
@@ -803,3 +803,37 @@ This document records every technical problem encountered during development, it
 **Root Cause:** A.9's scope was: full test suite verification, documentation updates (CLAUDE.md, README.md), and tagging `develop` as `v1.0`. No new Salesforce metadata was authored or deployed.
 
 **Solution:** A.9 closed clean. 77/77 Apex tests passing at phase gate (100% pass rate, Run ID: `707gL00000dTLNr`). `develop` tagged `v1.0` as the MTF baseline snapshot.
+
+---
+
+## CI/CD — GitHub Actions Workflow Suite
+
+### LL-058 — No CI/CD phase deploy issues — all files are repository config, not Salesforce metadata
+
+**Phase:** CI/CD — GitHub Actions Workflow Suite
+
+**Problem:** N/A — this phase contained no Salesforce metadata deployments.
+
+**Root Cause:** CI/CD deliverables (`.github/workflows/`, `CODEOWNERS`, `CONTRIBUTING.md`) are GitHub repository configuration files, not SFDX metadata. They are committed to the repository and interpreted directly by GitHub Actions — no org deploy required.
+
+**Solution:** Phase closed clean. PR #13 squash-merged to `develop`. Workflows 1+2 will activate once JWT Connected App secrets are added to GitHub repository settings.
+
+### LL-059 — GitHub Actions coverage assertion requires jq parse of --result-format json output
+
+**Phase:** CI/CD — GitHub Actions Workflow Suite
+
+**Problem:** `sf apex run test --code-coverage` does not exit non-zero when coverage falls below a custom threshold (e.g. 85%). The Salesforce platform enforces a 75% floor via its own validation; anything above that requires explicit assertion in the workflow.
+
+**Root Cause:** The SF CLI exits non-zero only for test failures or deploy errors, not for coverage thresholds above the platform minimum. There is no `--min-coverage` flag.
+
+**Solution:** Use `--result-format json` and redirect stdout to a JSON file. Parse with `jq -r '.result.summary.orgWideCoverage'`, strip the `%` suffix with `tr -d '%'`, and compare with `bc -l`. Exit 1 if below 85. This gives an explicit, readable failure message in the Actions log without relying on platform behaviour.
+
+### LL-060 — Scratch org must always be deleted with if: always() to prevent org limit exhaustion
+
+**Phase:** CI/CD — GitHub Actions Workflow Suite
+
+**Problem:** If an earlier workflow step fails (e.g. deploy error, test failure), subsequent steps are skipped by default. A scratch org created early in the job would then leak — never deleted — consuming the org's daily scratch org allocation.
+
+**Root Cause:** GitHub Actions default step execution model: steps after a failed step are skipped unless explicitly configured otherwise.
+
+**Solution:** Add `if: always()` to the scratch org deletion step. This ensures the org is deleted regardless of whether earlier steps passed or failed. Combined with `--duration-days 1`, leaked orgs also self-expire within 24 hours as a secondary safety net.
