@@ -22,8 +22,8 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 
 ## Current Status
 
-**Active phase:** B.8 — Portfolio Publish
-**Next:** First vertical complete — begin second vertical or portfolio site
+**Track B — Catalyst Marketing Technologies Vertical: COMPLETE**
+**Next:** Second vertical (environmental / clean tech) or Meta-Portfolio Recruiter Agent
 
 **Track A — Master Template Foundation: COMPLETE (`main` tagged `v1.0`, PR #11 promoted develop → main)**
 
@@ -47,6 +47,7 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 - B.5 Per-Vertical Agent ✅ — Aria agent created in Agentforce Studio; EscalateToAgent wired; 3 actions blocked by DE org bug LL-064; all 83 Apex tests passing
 - B.6 SDLC Phase 3: Quality ✅ — 83/83 Apex tests passing (Run ID: 707gL00000dWsJo); TPQA, BDD, DDT, PTS docs marked Complete
 - B.7 SDLC Phase 4: Delivery ✅ — DRP deploy date confirmed (2026-03-08); all metadata live in `sf-portfolio` org
+- B.8 Portfolio Publish ✅ — MKT-CASESTUDY-1.0 written; `vertical/marketing` PR raised
 
 **Pinned for follow-up project (do not suggest):**
 - Figma design / design system

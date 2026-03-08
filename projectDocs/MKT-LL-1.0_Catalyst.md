@@ -101,6 +101,7 @@ This document records every technical problem encountered during development, it
 | LL-065 | B.5 — Per-Vertical Agent | GenAiPlanner metadata deploys GenAiPlannerDefinition but does NOT create an AIApplication in Agentforce Studio |
 | LL-066 | B.6 — SDLC Phase 3: Quality | SDLC quality docs (TPQA, BDD, DDT, PTS) authored in B.1 as living documents — mark Complete at B.6 gate with actual test run evidence |
 | LL-067 | B.7 — SDLC Phase 4: Delivery | DRP and PTS authored ahead of deployment in B.1 — fill in confirmed deploy date at B.7 gate; no TBD values should remain in released docs |
+| LL-068 | B.8 — Portfolio Publish | Case study narrative is the B.8 deliverable — captures what was built, decisions made, and skills demonstrated; written as a recruiter-facing portfolio artefact |
 
 ---
 
@@ -964,3 +965,25 @@ Restructuring the three failing actions to return a single `Result` with one `St
 **Solution:** Updated the Planned Deploy Date to `2026-03-08` with the note "all phases deployed to `sf-portfolio` org". No other TBD values remained in the document.
 
 **For future verticals:** The DRP is the appropriate place to record: (1) the confirmed deploy date, (2) any deviations from the planned deployment sequence, (3) rollback decisions taken. Review all TBD fields before closing B.7.
+
+---
+
+## B.8 — Portfolio Publish
+
+### LL-068 — Case study narrative is the B.8 core deliverable
+
+**Phase:** B.8 — Portfolio Publish
+
+**Problem:** The master plan defines B.8 as "Screenshots, case study narrative, Experience Cloud site updated." The portfolio site UI/UX (SF-PORTFOLIO-UX-1.0) and its public LWR build are pinned for a follow-up project (Figma + React/Next.js phase). The "Experience Cloud site updated" deliverable cannot be completed until the portfolio site design system is ready.
+
+**Root Cause:** The portfolio site (meta-portfolio layer) is a separate build from the vertical client portals. The Catalyst Client Portal (Catalyst's own Experience Cloud site) is complete, but the recruiter-facing portfolio site — which would surface the case study — is deferred.
+
+**Solution:** Scoped B.8 to what is deliverable now:
+
+1. `MKT-CASESTUDY-1.0_Catalyst.md` — complete case study narrative capturing the fictional scenario, what was built, key technical decisions, test results, known limitations, and skills demonstrated
+2. CLAUDE.md and LL updated to mark Track B complete
+3. `vertical/marketing` PR raised to formally close the branch
+
+The case study document serves as the source content for the portfolio site case study page when the SF-PORTFOLIO-UX-1.0 build begins.
+
+**For future verticals:** Produce the case study at B.8 in the same format. The case study is the primary recruiter-facing artefact — write it for a technical hiring manager, not for an internal audience. Emphasise decisions, trade-offs, and what makes the build production-grade.
