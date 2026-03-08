@@ -25,7 +25,7 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 **Active phase:** B.1 — Catalyst Vertical: SDLC Phase 1 (Business)
 **Next:** B.2 — Catalyst Vertical: SDLC Phase 2 (Technical)
 
-**Track A — Master Template Foundation: COMPLETE (`develop` tagged `v1.0`)**
+**Track A — Master Template Foundation: COMPLETE (`main` tagged `v1.0`, PR #11 promoted develop → main)**
 
 **Completed phases:**
 
@@ -37,7 +37,9 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 - A.6 Reports & Dashboards ✅ — PR #7 merged to `develop`
 - A.7 Experience Cloud ✅ — PR #8 merged to `develop`
 - A.8 Agentforce ✅ — PR #9 merged to `develop`
-- A.9 MTF Stabilisation ✅ — PR #10 merged to `develop`, tagged `v1.0`
+- A.9 MTF Stabilisation ✅ — PR #10 merged to `develop`
+- v1.0 Promotion ✅ — PR #11 merged `develop` → `main`, `v1.0` tag on `main`
+- CI/CD Workflows ✅ — Workflow 1+2 committed, CODEOWNERS + CONTRIBUTING.md added (pending secrets)
 
 **Pinned for follow-up project (do not suggest):**
 - Figma design / design system
@@ -219,13 +221,15 @@ Modules: `SALES` · `SRVC` · `EXP` · `NFR`
 |---|---|
 | Branch protection (require PR, no direct push) | ✅ Active on `main` |
 | PR template (`.github/PULL_REQUEST_TEMPLATE.md`) | ✅ Committed |
-| GitHub Actions — Workflow 1 (PR Validation) | 🔲 Post MTF v1.0 |
-| GitHub Actions — Workflow 2 (Develop Integration) | 🔲 Post MTF v1.0 |
-| GitHub Actions — Workflow 3 (Main Protection) | 🔲 Post MTF v1.0 |
-| GitHub Actions — Workflow 4 (Vertical Drift Check) | 🔲 Post MTF v1.0 |
-| JWT Connected App for CI auth | 🔲 Post MTF v1.0 |
+| `CONTRIBUTING.md` | ✅ Committed |
+| `.github/CODEOWNERS` | ✅ Committed |
+| GitHub Actions — Workflow 1 (PR Validation) | ✅ Committed — awaiting JWT secrets |
+| GitHub Actions — Workflow 2 (Develop Integration) | ✅ Committed — awaiting JWT secrets |
+| GitHub Actions — Workflow 3 (Main Protection) | 🔲 Post-Catalyst |
+| GitHub Actions — Workflow 4 (Vertical Drift Check) | 🔲 Post-Catalyst |
+| JWT Connected App for CI auth | 🔲 Manual setup required (see CICD_ADDENDUM.md) |
 
-CI/CD is intentionally deferred until `main` is tagged `v1.0`. See `projectDocs/CICD_ADDENDUM.md`.
+`main` is tagged `v1.0`. Workflows 1+2 are live once JWT secrets are added to GitHub. See `projectDocs/CICD_ADDENDUM.md`.
 
 ---
 
