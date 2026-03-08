@@ -298,15 +298,20 @@ Complete these steps in order at the end of every phase:
 
 ```
 sf-catalyst-portfolio/
-├── CLAUDE.md                          ← you are here
-├── README.md                          ← portfolio-facing overview (pending)
-├── sfdx-project.json                  ← SFDX project config
+├── CLAUDE.md                                    ← you are here
+├── README.md                                    ← portfolio-facing overview (pending)
+├── package.json                                 ← Jest / LWC test config
+├── sfdx-project.json                            ← SFDX project config
 ├── .github/
-│   ├── PULL_REQUEST_TEMPLATE.md       ← ✅ committed
-│   └── workflows/                     ← CI/CD YAML (post v1.0)
+│   ├── PULL_REQUEST_TEMPLATE.md                 ← ✅ committed
+│   └── workflows/                               ← CI/CD YAML (post v1.0)
+├── config/
+│   └── project-scratch-def.json                 ← scratch org definition
 ├── projectDocs/
 │   ├── SF_Portfolio_Master_Project_Plan_v1.0.md
-│   ├── SF-PORTFOLIO-UX-1.0.md            ← portfolio site UI/UX spec (cross-vertical)
+│   ├── SF-PORTFOLIO-UX-1.0.md                  ← portfolio site UI/UX spec (cross-vertical)
+│   ├── A3_OWD_MANUAL_STEPS.md                  ← A.3 manual OWD config steps
+│   ├── revisedProjectScope0306.md
 │   ├── MKT-BRD-1.0_Catalyst.md
 │   ├── MKT-USAC-1.0_Catalyst.md
 │   ├── MKT-TDD-1.0_Catalyst.md
@@ -316,11 +321,90 @@ sf-catalyst-portfolio/
 │   ├── MKT-DDT-1.0_Catalyst.md
 │   ├── MKT-PTS-1.0_Catalyst.md
 │   ├── MKT-DRP-1.0_Catalyst.md
+│   ├── MKT-LL-1.0_Catalyst.md                  ← lessons learned, all phases
 │   ├── CICD_ADDENDUM.md
 │   └── PULL_REQUEST_TEMPLATE.md
 └── force-app/
     └── main/
-        └── default/                   ← all SFDX metadata lives here
+        └── default/                             ← all SFDX metadata lives here
+            ├── classes/                         ← Apex classes + test classes
+            │   ├── TriggerHandler.cls           ← abstract trigger handler base
+            │   ├── TestDataFactory.cls          ← shared test data factory
+            │   ├── CaseService.cls              ← entitlement stamping, SLA tier
+            │   ├── ProjectService.cls           ← status guard, default status
+            │   ├── AssetItemService.cls
+            │   ├── FeedbackSurveyService.cls    ← CSAT/NPS flag to case
+            │   ├── [Object]TriggerHandler.cls   ← 6 handler classes (Case, Project, etc.)
+            │   ├── CasePortalController.cls     ← portal: cases list, detail, submit
+            │   ├── SubscriptionPortalController.cls
+            │   ├── OnboardingPortalController.cls
+            │   ├── KnowledgePortalController.cls ← dynamic SOSL/SOQL, licence-agnostic
+            │   ├── AriaActionController.cls     ← Agentforce shared util (portal user ID)
+            │   ├── AriaGetCaseStatus.cls        ← @InvocableMethod: open cases
+            │   ├── AriaGetOnboardingProgress.cls ← @InvocableMethod: onboarding %
+            │   ├── AriaEscalateToAgent.cls      ← @InvocableMethod: create Chat case
+            │   └── *Test.cls                    ← test class per controller/service
+            ├── triggers/                        ← 6 triggers (one per object)
+            │   └── CaseTrigger, ProjectTrigger, AssetItemTrigger, ...
+            ├── objects/                         ← custom + standard object metadata
+            │   ├── Project__c/
+            │   ├── Asset_Item__c/
+            │   ├── Feedback_Survey__c/
+            │   ├── Portal_User_Group__c/
+            │   ├── Service_Region__c/
+            │   ├── Domain_Exclusion__mdt/       ← custom metadata type
+            │   └── Account/, Case/, Contact/, Lead/, Opportunity/
+            ├── flows/
+            │   └── Case_AfterSave_NotifyOnHighPriority.flow-meta.xml
+            ├── lwc/                             ← 13 LWC components (all with Jest tests)
+            │   ├── catalystClientDashboard/     ← container, 2-row grid
+            │   ├── catalystCaseList/            ← datatable, filter, pagination
+            │   ├── catalystCaseForm/            ← submit form + knowledge deflection
+            │   ├── catalystCaseDetail/
+            │   ├── catalystKnowledgeSearch/
+            │   ├── catalystKnowledgeArticle/
+            │   ├── catalystKnowledgeDeflection/
+            │   ├── catalystSubscriptionTile/
+            │   ├── catalystModuleList/
+            │   ├── catalystOpenCasesTile/
+            │   ├── catalystUsageHeatmap/
+            │   ├── catalystOnboardingChecklist/
+            │   └── catalystAriaLauncher/        ← FAB toggle, Agentforce embed
+            ├── permissionsets/                  ← 7 permission sets
+            │   ├── Sales_Core.permissionset-meta.xml
+            │   ├── Sales_Manager_Extended.permissionset-meta.xml
+            │   ├── Service_Core.permissionset-meta.xml
+            │   ├── Service_Manager_Extended.permissionset-meta.xml
+            │   ├── Portal_Standard_User.permissionset-meta.xml
+            │   ├── Portal_Account_Admin.permissionset-meta.xml
+            │   └── Agentforce_Service_User.permissionset-meta.xml
+            ├── profiles/
+            │   └── Admin.profile-meta.xml       ← FLS grants for custom Case fields
+            ├── roles/                           ← 10 roles (CEO → SDR, Support tiers)
+            ├── sharingRules/                    ← Account + Case sharing rules
+            ├── customMetadata/                  ← Domain_Exclusion records (4)
+            ├── settings/
+            │   └── Communities.settings-meta.xml
+            ├── networks/
+            │   └── Catalyst Client Portal.network-meta.xml
+            ├── digitalExperiences/
+            │   └── site/Catalyst_Client_Portal1/ ← LWR Experience Cloud site bundle
+            ├── dashboards/
+            │   ├── Catalyst_Sales_Dashboards/   ← Sales Leadership, Rep Performance
+            │   └── Catalyst_Service_Dashboards/ ← Service SLA
+            ├── reports/
+            │   ├── Catalyst_Sales_Reports/      ← 10 sales reports
+            │   └── Catalyst_Service_Reports/    ← 5 service reports
+            ├── genAiFunctions/                  ← Agentforce action definitions
+            │   ├── GetCaseStatus/
+            │   ├── GetOnboardingProgress/
+            │   └── EscalateToAgent/
+            ├── genAiPlugins/
+            │   └── ClientSelfService.genAiPlugin-meta.xml  ← Topic: Client Self-Service
+            ├── genAiPlanners/
+            │   └── Aria.genAiPlanner-meta.xml   ← Aria agent (AiCopilot__ReAct)
+            └── genAiPromptTemplates/
+                └── AriaSystemPrompt.genAiPromptTemplate-meta.xml
 ```
 
 ---
