@@ -17,10 +17,14 @@ The first vertical is **Catalyst Marketing Technologies** — a fictional Series
 
 ```
 sf-catalyst-portfolio/
-├── projectDocs/          ← Full SDLC document suite (9 documents)
+├── projectDocs/          ← Full SDLC document suite (10 documents)
 ├── force-app/            ← SFDX metadata source (Apex, LWC, Flows, Objects)
 ├── config/               ← Scratch org definition
-├── .github/              ← PR template, CI/CD workflows (post v1.0)
+├── .github/
+│   ├── workflows/        ← CI/CD: PR validation + develop integration (Workflows 1+2)
+│   ├── CODEOWNERS        ← Auto-reviewer assignments by metadata path
+│   └── PULL_REQUEST_TEMPLATE.md
+├── CONTRIBUTING.md       ← Branch, commit, and PR conventions
 ├── CLAUDE.md             ← Session context for Claude Code
 └── sfdx-project.json     ← SFDX project config (API v62.0)
 ```
@@ -128,8 +132,9 @@ All planning artefacts are committed alongside the code. This is deliberate — 
 | A.6 | Reports & dashboards (15 reports, 3 dashboards) | Complete |
 | A.7 | Experience Cloud LWR site (authenticated portal, 8 pages) | Complete |
 | A.8 | Agentforce — Aria client assistant (3 invocable actions, topic, system prompt) | Complete |
-| A.9 | MTF stabilisation + v1.0 tag | Active |
-| B | Catalyst vertical configuration + go-live | Pending |
+| A.9 | MTF stabilisation — 77/77 tests passing, `main` tagged `v1.0` | Complete |
+| CI/CD | GitHub Actions Workflow 1+2, CODEOWNERS, CONTRIBUTING.md | Complete |
+| B | Catalyst vertical configuration + go-live | Active |
 
 ---
 
