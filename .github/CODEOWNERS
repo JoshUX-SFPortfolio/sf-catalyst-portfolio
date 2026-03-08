@@ -1,0 +1,42 @@
+# CODEOWNERS — Salesforce Portfolio Framework
+# Auto-assigns @JoshUX-SFPortfolio as reviewer for all PRs.
+# Paths are matched top-to-bottom; the last matching rule wins.
+# All paths are relative to the repository root.
+
+# Default — catch-all for any file not matched by a more specific rule
+*                                                         @JoshUX-SFPortfolio
+
+# Apex classes and triggers — core business logic
+force-app/main/default/classes/                           @JoshUX-SFPortfolio
+force-app/main/default/triggers/                          @JoshUX-SFPortfolio
+
+# Lightning Web Components
+force-app/main/default/lwc/                               @JoshUX-SFPortfolio
+
+# Security-sensitive metadata — profiles, permission sets, sharing rules
+force-app/main/default/permissionsets/                    @JoshUX-SFPortfolio
+force-app/main/default/profiles/                          @JoshUX-SFPortfolio
+force-app/main/default/sharingRules/                      @JoshUX-SFPortfolio
+force-app/main/default/roles/                             @JoshUX-SFPortfolio
+
+# Object model — custom objects and fields
+force-app/main/default/objects/                           @JoshUX-SFPortfolio
+
+# Automation — flows and process automation
+force-app/main/default/flows/                             @JoshUX-SFPortfolio
+
+# Agentforce metadata — topics, functions, planner, prompt templates
+force-app/main/default/genAiFunctions/                    @JoshUX-SFPortfolio
+force-app/main/default/genAiPlugins/                      @JoshUX-SFPortfolio
+force-app/main/default/genAiPlanners/                     @JoshUX-SFPortfolio
+force-app/main/default/genAiPromptTemplates/              @JoshUX-SFPortfolio
+
+# Experience Cloud site bundle
+force-app/main/default/digitalExperiences/                @JoshUX-SFPortfolio
+force-app/main/default/networks/                          @JoshUX-SFPortfolio
+
+# CI/CD and repository governance
+.github/                                                  @JoshUX-SFPortfolio
+
+# Project documentation
+projectDocs/                                              @JoshUX-SFPortfolio
