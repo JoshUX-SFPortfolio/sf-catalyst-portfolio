@@ -98,7 +98,8 @@ This document records every technical problem encountered during development, it
 | LL-062 | B.4 — Sample Data Load | MultiselectPicklist Bulk API import must use semicolon separators, not commas |
 | LL-063 | B.4 — Sample Data Load | numberRecordsProcessed:None is a Bulk API 2.0 display quirk — verify counts via SOQL |
 | LL-064 | B.5 — Per-Vertical Agent | Agentforce Builder rejects Apex invocable actions with collection outputs — error -1458072159 |
-| LL-065 | B.5 — Per-Vertical Agent | GenAiPlanner metadata deploys GenAiPlannerDefinition but does NOT create an AIApplication in Agentforce Studio |
+| LL-065 | B.5 — Per-Virtual Agent | GenAiPlanner metadata deploys GenAiPlannerDefinition but does NOT create an AIApplication in Agentforce Studio |
+| LL-066 | B.6 — SDLC Phase 3: Quality | SDLC quality docs (TPQA, BDD, DDT, PTS) authored in B.1 as living documents — mark Complete at B.6 gate with actual test run evidence |
 
 ---
 
@@ -925,3 +926,24 @@ Restructuring the three failing actions to return a single `Result` with one `St
 **Root Cause:** The `GenAiPlanner` Metadata API type deploys a `GenAiPlannerDefinition` Tooling API record — but Agentforce Studio lists `AIApplication` records, which are a separate object. No `AIApplication` is created by deploying a `GenAiPlanner`. The two are not automatically linked.
 
 **Solution:** Create the agent manually in Agentforce Studio (New Agent > describe purpose in the text prompt > agent is created with default topics). Then attach the deployed `ClientSelfService` `GenAiPlugin` topic via the Topics panel. The `GenAiPlannerDefinition` record created by the metadata deploy appears unused by the UI — it may be a legacy or internal record type. For all future agents, treat Agentforce Builder as the authoritative creation path; use metadata only for the `GenAiPlugin` (Topic) and `GenAiFunction` records.
+
+---
+
+## B.6 — SDLC Phase 3: Quality
+
+### LL-066 — SDLC quality documents authored as living drafts in B.1 — close at B.6 gate
+
+**Phase:** B.6 — SDLC Phase 3: Quality
+
+**Problem:** The four B.6 quality documents (MKT-TPQA-1.0, MKT-BDD-1.0, MKT-DDT-1.0, MKT-PTS-1.0) were produced in full during B.1 (SDLC Phase 1: Business) to demonstrate documentation breadth early in the project. They were committed with status "DRAFT — In Progress" and a placeholder date of 2026. By B.6, these documents needed to be stamped Complete with real test evidence.
+
+**Root Cause:** The project plan calls for SDLC documents to be produced per phase, but in practice the quality docs were drafted ahead of the build to front-load portfolio artefact production. This is a deliberate choice — it front-loads the documentation signal — but it means the B.6 gate is administrative (status update + test evidence) rather than a fresh authoring task.
+
+**Solution:**
+
+- Updated MKT-TPQA-1.0, MKT-BDD-1.0, MKT-DDT-1.0 status from "DRAFT — In Progress" → "COMPLETE"
+- Added version 1.1 history entry referencing Run ID `707gL00000dWsJo` (83/83 Apex tests passing, 100% pass rate)
+- MKT-PTS-1.0 was already marked Complete in a prior session
+- B.6 gate ("All tests pass") formally met: 83 tests, 0 failures, Run ID `707gL00000dWsJo`
+
+**For future verticals:** Continue the same pattern — author quality docs early, stamp Complete at B.6 with the actual test run ID as evidence. This preserves documentation breadth while maintaining audit traceability.

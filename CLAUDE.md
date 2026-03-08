@@ -22,8 +22,8 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 
 ## Current Status
 
-**Active phase:** B.5 — Per-Vertical Agent (Aria)
-**Next:** B.6 — QA & Validation
+**Active phase:** B.7 — SDLC Phase 4: Delivery
+**Next:** B.8 — Portfolio Publish
 
 **Track A — Master Template Foundation: COMPLETE (`main` tagged `v1.0`, PR #11 promoted develop → main)**
 
@@ -44,6 +44,8 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 - B.2 Catalyst Vertical: Technical ✅ — Custom fields, objects, validation rules deployed
 - B.3 Vertical Configuration ✅ — Record types, business processes, picklist values, page layouts committed on `vertical/marketing` (`cb75114`)
 - B.4 Sample Data Load ✅ — 50 accounts (with custom fields), 196 contacts, 80 opps, 120 cases, 59 leads imported to `sf-portfolio` org (`98880b5`)
+- B.5 Per-Vertical Agent ✅ — Aria agent created in Agentforce Studio; EscalateToAgent wired; 3 actions blocked by DE org bug LL-064; all 83 Apex tests passing
+- B.6 SDLC Phase 3: Quality ✅ — 83/83 Apex tests passing (Run ID: 707gL00000dWsJo); TPQA, BDD, DDT, PTS docs marked Complete
 
 **Pinned for follow-up project (do not suggest):**
 - Figma design / design system
