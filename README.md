@@ -74,6 +74,7 @@ All planning artefacts are committed alongside the code. This is deliberate — 
 | [MKT-DDT-1.0](projectDocs/MKT-DDT-1.0_Catalyst.md) | Data-Driven Testing Examples |
 | [MKT-PTS-1.0](projectDocs/MKT-PTS-1.0_Catalyst.md) | Performance Testing Suite |
 | [MKT-DRP-1.0](projectDocs/MKT-DRP-1.0_Catalyst.md) | Deployment & Release Plan |
+| [MKT-LL-1.0](projectDocs/MKT-LL-1.0_Catalyst.md) | Lessons Learned — all phases (living document) |
 
 ---
 
@@ -96,7 +97,7 @@ All planning artefacts are committed alongside the code. This is deliberate — 
 
 ### Experience Cloud (LWR Portal)
 - Authenticated Catalyst Client Portal
-- 11 custom LWC components — dashboard, subscription tile, case list, knowledge search, onboarding checklist
+- 13 custom LWC components — dashboard, subscription tile, case list, knowledge search, onboarding checklist, Aria launcher FAB
 - Data isolation enforced — portal users see only their own account's data
 - Knowledge article deflection before case submission
 
@@ -118,16 +119,16 @@ All planning artefacts are committed alongside the code. This is deliberate — 
 
 | Phase | Description | Status |
 |---|---|---|
-| SDLC Docs | 9-document planning suite | Complete |
+| SDLC Docs | 10-document planning suite (incl. Lessons Learned) | Complete |
 | A.1 | SFDX project setup + repo structure | Complete |
-| A.2 | Core object model (custom objects + fields) | Active |
-| A.3 | Security architecture (profiles, permission sets, OWD) | Pending |
-| A.4 | Automation + Apex framework | Pending |
-| A.5 | LWC component library | Pending |
-| A.6 | Reports & dashboards | Pending |
-| A.7 | Experience Cloud LWR site | Pending |
-| A.8 | Agentforce agents | Pending |
-| A.9 | MTF stabilisation + v1.0 tag | Pending |
+| A.2 | Core object model (5 custom objects, 60+ fields) | Complete |
+| A.3 | Security architecture (profiles, permission sets, OWD, sharing rules) | Complete |
+| A.4 | Automation library (trigger framework, 6 handlers, flows) | Complete |
+| A.5 | LWC component library (13 components, 4 Apex controllers) | Complete |
+| A.6 | Reports & dashboards (15 reports, 3 dashboards) | Complete |
+| A.7 | Experience Cloud LWR site (authenticated portal, 8 pages) | Complete |
+| A.8 | Agentforce — Aria client assistant (3 invocable actions, topic, system prompt) | Complete |
+| A.9 | MTF stabilisation + v1.0 tag | Active |
 | B | Catalyst vertical configuration + go-live | Pending |
 
 ---
