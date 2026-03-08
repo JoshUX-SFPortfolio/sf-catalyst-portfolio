@@ -1,0 +1,32 @@
+[
+  {
+    "sobject": "Account",
+    "saveRefs": true,
+    "resolveRefs": false,
+    "files": ["accounts.csv"]
+  },
+  {
+    "sobject": "Contact",
+    "saveRefs": true,
+    "resolveRefs": true,
+    "files": ["contacts.csv"]
+  },
+  {
+    "sobject": "Opportunity",
+    "saveRefs": true,
+    "resolveRefs": true,
+    "files": ["opportunities.csv"]
+  },
+  {
+    "sobject": "Lead",
+    "saveRefs": false,
+    "resolveRefs": false,
+    "files": ["leads.csv"]
+  },
+  {
+    "sobject": "Case",
+    "saveRefs": false,
+    "resolveRefs": true,
+    "files": ["cases.csv"]
+  }
+]

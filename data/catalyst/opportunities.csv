@@ -1,0 +1,81 @@
+Id,AccountId,Name,RecordTypeId,StageName,CloseDate,Amount,Probability,LeadSource,NextStep,Description
+OPP-001,ACC-001,Apex Digital — Campaign Intelligence Enterprise,New_Business,Closed Won,2025-09-30,185000,100,Campaign Intelligence Demo,Signed — onboarding scheduled,Annual Campaign Intelligence licence with Attribution Engine add-on.
+OPP-002,ACC-001,Apex Digital — Audience Studio Expansion,Renewal,Closed Won,2025-11-15,62000,100,Campaign Intelligence Demo,Signed — renewal processed,Seat expansion and Audience Studio add-on for Q4 campaign season.
+OPP-003,ACC-002,BlueSpark — Attribution Engine Platform,New_Business,Closed Won,2025-10-31,78000,100,Attribution Engine Webinar,Signed,Full Attribution Engine licence for 3 marketing users.
+OPP-004,ACC-002,BlueSpark — 2026 Renewal,Renewal,Proposal/Price Quote,2026-03-31,82000,75,Attribution Engine Webinar,Send renewal proposal,Annual renewal including 12% uplift for additional seats.
+OPP-005,ACC-003,ClearPath — Starter Package,New_Business,Closed Won,2025-08-15,24000,100,Audience Studio Trial,Signed,Starter tier licence for 2 marketing users.
+OPP-006,ACC-003,ClearPath — Professional Upgrade,Renewal,Needs Analysis,2026-04-30,45000,40,Audience Studio Trial,Conduct needs assessment call,Upgrade opportunity following Starter tier satisfaction survey.
+OPP-007,ACC-004,DeltaForce — Enterprise Full Platform,New_Business,Closed Won,2025-07-31,245000,100,Campaign Intelligence Demo,Signed — fully deployed,All 4 modules plus priority support SLA.
+OPP-008,ACC-004,DeltaForce — 2026 Renewal + Expansion,Renewal,Qualification,2026-06-30,265000,60,Campaign Intelligence Demo,Discovery call scheduled,Renewal plus Content Hub expansion for new content team.
+OPP-009,ACC-005,Elevate Commerce — Starter Licence,New_Business,Closed Won,2025-09-15,18000,100,Content Hub Referral,Signed,Content Hub Starter for e-commerce team.
+OPP-010,ACC-005,Elevate Commerce — 2026 Renewal,Renewal,Prospecting,2026-09-15,19800,20,Content Hub Referral,Renewal reminder sent,Standard annual renewal at 10% uplift.
+OPP-011,ACC-006,Fieldstone — Enterprise Platform Deal,New_Business,Closed Won,2025-06-30,425000,100,Campaign Intelligence Demo,Signed — largest Q2 deal,Flagship deal covering all 5 offices and 15 licences.
+OPP-012,ACC-006,Fieldstone — Multi-Year Renewal,Renewal,Negotiation/Review,2026-05-31,890000,85,Campaign Intelligence Demo,Legal reviewing 3-year MSA,3-year renewal with volume discount and guaranteed SLA.
+OPP-013,ACC-007,GrowthLab — Starter Onboarding,New_Business,Closed Won,2025-11-01,12000,100,Audience Studio Trial,Signed,Audience Studio Starter for seed-stage PLG experiments.
+OPP-014,ACC-007,GrowthLab — Series A Expansion,New_Business,Value Proposition,2026-06-30,35000,50,Audience Studio Trial,Send ROI case study,Post Series A upgrade to Professional with additional modules.
+OPP-015,ACC-008,Harbour Point — Professional Package,New_Business,Closed Won,2025-10-15,65000,100,Attribution Engine Webinar,Signed,Attribution Engine Professional for 4 client teams.
+OPP-016,ACC-008,Harbour Point — 2026 Renewal,Renewal,Proposal/Price Quote,2026-10-15,71500,80,Attribution Engine Webinar,Renewal proposal sent,Annual renewal with 10% uplift.
+OPP-017,ACC-009,Indigo Signal — Starter Package,New_Business,Closed Won,2025-09-01,15000,100,Content Hub Referral,Signed,Content Hub Starter licence.
+OPP-018,ACC-009,Indigo Signal — 2026 Renewal,Renewal,Prospecting,2026-09-01,16500,20,Content Hub Referral,Renewal outreach scheduled,Standard renewal.
+OPP-019,ACC-010,Jetstream — Enterprise All-Modules,New_Business,Closed Won,2025-05-31,310000,100,Campaign Intelligence Demo,Signed — Q2 flagship,Full platform enterprise licence with custom integration.
+OPP-020,ACC-010,Jetstream — 2026 Renewal + Professional Services,Renewal,Needs Analysis,2026-05-31,340000,45,Campaign Intelligence Demo,Scoping PS engagement,Renewal plus $30K professional services for API integration project.
+OPP-021,ACC-011,Kinetic Brand — Starter Licence,New_Business,Closed Won,2025-10-01,12000,100,Audience Studio Trial,Signed,Audience Studio Starter.
+OPP-022,ACC-011,Kinetic Brand — 2026 Renewal,Renewal,Prospecting,2026-10-01,13200,20,Audience Studio Trial,Renewal reminder set,Standard renewal.
+OPP-023,ACC-012,Landmark Revenue — Enterprise Deal,New_Business,Closed Won,2025-08-31,195000,100,Campaign Intelligence Demo,Signed,Campaign Intelligence plus Audience Studio for 8 users.
+OPP-024,ACC-012,Landmark Revenue — 2026 Renewal,Renewal,Qualification,2026-08-31,214500,60,Campaign Intelligence Demo,Renewal discovery call,Annual renewal with seat expansion discussion.
+OPP-025,ACC-013,Mosaic Growth — Professional Package,New_Business,Closed Won,2025-07-15,58000,100,Attribution Engine Webinar,Signed,Attribution Engine Professional.
+OPP-026,ACC-013,Mosaic Growth — 2026 Renewal,Renewal,Proposal/Price Quote,2026-07-15,63800,75,Attribution Engine Webinar,Proposal under review,Renewal with 10% uplift.
+OPP-027,ACC-014,NorthStar — Professional Package,New_Business,Closed Won,2025-09-30,72000,100,Campaign Intelligence Demo,Signed,Campaign Intelligence Professional for 5 users.
+OPP-028,ACC-014,NorthStar — 2026 Renewal,Renewal,Needs Analysis,2026-09-30,79200,40,Campaign Intelligence Demo,Renewal needs assessment,Annual renewal with potential Content Hub add-on.
+OPP-029,ACC-015,Orbit Media — Professional Licence,New_Business,Closed Won,2025-11-30,68000,100,Attribution Engine Webinar,Signed,Attribution Engine and Content Hub Professional.
+OPP-030,ACC-015,Orbit Media — 2026 Renewal,Renewal,Prospecting,2026-11-30,74800,20,Attribution Engine Webinar,Renewal outreach,Standard renewal.
+OPP-031,ACC-016,Prism Performance — Starter Licence,New_Business,Closed Won,2025-08-01,14000,100,Content Hub Referral,Signed,Content Hub Starter.
+OPP-032,ACC-016,Prism Performance — 2026 Renewal,Renewal,Prospecting,2026-08-01,15400,20,Content Hub Referral,Renewal reminder,Standard renewal.
+OPP-033,ACC-017,Quantum Reach — Enterprise Deal,New_Business,Closed Won,2025-04-30,385000,100,Campaign Intelligence Demo,Signed — Q1 flagship,Full enterprise platform for national CTV campaigns.
+OPP-034,ACC-017,Quantum Reach — 2026 Renewal,Renewal,Negotiation/Review,2026-04-30,420000,85,Campaign Intelligence Demo,Negotiating 2-year MSA,Large renewal with volume pricing discussion.
+OPP-035,ACC-018,Ratchet Growth — Starter Licence,New_Business,Closed Won,2025-10-15,11000,100,Audience Studio Trial,Signed,Audience Studio Starter.
+OPP-036,ACC-018,Ratchet Growth — 2026 Renewal,Renewal,Prospecting,2026-10-15,12100,20,Audience Studio Trial,Renewal reminder,Standard renewal.
+OPP-037,ACC-019,Summit Digital — Professional Package,New_Business,Closed Won,2025-09-01,88000,100,Attribution Engine Webinar,Signed,Attribution Engine Professional for 6 offices.
+OPP-038,ACC-019,Summit Digital — 2026 Renewal + Expansion,Renewal,Value Proposition,2026-09-01,105000,55,Attribution Engine Webinar,Presenting expansion ROI,Renewal plus Audience Studio for 2 new offices.
+OPP-039,ACC-020,Tidewater — Starter Package,New_Business,Closed Won,2025-08-15,13000,100,Content Hub Referral,Signed,Content Hub Starter for regional team.
+OPP-040,ACC-020,Tidewater — 2026 Renewal,Renewal,Prospecting,2026-08-15,14300,20,Content Hub Referral,Renewal outreach,Standard renewal.
+OPP-041,ACC-021,Uppercase — Enterprise Platform,New_Business,Closed Won,2025-07-31,215000,100,Campaign Intelligence Demo,Signed,Full platform on Snowflake-native stack.
+OPP-042,ACC-021,Uppercase — 2026 Renewal,Renewal,Qualification,2026-07-31,236500,60,Campaign Intelligence Demo,Renewal discovery call,Annual renewal with engineering-led integration discussion.
+OPP-043,ACC-022,Velocity Revenue — Professional Package,New_Business,Closed Won,2025-11-01,55000,100,Attribution Engine Webinar,Signed,Attribution Engine Professional for RevOps team.
+OPP-044,ACC-022,Velocity Revenue — 2026 Renewal,Renewal,Proposal/Price Quote,2026-11-01,60500,75,Attribution Engine Webinar,Proposal sent,Renewal with 10% uplift.
+OPP-045,ACC-023,Wavefront — Professional Package,New_Business,Closed Won,2025-09-15,75000,100,Attribution Engine Webinar,Signed,Attribution Engine and Audience Studio.
+OPP-046,ACC-023,Wavefront — 2026 Renewal,Renewal,Needs Analysis,2026-09-15,82500,40,Attribution Engine Webinar,Renewal scoping call,Annual renewal with potential Content Hub add-on for podcast content.
+OPP-047,ACC-024,Xcelerate — Enterprise Deal,New_Business,Closed Won,2025-06-30,285000,100,Campaign Intelligence Demo,Signed — PS included,Full platform with professional services for Salesforce migration.
+OPP-048,ACC-024,Xcelerate — 2026 Renewal,Renewal,Negotiation/Review,2026-06-30,310000,80,Campaign Intelligence Demo,Legal review in progress,Multi-year renewal with volume discount.
+OPP-049,ACC-025,Yellowstone — Starter Licence,New_Business,Closed Won,2025-10-01,10000,100,Audience Studio Trial,Signed,Audience Studio Starter for small team.
+OPP-050,ACC-025,Yellowstone — 2026 Renewal,Renewal,Prospecting,2026-10-01,11000,20,Audience Studio Trial,Renewal reminder,Standard renewal.
+OPP-051,ACC-026,Zenith — Professional Package,New_Business,Closed Won,2025-08-31,62000,100,Attribution Engine Webinar,Signed,Attribution Engine for CRO team.
+OPP-052,ACC-026,Zenith — 2026 Renewal,Renewal,Proposal/Price Quote,2026-08-31,68200,75,Attribution Engine Webinar,Renewal proposal sent,Renewal with seat expansion.
+OPP-053,ACC-027,Ardent Signal — Enterprise Deal,New_Business,Closed Won,2025-05-31,255000,100,Campaign Intelligence Demo,Signed — Q2 deal,Campaign Intelligence and Audience Studio for intent data team.
+OPP-054,ACC-027,Ardent Signal — 2026 Renewal,Renewal,Qualification,2026-05-31,280500,60,Campaign Intelligence Demo,Renewal discovery call,Annual renewal with Attribution Engine add-on discussion.
+OPP-055,ACC-028,Brightfield — Enterprise Platform Deal,New_Business,Closed Won,2025-03-31,495000,100,Campaign Intelligence Demo,Signed — largest Q1 deal,All modules and 20 user licences for national publisher network.
+OPP-056,ACC-028,Brightfield — 2026 Multi-Year Renewal,Renewal,Negotiation/Review,2026-03-31,1050000,88,Campaign Intelligence Demo,Finalising 3-year MSA terms,3-year renewal with volume pricing — largest in portfolio.
+OPP-057,ACC-029,Cascade Revenue — Professional Package,New_Business,Closed Won,2025-10-31,72000,100,Attribution Engine Webinar,Signed,Attribution Engine Professional.
+OPP-058,ACC-029,Cascade Revenue — 2026 Renewal,Renewal,Needs Analysis,2026-10-31,79200,40,Attribution Engine Webinar,Renewal scoping,Annual renewal.
+OPP-059,ACC-030,Driftwood — Starter Licence,New_Business,Closed Won,2025-09-01,12000,100,Content Hub Referral,Signed,Content Hub Starter.
+OPP-060,ACC-030,Driftwood — 2026 Renewal,Renewal,Prospecting,2026-09-01,13200,20,Content Hub Referral,Renewal reminder,Standard renewal.
+OPP-061,ACC-031,Ember Analytics — Enterprise Deal,New_Business,Closed Won,2025-07-31,225000,100,Campaign Intelligence Demo,Signed,Full platform for CPG data science team.
+OPP-062,ACC-031,Ember Analytics — 2026 Renewal,Renewal,Value Proposition,2026-07-31,247500,55,Campaign Intelligence Demo,Presenting 2026 roadmap,Renewal with Attribution Engine expansion.
+OPP-063,ACC-032,Flare Demand — Starter Package,New_Business,Closed Won,2025-11-01,13000,100,Audience Studio Trial,Signed,Audience Studio Starter.
+OPP-064,ACC-032,Flare Demand — Professional Upgrade,New_Business,Needs Analysis,2026-05-31,42000,35,Audience Studio Trial,Conducting upgrade assessment,Upgrade based on client portfolio growth.
+OPP-065,ACC-033,Gridline Growth — Professional Package,New_Business,Closed Won,2025-08-15,68000,100,Attribution Engine Webinar,Signed,Attribution Engine and RevOps integration.
+OPP-066,ACC-033,Gridline Growth — 2026 Renewal,Renewal,Qualification,2026-08-15,74800,60,Attribution Engine Webinar,Renewal discovery call,Annual renewal.
+OPP-067,ACC-034,Harbour Analytics — Enterprise Package,New_Business,Closed Won,2025-06-30,215000,100,Campaign Intelligence Demo,Signed — Canadian flagship,Full platform for Canadian retail attribution team.
+OPP-068,ACC-034,Harbour Analytics — 2026 Renewal,Renewal,Proposal/Price Quote,2026-06-30,236500,75,Campaign Intelligence Demo,Renewal proposal under review,Annual renewal with Content Hub add-on.
+OPP-069,ACC-035,Ironstone Media — Enterprise Deal,New_Business,Closed Won,2025-05-31,355000,100,Campaign Intelligence Demo,Signed — media flagship deal,Full platform for 12 trade publications.
+OPP-070,ACC-035,Ironstone Media — 2026 Renewal,Renewal,Negotiation/Review,2026-05-31,390500,83,Campaign Intelligence Demo,MSA renewal negotiation,Annual renewal with 10% uplift and new titles discussion.
+OPP-071,ACC-036,Junction Digital — Professional Package,New_Business,Closed Won,2025-09-30,65000,100,Attribution Engine Webinar,Signed,Attribution Engine Professional.
+OPP-072,ACC-036,Junction Digital — 2026 Renewal,Renewal,Proposal/Price Quote,2026-09-30,71500,75,Attribution Engine Webinar,Renewal proposal sent,Annual renewal.
+OPP-073,ACC-037,Keystone — Starter Licence,New_Business,Closed Won,2025-10-31,13000,100,Content Hub Referral,Signed,Content Hub Starter.
+OPP-074,ACC-037,Keystone — 2026 Renewal,Renewal,Prospecting,2026-10-31,14300,20,Content Hub Referral,Renewal reminder,Standard renewal.
+OPP-075,ACC-038,Lunar Signal — Enterprise Platform,New_Business,Closed Won,2025-07-31,275000,100,Campaign Intelligence Demo,Signed,Full platform for programmatic bidding team.
+OPP-076,ACC-038,Lunar Signal — 2026 Renewal,Renewal,Negotiation/Review,2026-07-31,302500,82,Campaign Intelligence Demo,Multi-year renewal discussion,2-year renewal negotiation in progress.
+OPP-077,ACC-039,Meridian — Professional Package,New_Business,Closed Won,2025-09-15,62000,100,Attribution Engine Webinar,Signed,Attribution Engine for financial services team.
+OPP-078,ACC-039,Meridian — 2026 Renewal,Renewal,Needs Analysis,2026-09-15,68200,40,Attribution Engine Webinar,Renewal scoping,Annual renewal with Audience Studio discussion.
+OPP-079,ACC-040,Nautical Digital — Professional Package,New_Business,Closed Won,2025-11-15,70000,100,Attribution Engine Webinar,Signed,Full Attribution Engine team licence.
+OPP-080,ACC-040,Nautical Digital — 2026 Renewal,Renewal,Proposal/Price Quote,2026-11-15,77000,75,Attribution Engine Webinar,Renewal proposal sent,Annual renewal with 10% uplift.
