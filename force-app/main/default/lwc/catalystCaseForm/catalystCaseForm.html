@@ -1,0 +1,105 @@
+<template>
+    <div class="catalyst-case-form">
+        <lightning-card title="Open a Support Case" icon-name="standard:case">
+            <div class="slds-p-around_medium">
+
+                <!-- Success State -->
+                <template if:true={isSubmitted}>
+                    <div class="slds-illustration slds-illustration_small">
+                        <div class="slds-illustration__figure slds-m-bottom_medium">
+                            <lightning-icon icon-name="action:approval" size="large"></lightning-icon>
+                        </div>
+                        <div class="slds-illustration__body">
+                            <h3 class="slds-text-heading_medium">Case submitted successfully</h3>
+                            <p class="slds-text-body_regular slds-m-top_small">
+                                Your case number is <strong>{submittedCaseId}</strong>.
+                                Our team will respond within your SLA window.
+                            </p>
+                            <lightning-button
+                                label="View My Cases"
+                                variant="brand"
+                                class="slds-m-top_medium"
+                                onclick={handleViewCases}>
+                            </lightning-button>
+                        </div>
+                    </div>
+                </template>
+
+                <!-- Form -->
+                <template if:false={isSubmitted}>
+                    <div class="slds-grid slds-gutters slds-wrap">
+
+                        <!-- Left: Form fields -->
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_7-of-12">
+                            <lightning-input
+                                label="Subject"
+                                value={subject}
+                                required
+                                maxlength="255"
+                                onchange={handleSubjectChange}
+                                class="slds-m-bottom_small">
+                            </lightning-input>
+
+                            <lightning-combobox
+                                label="Affected Module"
+                                value={affectedModule}
+                                options={moduleOptions}
+                                required
+                                onchange={handleModuleChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <lightning-combobox
+                                label="Urgency"
+                                value={urgency}
+                                options={urgencyOptions}
+                                required
+                                onchange={handleUrgencyChange}
+                                class="slds-m-bottom_small">
+                            </lightning-combobox>
+
+                            <lightning-textarea
+                                label="Description"
+                                value={description}
+                                required
+                                max-length="32000"
+                                placeholder="Please describe your issue in as much detail as possible."
+                                onchange={handleDescriptionChange}
+                                class="slds-m-bottom_medium">
+                            </lightning-textarea>
+
+                            <template if:true={submitError}>
+                                <div class="slds-notify slds-notify_alert slds-alert_error slds-m-bottom_small" role="alert">
+                                    <h2>{submitError}</h2>
+                                </div>
+                            </template>
+
+                            <lightning-button
+                                label="Submit Case"
+                                variant="brand"
+                                disabled={isSubmitting}
+                                onclick={handleSubmit}>
+                            </lightning-button>
+
+                            <template if:true={isSubmitting}>
+                                <lightning-spinner
+                                    alternative-text="Submitting case"
+                                    size="small"
+                                    class="slds-m-left_small">
+                                </lightning-spinner>
+                            </template>
+                        </div>
+
+                        <!-- Right: Knowledge deflection -->
+                        <div class="slds-col slds-size_1-of-1 slds-large-size_5-of-12">
+                            <c-catalyst-knowledge-deflection
+                                search-term={subject}
+                                ondeflected={handleDeflected}>
+                            </c-catalyst-knowledge-deflection>
+                        </div>
+                    </div>
+                </template>
+            </div>
+        </lightning-card>
+    </div>
+</template>

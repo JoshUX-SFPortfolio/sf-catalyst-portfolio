@@ -1,0 +1,73 @@
+<template>
+    <div class="catalyst-knowledge-search slds-p-around_medium">
+        <!-- Search Input -->
+        <div class="slds-form-element slds-m-bottom_medium">
+            <div class="slds-form-element__control slds-input-has-icon slds-input-has-icon_right">
+                <lightning-icon
+                    icon-name="utility:search"
+                    size="x-small"
+                    class="slds-icon slds-input__icon slds-input__icon_right">
+                </lightning-icon>
+                <lightning-input
+                    type="search"
+                    label="Search Knowledge"
+                    variant="label-hidden"
+                    placeholder="Search articles..."
+                    value={searchTerm}
+                    onchange={handleSearchChange}>
+                </lightning-input>
+            </div>
+        </div>
+
+        <!-- Loading -->
+        <template if:true={isSearching}>
+            <lightning-spinner alternative-text="Searching" size="small"></lightning-spinner>
+        </template>
+
+        <!-- Results -->
+        <template if:true={hasResults}>
+            <p class="slds-text-body_small slds-text-color_weak slds-m-bottom_small">
+                {resultCount} article{isPlural} found
+            </p>
+            <ul class="slds-has-dividers_bottom-space">
+                <template for:each={articles} for:item="article">
+                    <li key={article.Id} class="slds-item slds-p-vertical_small">
+                        <a href={article.articleUrl} class="slds-text-link" target="_self">
+                            <h3 class="slds-text-heading_small">{article.Title}</h3>
+                        </a>
+                        <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
+                            {article.Summary}
+                        </p>
+                        <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
+                            Last updated:
+                            <lightning-formatted-date-time
+                                value={article.lastPublishedIso}
+                                year="numeric" month="short" day="2-digit">
+                            </lightning-formatted-date-time>
+                        </p>
+                    </li>
+                </template>
+            </ul>
+        </template>
+
+        <!-- Empty state (after search) -->
+        <template if:true={showNoResults}>
+            <div class="slds-illustration slds-illustration_small slds-m-top_large">
+                <div class="slds-illustration__body">
+                    <p class="slds-text-body_regular">No articles found for "{searchTerm}".</p>
+                    <p class="slds-text-body_small slds-text-color_weak slds-m-top_x-small">
+                        Try different keywords or
+                        <a href="/cases/new" class="slds-text-link">open a support case</a>.
+                    </p>
+                </div>
+            </div>
+        </template>
+
+        <!-- Prompt (before search) -->
+        <template if:true={showPrompt}>
+            <p class="slds-text-body_regular slds-text-color_weak">
+                Enter at least 2 characters to search the Knowledge Base.
+            </p>
+        </template>
+    </div>
+</template>

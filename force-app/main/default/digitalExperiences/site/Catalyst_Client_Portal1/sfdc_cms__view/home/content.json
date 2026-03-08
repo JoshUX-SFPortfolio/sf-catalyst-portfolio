@@ -1,0 +1,71 @@
+{
+  "type" : "sfdc_cms__view",
+  "title" : "Home",
+  "contentBody" : {
+    "component" : {
+      "children" : [ {
+        "children" : [ {
+          "attributes" : {
+            "backgroundImageConfig" : "",
+            "backgroundImageOverlay" : "rgba(0,0,0,0)",
+            "componentSpacerSize" : "",
+            "dxpStyle" : { },
+            "layoutDirectionDesktop" : "row",
+            "layoutDirectionMobile" : "column",
+            "layoutDirectionTablet" : "column",
+            "maxContentWidth" : "",
+            "sectionColumnGutterWidth" : "",
+            "sectionConfig" : "{\"UUID\":\"feed7df4-2f99-4033-af49-b6cfb9cae566\",\"columns\":[{\"UUID\":\"e660c281-2e5c-484a-9831-04d493fded8b\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}",
+            "sectionMinHeight" : "",
+            "sectionVerticalAlign" : "flex-start"
+          },
+          "children" : [ {
+            "children" : [ {
+              "attributes" : {
+                "dxpStyle" : { }
+              },
+              "definition" : "c:catalystClientDashboard",
+              "id" : "04b805d4-e197-4fe6-9083-1e6a63e510a9",
+              "type" : "component"
+            } ],
+            "id" : "e660c281-2e5c-484a-9831-04d493fded8b",
+            "name" : "col1",
+            "title" : "Column 1",
+            "type" : "region"
+          } ],
+          "definition" : "community_layout:section",
+          "id" : "feed7df4-2f99-4033-af49-b6cfb9cae566",
+          "type" : "component"
+        } ],
+        "id" : "617bcbf8-26d5-44a5-b575-4f7a0292c1f2",
+        "name" : "content",
+        "title" : "Content",
+        "type" : "region"
+      }, {
+        "children" : [ {
+          "attributes" : {
+            "customHeadTags" : "",
+            "description" : "Catalyst Client Portal — your subscription, cases, and onboarding in one place.",
+            "dxpStyle" : { },
+            "pageTitle" : "Home | Catalyst Client Portal",
+            "recordId" : "{!recordId}"
+          },
+          "definition" : "community_builder:seoAssistant",
+          "id" : "c51f914e-69a1-40e9-b79a-ab64903e57af",
+          "type" : "component"
+        } ],
+        "id" : "35df874b-7a68-4f00-b613-ffa813c0f036",
+        "name" : "sfdcHiddenRegion",
+        "title" : "sfdcHiddenRegion",
+        "type" : "region"
+      } ],
+      "definition" : "community_layout:sldsFlexibleLayout",
+      "id" : "87bac8a6-d126-4994-b99b-628a7e8c95d0",
+      "type" : "component"
+    },
+    "dataProviders" : [ ],
+    "themeLayoutType" : "Inner",
+    "viewType" : "home"
+  },
+  "urlName" : "home"
+}

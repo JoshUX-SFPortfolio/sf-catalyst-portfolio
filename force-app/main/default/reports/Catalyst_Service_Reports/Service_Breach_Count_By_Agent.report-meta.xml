@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Cases in the last 90 days where the SLA milestone has been violated, grouped by case owner. Identifies agents with highest breach counts for coaching and workload review. Feeds Service SLA Dashboard — Breach Count by Agent table. MKT-REQ-SRVC-009</description>
+    <format>Summary</format>
+    <name>Service Breach Count by Agent</name>
+    <reportType>CaseList</reportType>
+    <scope>organization</scope>
+    <showDetails>false</showDetails>
+    <timeFrameFilter>
+        <dateColumn>CREATED_DATE</dateColumn>
+        <interval>INTERVAL_CUSTOM</interval>
+    </timeFrameFilter>
+    <columns>
+        <field>CASE_NUMBER</field>
+    </columns>
+    <columns>
+        <field>STATUS</field>
+    </columns>
+    <columns>
+        <field>Case.SLA_Tier_at_Creation__c</field>
+    </columns>
+    <groupingsDown>
+        <dateGranularity>Day</dateGranularity>
+        <field>OWNER</field>
+        <sortOrder>Asc</sortOrder>
+    </groupingsDown>
+    <filter>
+        <criteriaItems>
+            <column>ESCALATION_STATE</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>True</value>
+        </criteriaItems>
+    </filter>
+    <showGrandTotal>true</showGrandTotal>
+    <showSubTotals>true</showSubTotals>
+    <sortOrder>Desc</sortOrder>
+    <sortColumn>CASE_NUMBER</sortColumn>
+</Report>

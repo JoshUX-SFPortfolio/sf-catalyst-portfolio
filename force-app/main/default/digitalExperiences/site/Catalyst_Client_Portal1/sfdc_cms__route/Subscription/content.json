@@ -1,0 +1,12 @@
+{
+  "type": "sfdc_cms__route",
+  "title": "Subscription",
+  "contentBody": {
+    "activeViewId": "subscription",
+    "configurationTags": [],
+    "pageAccess": "RequiresLogin",
+    "routeType": "standard",
+    "urlPrefix": "subscription"
+  },
+  "urlName": "subscription"
+}

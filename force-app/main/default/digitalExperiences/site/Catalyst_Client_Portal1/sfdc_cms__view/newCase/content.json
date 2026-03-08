@@ -1,0 +1,78 @@
+{
+  "type": "sfdc_cms__view",
+  "title": "New Case",
+  "contentBody": {
+    "component": {
+      "children": [
+        {
+          "children": [
+            {
+              "attributes": {
+                "backgroundImageConfig": "",
+                "backgroundImageOverlay": "rgba(0,0,0,0)",
+                "componentSpacerSize": "",
+                "layoutDirectionDesktop": "row",
+                "layoutDirectionMobile": "column",
+                "layoutDirectionTablet": "column",
+                "maxContentWidth": "",
+                "sectionColumnGutterWidth": "",
+                "sectionConfig": "{\"UUID\":\"c1b2c3d4-0001-4001-c001-000000000003\",\"columns\":[{\"UUID\":\"c1b2c3d4-0002-4001-c001-000000000003\",\"columnName\":\"Column 1\",\"columnKey\":\"col1\",\"columnWidth\":\"12\",\"seedComponents\":null}]}",
+                "sectionMinHeight": "",
+                "sectionVerticalAlign": "flex-start"
+              },
+              "children": [
+                {
+                  "children": [
+                    {
+                      "attributes": {},
+                      "definition": "c:catalystCaseForm",
+                      "id": "c1b2c3d4-0003-4001-c001-000000000003",
+                      "type": "component"
+                    }
+                  ],
+                  "id": "c1b2c3d4-0002-4001-c001-000000000003",
+                  "name": "col1",
+                  "title": "Column 1",
+                  "type": "region"
+                }
+              ],
+              "definition": "community_layout:section",
+              "id": "c1b2c3d4-0001-4001-c001-000000000003",
+              "type": "component"
+            }
+          ],
+          "id": "c1b2c3d4-0006-4001-c001-000000000003",
+          "name": "content",
+          "title": "Content",
+          "type": "region"
+        },
+        {
+          "children": [
+            {
+              "attributes": {
+                "customHeadTags": "",
+                "description": "Submit a new support case to the Catalyst team.",
+                "pageTitle": "New Case | Catalyst Client Portal",
+                "recordId": "{!recordId}"
+              },
+              "definition": "community_builder:seoAssistant",
+              "id": "c1b2c3d4-0007-4001-c001-000000000003",
+              "type": "component"
+            }
+          ],
+          "id": "c1b2c3d4-0008-4001-c001-000000000003",
+          "name": "sfdcHiddenRegion",
+          "title": "sfdcHiddenRegion",
+          "type": "region"
+        }
+      ],
+      "definition": "community_layout:sldsFlexibleLayout",
+      "id": "c1b2c3d4-0009-4001-c001-000000000003",
+      "type": "component"
+    },
+    "dataProviders": [],
+    "themeLayoutType": "Inner",
+    "viewType": "standard"
+  },
+  "urlName": "new-case"
+}

@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Report xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Accounts with active SLA — renewal risk indicator for Account Executives. Feeds Rep Performance Dashboard — Renewal Risk Accounts table. MKT-REQ-SALES-020</description>
+    <format>Tabular</format>
+    <name>Rep Renewal Risk Accounts</name>
+    <reportType>AccountList</reportType>
+    <scope>organization</scope>
+    <showDetails>true</showDetails>
+    <columns>
+        <field>ACCOUNT.NAME</field>
+    </columns>
+    <columns>
+        <field>USERS.NAME</field>
+    </columns>
+    <columns>
+        <field>TYPE</field>
+    </columns>
+    <columns>
+        <field>Account.SLA__c</field>
+    </columns>
+    <columns>
+        <field>Account.SLAExpirationDate__c</field>
+    </columns>
+    <columns>
+        <field>Account.CustomerPriority__c</field>
+    </columns>
+    <filter>
+        <criteriaItems>
+            <column>Account.Active__c</column>
+            <columnToColumn>false</columnToColumn>
+            <isUnlocked>true</isUnlocked>
+            <operator>equals</operator>
+            <value>Yes</value>
+        </criteriaItems>
+    </filter>
+    <showGrandTotal>false</showGrandTotal>
+    <showSubTotals>false</showSubTotals>
+    <sortOrder>Asc</sortOrder>
+    <sortColumn>ACCOUNT.NAME</sortColumn>
+</Report>

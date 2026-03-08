@@ -1,0 +1,7 @@
+.catalyst-open-cases-tile .open-case-count {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--lwc-colorTextDefault, #3e3e3c);
+    line-height: 1.2;
+    margin-bottom: var(--lwc-spacingXSmall, 0.25rem);
+}

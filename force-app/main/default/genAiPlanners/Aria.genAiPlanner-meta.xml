@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiPlanner xmlns="http://soap.sforce.com/2006/04/metadata">
+    <description>Aria — Catalyst Client Assistant. Authenticated self-service agent for Catalyst portal users. Handles knowledge search, case status, onboarding progress, and human escalation. MKT-REQ-EXP-012.</description>
+    <masterLabel>Aria</masterLabel>
+    <plannerType>AiCopilot__ReAct</plannerType>
+</GenAiPlanner>

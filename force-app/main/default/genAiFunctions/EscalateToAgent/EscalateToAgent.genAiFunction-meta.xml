@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Escalate To Agent</masterLabel>
+    <description>Creates a support case pre-populated with the issue subject and description from the Aria conversation, then routes it to the appropriate service queue. Use this when the client's issue cannot be resolved by knowledge search or self-service, or when the client explicitly asks to speak to a person. Never ask the client to repeat information already provided in the conversation. MKT-REQ-EXP-013, MKT-REQ-EXP-015.</description>
+    <invocationTargetType>apex</invocationTargetType>
+    <invocationTarget>AriaEscalateToAgent</invocationTarget>
+    <isConfirmationRequired>true</isConfirmationRequired>
+</GenAiFunction>

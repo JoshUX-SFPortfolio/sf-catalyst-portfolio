@@ -1,0 +1,68 @@
+<template>
+    <div class="catalyst-aria-launcher">
+        <!-- Agentforce Embedded Chat Container -->
+        <!-- In a live org this would contain the embedded_service/chat_app reference -->
+        <!-- For portfolio: renders a styled launcher button that represents the Aria agent -->
+        <div class="aria-fab" role="complementary" aria-label="Aria — Catalyst Client Assistant">
+            <button
+                class="aria-fab__button"
+                onclick={handleToggleChat}
+                aria-expanded={isOpen}
+                aria-controls="aria-chat-panel"
+                title="Chat with Aria">
+                <template if:false={isOpen}>
+                    <lightning-icon
+                        icon-name="utility:chat"
+                        size="medium"
+                        alternative-text="Open Aria chat"
+                        class="aria-fab__icon">
+                    </lightning-icon>
+                    <span class="aria-fab__label">Aria</span>
+                </template>
+                <template if:true={isOpen}>
+                    <lightning-icon
+                        icon-name="utility:close"
+                        size="medium"
+                        alternative-text="Close Aria chat"
+                        class="aria-fab__icon">
+                    </lightning-icon>
+                </template>
+            </button>
+
+            <!-- Chat Panel (Agentforce embed target) -->
+            <template if:true={isOpen}>
+                <div
+                    id="aria-chat-panel"
+                    class="aria-chat-panel"
+                    role="dialog"
+                    aria-label="Aria — Catalyst Client Assistant"
+                    aria-modal="false">
+                    <div class="aria-chat-panel__header">
+                        <div class="slds-media slds-media_center">
+                            <div class="slds-media__figure">
+                                <lightning-icon icon-name="standard:einstein" size="small"></lightning-icon>
+                            </div>
+                            <div class="slds-media__body">
+                                <h2 class="slds-text-heading_small">Aria</h2>
+                                <p class="slds-text-body_small aria-chat-panel__subtitle">
+                                    Catalyst Client Assistant
+                                </p>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="aria-chat-panel__body">
+                        <!-- Agentforce embedded chat renders here in production -->
+                        <p class="slds-text-body_small slds-text-align_center slds-p-around_medium slds-text-color_weak">
+                            Hi! I'm Aria, your Catalyst assistant.<br/>
+                            I can help with your cases, knowledge articles,
+                            and onboarding progress.
+                        </p>
+                        <p class="slds-text-body_x-small slds-text-align_center slds-text-color_weak">
+                            Agentforce chat loads here in a deployed Experience Cloud site.
+                        </p>
+                    </div>
+                </div>
+            </template>
+        </div>
+    </div>
+</template>

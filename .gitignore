@@ -41,24 +41,13 @@ ehthumbs.db
 **/.nyc_output/
 
 # Experience Cloud compiled output
-.localdevserver/
 **/digitalExperiences/**/.sfdx/
 
-# Org-specific scratch org session files
+# Org-specific files
 **/lwc/**/*.css.map
 
-# Claude local config (not project source)
-# Environment & secrets
-.env
-*.pem
-server.key
-
-# Compiled / generated
-**/staticresources/**/*.resource.meta.xml-e
-**/__tests__/
-
-# Org-specific scratch org files
-**/lwc/**/*.css.map
+# Salesforce local source tracking (org-specific, not project source)
+.sf/
 
 # Claude local config
 .claude/

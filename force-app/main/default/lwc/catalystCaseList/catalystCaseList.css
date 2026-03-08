@@ -1,0 +1,8 @@
+.catalyst-case-list {
+    padding: var(--lwc-spacingMedium, 1rem);
+}
+
+.catalyst-pagination {
+    padding-top: var(--lwc-spacingSmall, 0.5rem);
+    border-top: 1px solid var(--lwc-colorBorderSeparator, #dddbda);
+}

@@ -1,0 +1,30 @@
+<template>
+    <div class="catalyst-client-dashboard slds-p-around_medium">
+        <div class="slds-grid slds-grid_align-center slds-m-bottom_small">
+            <h1 class="slds-text-heading_large">Welcome back</h1>
+        </div>
+
+        <!-- Top row: Open Cases | Subscription | Usage -->
+        <div class="slds-grid slds-gutters slds-wrap slds-m-bottom_medium">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                <c-catalyst-open-cases-tile></c-catalyst-open-cases-tile>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                <c-catalyst-subscription-tile></c-catalyst-subscription-tile>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-3">
+                <c-catalyst-usage-heatmap></c-catalyst-usage-heatmap>
+            </div>
+        </div>
+
+        <!-- Bottom row: Module List | Onboarding Checklist -->
+        <div class="slds-grid slds-gutters slds-wrap">
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                <c-catalyst-module-list></c-catalyst-module-list>
+            </div>
+            <div class="slds-col slds-size_1-of-1 slds-medium-size_1-of-2">
+                <c-catalyst-onboarding-checklist></c-catalyst-onboarding-checklist>
+            </div>
+        </div>
+    </div>
+</template>

@@ -1,0 +1,59 @@
+<template>
+    <lightning-card title="Platform Usage (30 Days)" icon-name="standard:metrics">
+        <div class="slds-p-around_medium catalyst-usage-heatmap">
+
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading usage data" size="small"></lightning-spinner>
+            </template>
+
+            <template if:true={hasData}>
+                <!-- Overall Usage Index -->
+                <div class="slds-m-bottom_medium">
+                    <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_x-small">
+                        <div class="slds-col">
+                            <p class="slds-text-body_small slds-text-color_weak">Overall Platform Usage Index</p>
+                        </div>
+                        <div class="slds-col slds-no-flex">
+                            <span class={usageIndexClass}>{usageIndex}%</span>
+                        </div>
+                    </div>
+                    <lightning-progress-bar
+                        value={usageIndex}
+                        size="large"
+                        variant={progressVariant}>
+                    </lightning-progress-bar>
+                </div>
+
+                <!-- Module Breakdown -->
+                <ul class="slds-has-dividers_top-space">
+                    <template for:each={modules} for:item="mod">
+                        <li key={mod.Id} class="slds-item slds-p-vertical_x-small">
+                            <div class="slds-grid slds-grid_vertical-align-center slds-m-bottom_x-small">
+                                <div class="slds-col">
+                                    <p class="slds-text-body_small">{mod.Module__c}</p>
+                                </div>
+                                <div class="slds-col slds-no-flex">
+                                    <span class="slds-text-body_small slds-text-color_weak">
+                                        Active
+                                    </span>
+                                </div>
+                            </div>
+                            <lightning-progress-bar
+                                value={mod.simulatedUsage}
+                                size="x-small">
+                            </lightning-progress-bar>
+                        </li>
+                    </template>
+                </ul>
+
+                <p class="slds-text-body_small slds-text-color_weak slds-m-top_small">
+                    Usage data refreshed nightly via the Catalyst Platform API.
+                </p>
+            </template>
+
+            <template if:true={noData}>
+                <p class="slds-text-body_small slds-text-color_weak">Usage data unavailable.</p>
+            </template>
+        </div>
+    </lightning-card>
+</template>

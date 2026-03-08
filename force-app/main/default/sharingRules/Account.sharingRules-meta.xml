@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<SharingRules xmlns="http://soap.sforce.com/2006/04/metadata">
+    <sharingCriteriaRules>
+        <fullName>Customer_Accounts_To_Service</fullName>
+        <label>Customer Accounts To Service</label>
+        <accessLevel>Read</accessLevel>
+        <accountSettings>
+            <caseAccessLevel>Edit</caseAccessLevel>
+            <contactAccessLevel>Read</contactAccessLevel>
+            <opportunityAccessLevel>Read</opportunityAccessLevel>
+        </accountSettings>
+        <description>Shares all Account records with Support Team Lead and subordinate service roles, enabling agents to view account context when handling cases. Req: MKT-REQ-SRVC-003.</description>
+        <criteriaItems>
+            <field>OwnerId</field>
+            <operation>notEqual</operation>
+            <value>null</value>
+        </criteriaItems>
+        <includeRecordsOwnedByAll>true</includeRecordsOwnedByAll>
+        <sharedTo>
+            <roleAndSubordinates>Support_Team_Lead</roleAndSubordinates>
+        </sharedTo>
+    </sharingCriteriaRules>
+</SharingRules>

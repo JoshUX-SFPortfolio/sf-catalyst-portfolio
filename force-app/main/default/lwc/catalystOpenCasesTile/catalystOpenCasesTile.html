@@ -1,0 +1,22 @@
+<template>
+    <lightning-card title="Open Cases" icon-name="standard:case">
+        <div class="slds-p-around_medium catalyst-open-cases-tile slds-text-align_center">
+
+            <template if:true={isLoading}>
+                <lightning-spinner alternative-text="Loading" size="small"></lightning-spinner>
+            </template>
+
+            <template if:false={isLoading}>
+                <p class="open-case-count slds-text-heading_large">{caseCount}</p>
+                <p class="slds-text-body_regular slds-text-color_weak slds-m-bottom_medium">
+                    open case{isPlural}
+                </p>
+                <lightning-button
+                    label="View All Cases"
+                    variant={buttonVariant}
+                    onclick={handleViewCases}>
+                </lightning-button>
+            </template>
+        </div>
+    </lightning-card>
+</template>
