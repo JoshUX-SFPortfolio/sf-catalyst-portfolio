@@ -91,6 +91,12 @@ This document records every technical problem encountered during development, it
 | LL-055 | A.8 — Agentforce | GenAiPromptTemplate type is a restricted picklist — requires UI configuration |
 | LL-056 | A.8 — Agentforce | PermissionSet fieldPermissions on required MasterDetail fields rejected |
 | LL-057 | A.9 — MTF Stabilisation | No A.9-specific deploy issues — phase was documentation and test verification only |
+| LL-058 | B.3 — Vertical Configuration | BillingState/BillingCountry fail in orgs with state/country picklists enabled |
+| LL-059 | B.4 — Sample Data Load | Bulk API 2.0 enforces FLS even for System Administrator — explicit profile metadata required |
+| LL-060 | B.4 — Sample Data Load | sf project deploy start returns "Unchanged" when org alias points to different org than source tracking |
+| LL-061 | B.4 — Sample Data Load | Hardcoded RecordTypeIds from one org fail in all other orgs — resolve at runtime via SOQL |
+| LL-062 | B.4 — Sample Data Load | MultiselectPicklist Bulk API import must use semicolon separators, not commas |
+| LL-063 | B.4 — Sample Data Load | numberRecordsProcessed:None is a Bulk API 2.0 display quirk — verify counts via SOQL |
 
 ---
 
@@ -803,3 +809,87 @@ This document records every technical problem encountered during development, it
 **Root Cause:** A.9's scope was: full test suite verification, documentation updates (CLAUDE.md, README.md), and tagging `develop` as `v1.0`. No new Salesforce metadata was authored or deployed.
 
 **Solution:** A.9 closed clean. 77/77 Apex tests passing at phase gate (100% pass rate, Run ID: `707gL00000dTLNr`). `develop` tagged `v1.0` as the MTF baseline snapshot.
+
+---
+
+## B.3 — Vertical Configuration
+
+### LL-058 — BillingState/BillingCountry fail in orgs with state/country picklists enabled
+
+**Phase:** B.3 — Vertical Configuration / B.4 — Sample Data Load
+
+**Problem:** Attempted to import Account records with `BillingState` values such as `"CA"`, `"NY"`, `"TX"`. The Bulk API 2.0 job returned validation errors for every record.
+
+**Root Cause:** Developer Edition orgs have state and country picklists enabled by default. When this feature is on, `BillingState` and `BillingCountry` are restricted picklist fields — free-text ISO abbreviations are rejected. The platform expects the picklist's internal value (a specific string tied to the enabled picklist dataset).
+
+**Solution:** Remove `BillingCity`, `BillingState`, and `BillingCountry` from both the CSV import file and the import script's field list. These fields are not essential for the portfolio's functional demonstrations and are safer to omit entirely.
+
+---
+
+## B.4 — Sample Data Load
+
+### LL-059 — Bulk API 2.0 enforces FLS even for System Administrator
+
+**Phase:** B.4 — Sample Data Load
+
+**Problem:** Imported Account records via Bulk API 2.0 using the System Administrator profile. All records failed with `InvalidBatch: Field name not found` for every Catalyst custom Account field (`Subscription_Tier__c`, `Modules_Purchased__c`, etc.) despite the fields existing in the org.
+
+**Root Cause:** Bulk API 2.0 enforces Field-Level Security (FLS) regardless of profile admin status. A custom field is invisible to the Bulk API unless the running user's profile has explicit `readable` and `editable` permissions granted via profile metadata. The System Administrator profile does not automatically receive FLS on custom fields deployed from metadata — they must be explicitly added.
+
+**Solution:** Add `<fieldPermissions>` entries to `force-app/main/default/profiles/Admin.profile-meta.xml` for each custom Account field. For editable fields set both `<editable>true</editable>` and `<readable>true</readable>`. For roll-up summaries (`Open_Case_Count__c`) and formula fields (`Duplicate_Domain_Flag__c`) set `<editable>false</editable>`. Deploy the profile metadata, then re-run the import.
+
+---
+
+### LL-060 — sf project deploy returns "Unchanged" when org alias differs from source-tracked org
+
+**Phase:** B.4 — Sample Data Load
+
+**Problem:** Running `sf project deploy start --source-dir force-app/main/default/profiles/Admin.profile-meta.xml` returned status `Unchanged` immediately. The custom Account fields were not being deployed even though they were missing from the org.
+
+**Root Cause:** The `sf-portfolio` alias points to org `00DgL00000MSWt7UAH`, but local SFDX source-tracking data in `.sf/orgs/` was for a different org (`00DAw00000CoHI9MAN`). SFDX compared the local source hash against the wrong org's tracking data, concluded nothing had changed, and skipped the deploy.
+
+**Solution:** Add `--ignore-conflicts` to force a fresh deploy regardless of tracking state: `sf project deploy start --source-dir force-app/main/default/profiles/Admin.profile-meta.xml --ignore-conflicts`. Independently verify field existence using the Tooling API: `SELECT QualifiedApiName FROM FieldDefinition WHERE EntityDefinition.QualifiedApiName = 'Account'` — this bypasses any stale describe cache.
+
+---
+
+### LL-061 — Hardcoded RecordTypeIds are org-specific and fail in every other org
+
+**Phase:** B.4 — Sample Data Load
+
+**Problem:** Opportunity and Case CSV files contained RecordTypeId values like `012Aw000007f3HKIAY`. The import script passed these directly to the Bulk API, which rejected every record with `INVALID_CROSS_REFERENCE_KEY`.
+
+**Root Cause:** Salesforce RecordType IDs are org-specific 18-character identifiers that differ between every org (scratch org, Developer Edition, sandbox, production). A CSV generated against one org will always fail in another org.
+
+**Solution:** Replace hardcoded IDs in CSVs with the RecordType `DeveloperName` (e.g. `Technical_Support`, `New_Business`). In the import script, query `RecordType` by `DeveloperName` and `SobjectType` at runtime to build a lookup map, then resolve the ID before submitting to the Bulk API:
+
+```python
+rt_records = sf_query(
+    "SELECT Id, DeveloperName, SobjectType FROM RecordType "
+    "WHERE SobjectType IN ('Opportunity','Case') LIMIT 50"
+)
+rt_map = {(r['SobjectType'], r['DeveloperName']): r['Id'] for r in rt_records}
+```
+
+---
+
+### LL-062 — MultiselectPicklist Bulk API import must use semicolon separators
+
+**Phase:** B.4 — Sample Data Load
+
+**Problem:** Initial drafts of the `Modules_Purchased__c` values used comma separators (e.g. `Campaign Intelligence,Attribution Engine`). The Bulk API accepted the records but stored the value as a single concatenated string rather than two selected picklist values.
+
+**Root Cause:** Salesforce MultiselectPicklist fields use semicolons as the delimiter between selected values — both in the UI and in the API. The Bulk API respects this convention: a comma is treated as part of the value string, not as a separator.
+
+**Solution:** Use semicolons in CSV data for MultiselectPicklist fields: `Campaign Intelligence;Attribution Engine`. Validate the import result by running a SOQL query with `INCLUDES()` to confirm each value resolves correctly.
+
+---
+
+### LL-063 — numberRecordsProcessed: None is a Bulk API 2.0 display quirk
+
+**Phase:** B.4 — Sample Data Load
+
+**Problem:** The Python import script printed `Leads: numberRecordsFailed=60` and `numberRecordsProcessed=None` after the Leads import step, suggesting all 60 records failed.
+
+**Root Cause:** The Bulk API 2.0 `jobInfo` endpoint returns `null` for `numberRecordsProcessed` during and immediately after certain job states when the script uses a temp-file upload approach. The Python `simple_salesforce` library serialises `null` as Python `None`, which the script formatted as "failed". The actual record counts were not reflected in this field at query time.
+
+**Solution:** Do not rely solely on the `jobInfo` response fields for import verification. After each step, run a SOQL count query with `WHERE CreatedDate = TODAY` to confirm actual record creation: `SELECT COUNT() FROM Lead WHERE CreatedDate = TODAY`. In the Leads case, 59 of 60 records were successfully created despite the misleading `numberRecordsFailed` display value.
