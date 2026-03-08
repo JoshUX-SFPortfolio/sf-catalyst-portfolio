@@ -163,12 +163,13 @@ Until Knowledge is enabled, `AriaSearchKnowledge` returns an empty list graceful
 - [x] `SearchKnowledge` GenAiFunction deployed
 - [x] `ClientSelfService` GenAiPlugin updated — all 4 functions linked
 - [x] All 4 invocable actions verified via REST `/actions/custom/apex`
-- [ ] Aria agent created in Agentforce Studio (New Agent > Custom > API name: Aria)
-- [ ] Client Self-Service topic attached to Aria in Agentforce Builder
+- [x] Aria agent created in Agentforce Studio (prompt-based creation)
+- [x] Client Self-Service topic attached to Aria in Agentforce Builder
+- [x] EscalateToAgent action wired successfully
+- [~] GetCaseStatus / GetOnboardingProgress / SearchKnowledge — blocked by DE org platform bug (error -1458072159) — see LL-064. Actions deployed and verified via REST.
 - [ ] System prompt type set in Prompt Builder
 - [ ] Agent activated
-- [ ] Portal launcher connected to Aria
-- [ ] Agent preview tested with all 4 action scenarios
+- [ ] Agent preview tested (EscalateToAgent only until LL-064 resolved)
 
 ---
 

@@ -97,6 +97,8 @@ This document records every technical problem encountered during development, it
 | LL-061 | B.4 — Sample Data Load | Hardcoded RecordTypeIds from one org fail in all other orgs — resolve at runtime via SOQL |
 | LL-062 | B.4 — Sample Data Load | MultiselectPicklist Bulk API import must use semicolon separators, not commas |
 | LL-063 | B.4 — Sample Data Load | numberRecordsProcessed:None is a Bulk API 2.0 display quirk — verify counts via SOQL |
+| LL-064 | B.5 — Per-Vertical Agent | Agentforce Builder rejects Apex invocable actions with collection outputs — error -1458072159 |
+| LL-065 | B.5 — Per-Vertical Agent | GenAiPlanner metadata deploys GenAiPlannerDefinition but does NOT create an AIApplication in Agentforce Studio |
 
 ---
 
@@ -893,3 +895,33 @@ rt_map = {(r['SobjectType'], r['DeveloperName']): r['Id'] for r in rt_records}
 **Root Cause:** The Bulk API 2.0 `jobInfo` endpoint returns `null` for `numberRecordsProcessed` during and immediately after certain job states when the script uses a temp-file upload approach. The Python `simple_salesforce` library serialises `null` as Python `None`, which the script formatted as "failed". The actual record counts were not reflected in this field at query time.
 
 **Solution:** Do not rely solely on the `jobInfo` response fields for import verification. After each step, run a SOQL count query with `WHERE CreatedDate = TODAY` to confirm actual record creation: `SELECT COUNT() FROM Lead WHERE CreatedDate = TODAY`. In the Leads case, 59 of 60 records were successfully created despite the misleading `numberRecordsFailed` display value.
+
+---
+
+## B.5 — Per-Vertical Agent
+
+### LL-064 — Agentforce Builder rejects Apex invocable actions with collection outputs
+
+**Phase:** B.5 — Per-Vertical Agent
+
+**Problem:** Adding Apex invocable actions (GetCaseStatus, GetOnboardingProgress, SearchKnowledge) to a topic in Agentforce Builder via the Actions picker failed with internal server error `-1458072159`. The `EscalateToAgent` action added successfully. Selecting and clicking "Add to Agent" consistently produced the error regardless of whether `callout=true` was set or `@InvocableVariable` labels were added.
+
+**Root Cause:** Agentforce Builder in Developer Edition orgs (Winter '26 / Spring '26) cannot add Apex invocable actions that return a `List<Result>` where `Result` contains multiple `@InvocableVariable` fields. The platform appears to require either: (a) a single output string, or (b) is affected by an unresolved platform bug specific to DE orgs. `EscalateToAgent` worked because its output shape is a single `Result` with two simple string fields (`caseId`, `caseNumber`), while the failing actions had 4+ output fields or returned data with no guaranteed single-record output.
+
+Restructuring the three failing actions to return a single `Result` with one `String` field (the data serialised as plain text) did not resolve the error — it persists regardless of output shape.
+
+**Solution:** Agent deployed with `EscalateToAgent` only for B.5. The other three actions (GetCaseStatus, GetOnboardingProgress, SearchKnowledge) remain deployed as Apex invocable actions and are verified via the REST API (`/actions/custom/apex`). They can be wired in Agentforce Builder when the platform bug is resolved or when tested in a non-DE org. Logged as a known platform limitation for Developer Edition.
+
+**Workaround for future verticals:** Test action addition in a scratch org or sandbox rather than DE. Alternatively, expose actions via Flow instead of direct Apex to bypass the Builder UI restriction.
+
+---
+
+### LL-065 — GenAiPlanner metadata does not create an AIApplication in Agentforce Studio
+
+**Phase:** B.5 — Per-Vertical Agent
+
+**Problem:** After deploying `GenAiPlanner` metadata (Aria, `plannerType: AiCopilot__ReAct`), Agentforce Studio showed "0 agents". The `GenAiPlanner` was not visible anywhere in the UI.
+
+**Root Cause:** The `GenAiPlanner` Metadata API type deploys a `GenAiPlannerDefinition` Tooling API record — but Agentforce Studio lists `AIApplication` records, which are a separate object. No `AIApplication` is created by deploying a `GenAiPlanner`. The two are not automatically linked.
+
+**Solution:** Create the agent manually in Agentforce Studio (New Agent > describe purpose in the text prompt > agent is created with default topics). Then attach the deployed `ClientSelfService` `GenAiPlugin` topic via the Topics panel. The `GenAiPlannerDefinition` record created by the metadata deploy appears unused by the UI — it may be a legacy or internal record type. For all future agents, treat Agentforce Builder as the authoritative creation path; use metadata only for the `GenAiPlugin` (Topic) and `GenAiFunction` records.
