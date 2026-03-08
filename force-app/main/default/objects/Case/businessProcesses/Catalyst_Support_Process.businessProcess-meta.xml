@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<BusinessProcess xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Catalyst_Support_Process</fullName>
+    <description>Standard support process for all Catalyst case record types.</description>
+    <isActive>true</isActive>
+    <values>
+        <fullName>New</fullName>
+        <default>true</default>
+    </values>
+    <values>
+        <fullName>Working</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Escalated</fullName>
+        <default>false</default>
+    </values>
+    <values>
+        <fullName>Closed</fullName>
+        <default>false</default>
+    </values>
+</BusinessProcess>

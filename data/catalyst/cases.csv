@@ -1,0 +1,121 @@
+Id,AccountId,ContactId,RecordTypeId,Subject,Status,Priority,Origin,Type,Description
+CASE-001,ACC-001,CON-002,Technical_Support,Attribution data not reflecting last-click conversions,Working,High,Portal,Problem,Campaign Intelligence attribution engine showing inconsistent last-click data for Google Ads campaigns. Discrepancy of ~18% vs platform reporting.
+CASE-002,ACC-001,CON-003,Technical_Support,API rate limit errors during bulk export,New,Medium,Email,Problem,Bulk export job fails at ~50K row mark with 429 rate limit error. Affects nightly data warehouse sync.
+CASE-003,ACC-002,CON-006,Technical_Support,Audience segment not syncing to LinkedIn,Working,High,Portal,Problem,Audience Studio segment created yesterday not appearing in LinkedIn Campaign Manager after 24hrs.
+CASE-004,ACC-002,CON-007,General_Enquiry,How to set up custom attribution windows,New,Low,Email,Question,Need guidance on configuring 90-day attribution window for enterprise B2B sales cycle.
+CASE-005,ACC-003,CON-009,Onboarding,Onboarding checklist — CRM integration step,Working,Medium,Portal,Other,Stuck on Step 4 of the Salesforce integration setup. OAuth callback not completing.
+CASE-006,ACC-004,CON-014,Technical_Support,Campaign Intelligence dashboard loading slowly,Closed,Low,Portal,Performance,Dashboard with 6 widgets taking 18+ seconds to load. Confirmed on Chrome and Firefox.
+CASE-007,ACC-004,CON-015,Feature_Request,Request: bulk tagging of historical campaigns,Closed,Low,Portal,Enhancement,Feature request to apply tags to historical campaigns in bulk rather than one at a time.
+CASE-008,ACC-005,CON-017,General_Enquiry,Question about adding a second user,New,Low,Email,Question,How do I invite a new team member to the account? Cannot find the user management screen.
+CASE-009,ACC-006,CON-022,Technical_Support,Ad operation pixel not firing on checkout page,Working,Critical,Phone,Problem,Catalyst tracking pixel confirmed not firing on the /checkout page. Revenue attribution missing.
+CASE-010,ACC-006,CON-023,Technical_Support,Custom dashboard export to PDF broken,Working,High,Portal,Problem,Export to PDF function returning blank PDF for dashboards with more than 4 widgets.
+CASE-011,ACC-007,CON-026,Onboarding,Initial setup — data connector configuration,Closed,Medium,Email,Other,Needed help configuring the Segment.io data connector during initial onboarding.
+CASE-012,ACC-007,CON-027,General_Enquiry,Difference between attribution models explained,Closed,Low,Portal,Question,Asked for comparison of linear vs data-driven attribution for PLG use case.
+CASE-013,ACC-008,CON-030,General_Enquiry,How to share reports with clients,New,Low,Email,Question,Need to understand the client reporting portal and how to generate white-label PDF reports.
+CASE-014,ACC-009,CON-033,Feature_Request,Request: CSV export for raw event data,New,Medium,Portal,Enhancement,Need ability to export raw event stream data to CSV for offline analysis.
+CASE-015,ACC-010,CON-037,Technical_Support,Data pipeline latency spike — 6hr delay,Escalated,Critical,Phone,Problem,Real-time pipeline showing 6-hour delay since 08:00 UTC. Affects live dashboard reporting.
+CASE-016,ACC-010,CON-038,General_Enquiry,Professional services — custom integration scoping,Working,Medium,Phone,Other,Scoping PS engagement for custom Databricks integration. Needs architecture review.
+CASE-017,ACC-011,CON-041,General_Enquiry,How to configure CTV attribution,New,Low,Portal,Question,Looking for documentation on CTV attribution setup for streaming campaigns.
+CASE-018,ACC-012,CON-045,Technical_Support,Attribution not matching GA4 data,Working,High,Portal,Problem,30% discrepancy between Catalyst conversion count and GA4 conversions for same campaign period.
+CASE-019,ACC-012,CON-046,Feature_Request,Request: Slack notification for pipeline alerts,New,Low,Portal,Enhancement,Feature request to send pipeline status alerts to Slack channel.
+CASE-020,ACC-013,CON-049,General_Enquiry,Attribution window best practices for B2B,Closed,Low,Email,Question,Requested guidance on attribution windows for 6-12 month enterprise sales cycles.
+CASE-021,ACC-014,CON-053,Technical_Support,Demand gen campaign not tracking form fills,Closed,High,Portal,Problem,HubSpot form fill events not appearing in Catalyst event stream for specific landing page.
+CASE-022,ACC-014,CON-054,Onboarding,New user onboarding — connecting data sources,Working,Medium,Email,Other,Help needed connecting Marketo and Salesforce as data sources during initial setup.
+CASE-023,ACC-015,CON-057,Technical_Support,Content performance metrics missing from dashboard,Working,Medium,Portal,Problem,Content Hub metrics not populating in the main analytics dashboard after last platform update.
+CASE-024,ACC-015,CON-058,Feature_Request,Request: Scheduled report delivery by email,Closed,Low,Portal,Enhancement,Request to schedule weekly reports for automated email delivery to stakeholders.
+CASE-025,ACC-016,CON-061,General_Enquiry,How to create a custom audience segment,Closed,Low,Email,Question,Needed step-by-step guide on creating first Audience Studio segment.
+CASE-026,ACC-017,CON-065,Technical_Support,CTV impression data gap — 72hr period,Escalated,Critical,Phone,Problem,72-hour gap in CTV impression data between 15-17 Nov. Revenue impact estimated at $450K.
+CASE-027,ACC-017,CON-067,Technical_Support,Dashboard widget not loading — Attribution Engine,Working,High,Portal,Problem,Multi-touch attribution funnel widget returns spinner indefinitely for campaigns > 500K impressions.
+CASE-028,ACC-018,CON-069,Onboarding,Initial setup — event tracking implementation,Closed,Medium,Email,Other,Needed guidance implementing JavaScript event tracking during trial onboarding.
+CASE-029,ACC-019,CON-073,Technical_Support,Multi-office data separation not working,Working,High,Portal,Problem,Data from Denver and Chicago offices appearing in each other's reporting views despite workspace separation setup.
+CASE-030,ACC-019,CON-075,Feature_Request,Request: Custom branding on client reports,Closed,Medium,Portal,Enhancement,Request for white-label client report templates with custom logo and colour palette.
+CASE-031,ACC-020,CON-077,General_Enquiry,How to upgrade subscription tier,Closed,Low,Phone,Question,Asked how to request a tier upgrade from Starter to Professional.
+CASE-032,ACC-021,CON-081,Technical_Support,Snowflake data sync failing nightly,Escalated,Critical,Portal,Problem,Nightly Snowflake sync job failing since platform upgrade on 2 Mar. Error: schema mismatch.
+CASE-033,ACC-021,CON-083,Technical_Support,User permissions — read-only access not working,Working,Medium,Portal,Problem,Users assigned read-only role can still edit campaigns. Permissions not enforcing correctly.
+CASE-034,ACC-022,CON-085,General_Enquiry,How to interpret multi-touch attribution report,Closed,Low,Email,Question,Needed explanation of the path-to-conversion report columns and weighting methodology.
+CASE-035,ACC-023,CON-089,Technical_Support,Podcast attribution pixel not integrating with host,Working,High,Portal,Problem,Tracking pixel for podcast ad reads not compatible with Transistor.fm hosting platform.
+CASE-036,ACC-023,CON-090,Feature_Request,Request: Podcast-specific attribution model,New,Medium,Portal,Enhancement,Feature request for a podcast-native attribution model that handles dynamic ad insertion.
+CASE-037,ACC-024,CON-093,Technical_Support,Salesforce field mapping broken after org update,Closed,High,Phone,Problem,Catalyst-Salesforce connector stopped syncing Opportunity data after Salesforce Spring release.
+CASE-038,ACC-024,CON-094,Onboarding,HubSpot migration support — data mapping,Working,Medium,Email,Other,Migrating client from HubSpot to Salesforce — need help with Catalyst data connector remapping.
+CASE-039,ACC-025,CON-097,General_Enquiry,Which plan includes multi-channel attribution,Closed,Low,Email,Question,Asked which subscription tier includes multi-channel attribution vs last-click only.
+CASE-040,ACC-026,CON-101,Technical_Support,A/B test data not splitting evenly,Working,Medium,Portal,Problem,Content Hub A/B test shows 70/30 traffic split despite equal configuration. Statistically significant skew.
+CASE-041,ACC-027,CON-105,Technical_Support,Intent data signals delayed by 48 hours,Escalated,Critical,Portal,Problem,Intent signal feed showing consistent 48-hour delay since integration upgrade on 28 Feb.
+CASE-042,ACC-027,CON-106,Feature_Request,Request: Custom intent signal categories,Working,Medium,Portal,Enhancement,Feature request to define custom intent signal categories beyond the 12 preset verticals.
+CASE-043,ACC-028,CON-109,Technical_Support,Premium publisher data not reconciling with DFP,Working,High,Portal,Problem,Catalyst attribution not matching DoubleClick For Publishers reporting by 22%. Investigation needed.
+CASE-044,ACC-028,CON-110,Technical_Support,Dashboard access for 3 new finance users,Closed,Low,Phone,Other,Needed finance team members added to reporting-only access in correct workspace.
+CASE-045,ACC-029,CON-113,Technical_Support,Pipeline velocity metrics not updating in real-time,Working,High,Portal,Problem,Pipeline Velocity dashboard widget freezing at last manually refreshed state rather than auto-updating.
+CASE-046,ACC-029,CON-114,Onboarding,Onboarding — RevOps data model setup,Closed,Medium,Email,Other,Help configuring the RevOps data model during initial onboarding — Salesforce Opportunity mapping.
+CASE-047,ACC-030,CON-117,Onboarding,Initial data connector — EMR health system API,Working,Medium,Phone,Other,Assistance needed connecting legacy healthcare EMR system to Catalyst via REST API.
+CASE-048,ACC-030,CON-118,General_Enquiry,How to invite a partner agency to the account,Closed,Low,Email,Question,Question about adding external agency as a collaborator with restricted data access.
+CASE-049,ACC-031,CON-121,Technical_Support,MMM model taking 6hrs to run,Working,High,Portal,Problem,Marketing mix model computation exceeding 6-hour timeout for large CPG data sets.
+CASE-050,ACC-031,CON-122,Feature_Request,Request: Pre-built CPG attribution templates,New,Medium,Portal,Enhancement,Request for out-of-the-box CPG-specific attribution templates in the model library.
+CASE-051,ACC-032,CON-125,Onboarding,Initial setup — first campaign tracking,Closed,Medium,Portal,Other,Needed help tracking first Google Ads campaign during trial period.
+CASE-052,ACC-033,CON-129,Technical_Support,RevOps connector dropping records,Working,High,Portal,Problem,CRM sync dropping approximately 5% of Opportunity records during nightly sync. No error logged.
+CASE-053,ACC-033,CON-130,General_Enquiry,How to build custom RevOps dashboards,Closed,Low,Email,Question,Needed guidance on building custom pipeline dashboards combining Catalyst and Salesforce data.
+CASE-054,ACC-034,CON-133,Technical_Support,Canadian retail data residency compliance,Escalated,High,Phone,Problem,Data residency audit flagging US data centre processing for Canadian customer records. Requires architecture review.
+CASE-055,ACC-034,CON-134,Feature_Request,Request: Canadian data centre option,Working,Medium,Portal,Enhancement,Formal feature request for Canadian data residency zone to support PIPEDA compliance.
+CASE-056,ACC-035,CON-137,Technical_Support,Ad exchange data discrepancy across 8 publications,Working,High,Portal,Problem,Catalyst reporting showing consistent 15% under-count vs individual publication ad exchange reports.
+CASE-057,ACC-035,CON-138,Onboarding,New publication onboarding — digital revenue team,Working,Medium,Email,Other,Onboarding 2 new digital titles to existing Catalyst account. Data connector setup needed.
+CASE-058,ACC-036,CON-141,Technical_Support,Attribution model not accounting for long sales cycles,Closed,Medium,Portal,Problem,Standard 30-day attribution window missing B2B conversions with 90+ day cycles.
+CASE-059,ACC-036,CON-142,General_Enquiry,How to configure extended attribution windows,Closed,Low,Email,Question,How to extend attribution lookback beyond the standard 30-day maximum.
+CASE-060,ACC-037,CON-145,Onboarding,First campaign setup — PPC tracking integration,Closed,Low,Email,Other,Needed step-by-step help setting up Google Ads integration as first data source.
+CASE-061,ACC-038,CON-149,Technical_Support,Bidding optimisation signals not passing to DSP,Escalated,Critical,Portal,Problem,Catalyst bidding signals not passing to The Trade Desk DSP. Revenue impact: estimated $120K/day.
+CASE-062,ACC-038,CON-150,Technical_Support,Nightly batch job — connection timeout,Working,High,Email,Problem,DSP batch job timing out after 30 minutes for datasets > 2M rows. Needs infrastructure review.
+CASE-063,ACC-039,CON-153,Technical_Support,FSI compliance — data masking for PII fields,Working,High,Phone,Problem,Financial services client data containing PII not being masked in Catalyst reporting exports.
+CASE-064,ACC-039,CON-154,Feature_Request,Request: FINRA-compliant audit trail,New,Medium,Portal,Enhancement,Feature request for immutable audit trail for all data access events to support FINRA compliance.
+CASE-065,ACC-040,CON-157,Technical_Support,Catalyst API returning 500 errors intermittently,Working,High,Portal,Problem,Intermittent 500 errors on the /events/ingest endpoint observed 3-5 times per hour.
+CASE-066,ACC-040,CON-158,Onboarding,Salesforce integration — custom object mapping,Working,Medium,Email,Other,Help mapping Catalyst campaign data to custom Salesforce object during implementation.
+CASE-067,ACC-041,CON-161,Technical_Support,Series A reporting — board metrics not calculating,Working,High,Portal,Problem,CAC and LTV metrics in the board metrics dashboard not calculating correctly after data model change.
+CASE-068,ACC-041,CON-162,Feature_Request,Request: Board-ready export templates,New,Low,Portal,Enhancement,Feature request for pre-built board metric templates for investor reporting.
+CASE-069,ACC-042,CON-165,General_Enquiry,How to customise the RevOps dashboard,Closed,Low,Email,Question,Guidance on adding custom KPIs to the RevOps dashboard view.
+CASE-070,ACC-043,CON-169,Technical_Support,Native Catalyst integration throwing null events,Working,High,Portal,Problem,Platform-to-Catalyst native integration sending null event payloads for 8% of triggers.
+CASE-071,ACC-043,CON-170,Technical_Support,Webhook delivery failing for high-volume events,Working,Medium,Portal,Problem,Webhooks failing to deliver for event volumes > 100K per minute with no retry mechanism.
+CASE-072,ACC-044,CON-173,Technical_Support,Churn prediction model missing renewal events,Working,High,Portal,Problem,Subscription renewal events not feeding into the churn prediction model input dataset.
+CASE-073,ACC-044,CON-174,Feature_Request,Request: Subscription lifecycle analytics module,New,Medium,Portal,Enhancement,Feature request for a native subscription analytics module with cohort analysis and churn prediction.
+CASE-074,ACC-045,CON-177,Onboarding,Initial setup — event tracking for hospitality site,Closed,Medium,Phone,Other,Assisted with JavaScript SDK implementation on hotel booking site during onboarding.
+CASE-075,ACC-046,CON-181,Technical_Support,DOOH impression data not reconciling,Escalated,Critical,Phone,Problem,Digital out-of-home impression data 40% under-reported vs Lamar and Clear Channel source data.
+CASE-076,ACC-046,CON-182,Technical_Support,National campaign dashboard — 8 widgets not loading,Working,High,Portal,Problem,National campaign dashboard with 8 widgets timing out for date ranges > 90 days.
+CASE-077,ACC-047,CON-185,General_Enquiry,How to generate a client-facing attribution report,Closed,Low,Email,Question,Needed help generating attribution reports formatted for client presentation.
+CASE-078,ACC-047,CON-186,Technical_Support,Google Ads conversion import failing,Working,High,Portal,Problem,Google Ads conversion import job failing with authentication error since Google API update.
+CASE-079,ACC-048,CON-189,Technical_Support,Fortune 500 data pipeline — SLA breach,Escalated,Critical,Phone,Problem,Enterprise data pipeline breaching 99.9% SLA agreement. 4 incidents in past 30 days.
+CASE-080,ACC-048,CON-191,Technical_Support,Executive dashboard data lag — 4hr delay,Working,High,Portal,Problem,Executive CMO dashboard showing data 4 hours behind real-time due to caching configuration.
+CASE-081,ACC-049,CON-193,General_Enquiry,Content distribution metrics explained,Closed,Low,Email,Question,Needed explanation of Content Hub distribution metrics and how reach is calculated.
+CASE-082,ACC-049,CON-194,Technical_Support,Content Hub — publish to LinkedIn failing,Working,Medium,Portal,Problem,Publish to LinkedIn integration returning 403 error since LinkedIn API permission update.
+CASE-083,ACC-050,CON-197,Technical_Support,Billing data sync — $200M discrepancy in reporting,Escalated,Critical,Phone,Problem,Annual media billing report showing $200M discrepancy vs internal finance system. Urgent reconciliation required.
+CASE-084,ACC-050,CON-198,Technical_Support,Multi-currency reporting — GBP/EUR conversion,Working,High,Portal,Problem,GBP and EUR campaign spend converting at incorrect exchange rates in the consolidated dashboard.
+CASE-085,ACC-001,CON-001,Billing,Invoice dispute — Nov 2025 overcharge,Working,High,Phone,Problem,Invoice #INV-2025-1148 showing $8,500 overcharge on Enterprise seat count. 4 licences billed vs 3 active.
+CASE-086,ACC-004,CON-016,Billing,Subscription tier pricing clarification,Closed,Low,Email,Question,Requested breakdown of Professional vs Enterprise pricing for budget planning.
+CASE-087,ACC-006,CON-024,Billing,Q4 invoice — usage overage charges disputed,Working,High,Phone,Problem,Q4 invoice includes $22,000 in overage charges that exceed contracted usage limits. Dispute raised.
+CASE-088,ACC-010,CON-040,Billing,Enterprise contract renewal — billing structure,Closed,Medium,Email,Question,Needed explanation of multi-year billing structure options ahead of renewal negotiation.
+CASE-089,ACC-012,CON-048,Billing,Pro-rata credit request — mid-year downgrade,Working,Medium,Portal,Problem,Requested pro-rata credit for seat reduction mid-contract period.
+CASE-090,ACC-017,CON-068,Billing,Enterprise invoice — incorrect tax jurisdiction,Closed,High,Phone,Problem,Invoice applying California state tax to New York-billed contract. Jurisdiction code error confirmed.
+CASE-091,ACC-021,CON-084,Billing,Payment method update — new corporate card,Closed,Low,Portal,Other,Needed help updating payment method on account after corporate card refresh.
+CASE-092,ACC-028,CON-112,Billing,Multi-entity billing — invoice consolidation request,Working,Medium,Email,Other,Request to consolidate 3 entity invoices into single monthly invoice for finance team.
+CASE-093,ACC-031,CON-124,Billing,Volume discount — not applied to renewal invoice,Working,High,Portal,Problem,Contracted 15% volume discount not reflected on the annual renewal invoice #INV-2025-2291.
+CASE-094,ACC-035,CON-140,Billing,Annual invoice for 12 publications — seat count error,Working,High,Phone,Problem,Annual invoice listing 14 active seats vs contracted 12. Overcharge of $28,000.
+CASE-095,ACC-046,CON-184,Billing,Enterprise billing — 8 display locations invoiced incorrectly,Escalated,Critical,Phone,Problem,8 of 22 DOOH display locations invoiced at incorrect rate tier. Total overcharge: $65,000.
+CASE-096,ACC-002,CON-005,Onboarding,New team member onboarding — SSO setup,Closed,Medium,Email,Other,Helped new marketing analyst configure SSO login during onboarding week.
+CASE-097,ACC-006,CON-021,Onboarding,Onboarding new ad operations manager,Closed,Medium,Phone,Other,Assisted onboarding of new Head of Ad Operations including permission configuration.
+CASE-098,ACC-010,CON-039,Onboarding,Platform onboarding — Databricks connector,Working,High,Phone,Other,Complex Databricks connector configuration requiring engineering team involvement.
+CASE-099,ACC-012,CON-047,Onboarding,Onboarding RevOps team — 3 new users,Closed,Medium,Portal,Other,Onboarded 3 Revenue Operations team members with appropriate permission sets.
+CASE-100,ACC-017,CON-067,Onboarding,CTV platform onboarding — 5 new publishers,Working,High,Phone,Other,Onboarding 5 new CTV publisher integrations requiring platform engineering support.
+CASE-101,ACC-021,CON-083,Onboarding,Snowflake connector setup — new data science team,Working,High,Portal,Other,Setting up Snowflake connector for 4-person data science team joining the platform.
+CASE-102,ACC-024,CON-095,Onboarding,HubSpot to Salesforce migration — data remapping,Working,High,Phone,Other,Onboarding support for complex CRM migration affecting 3 client accounts.
+CASE-103,ACC-028,CON-111,Onboarding,New business unit onboarding — finance vertical,Working,Medium,Email,Other,Onboarding new finance editorial team to existing Brightfield Catalyst account.
+CASE-104,ACC-031,CON-123,Onboarding,CPG client data onboarding — Nielsen mapping,Working,High,Phone,Other,Complex data onboarding mapping Nielsen syndicated data to Catalyst input schema.
+CASE-105,ACC-038,CON-151,Onboarding,DSP integration onboarding — The Trade Desk,Escalated,Critical,Phone,Other,Critical onboarding blocker: The Trade Desk API not accepting Catalyst bid signal format.
+CASE-106,ACC-048,CON-191,Onboarding,Fortune 500 onboarding — 12 business units,Working,High,Phone,Other,Large enterprise onboarding spanning 12 business units with complex permission hierarchy.
+CASE-107,ACC-003,CON-011,Feature_Request,Attribution model type selector,Closed,Low,Portal,Enhancement,Request to add a one-click model type selector to the campaign dashboard.
+CASE-108,ACC-008,CON-031,Feature_Request,Bulk campaign duplication feature,New,Medium,Portal,Enhancement,Feature request to duplicate multiple campaigns at once for agency workflow efficiency.
+CASE-109,ACC-011,CON-043,Feature_Request,CTV-specific reporting metrics,New,Medium,Portal,Enhancement,Request for CTV-native metrics: VCR, quartile completion, linear TV comparison.
+CASE-110,ACC-013,CON-051,Feature_Request,Automated insight narratives,Closed,Low,Email,Enhancement,Request for AI-generated narrative summaries alongside dashboard charts.
+CASE-111,ACC-015,CON-059,Feature_Request,SEO content performance integration,New,Medium,Portal,Enhancement,Request to pull organic search metrics into Content Hub alongside paid content performance.
+CASE-112,ACC-019,CON-075,Feature_Request,Cross-office campaign comparison view,Closed,Medium,Portal,Enhancement,Request for side-by-side campaign performance comparison across multiple offices.
+CASE-113,ACC-022,CON-087,Feature_Request,Custom RevOps metric definitions,New,Low,Portal,Enhancement,Request to allow custom formula-based metric definitions in the RevOps dashboard.
+CASE-114,ACC-025,CON-099,Feature_Request,Mobile app for dashboard monitoring,New,Low,Email,Enhancement,Feature request for iOS/Android app to monitor campaign dashboards on the go.
+CASE-115,ACC-029,CON-115,Feature_Request,Pipeline stage probability calibration,New,Medium,Portal,Enhancement,Request to allow manual calibration of pipeline stage probability scores per account.
+CASE-116,ACC-033,CON-131,Feature_Request,Salesforce Flow integration for RevOps alerts,New,Medium,Portal,Enhancement,Feature request to trigger Salesforce Flows from Catalyst pipeline threshold alerts.
+CASE-117,ACC-036,CON-143,Feature_Request,Custom date comparison ranges,Closed,Low,Portal,Enhancement,Request for custom period-over-period comparison (not just default 7/30/90 day options).
+CASE-118,ACC-040,CON-159,Feature_Request,Catalyst and Salesforce unified view,New,Medium,Portal,Enhancement,Request for unified campaign-to-pipeline view combining Catalyst attribution and Salesforce Opportunity data.
+CASE-119,ACC-044,CON-175,Feature_Request,Cohort analysis builder,New,Medium,Portal,Enhancement,Request for drag-and-drop cohort analysis builder for subscription lifecycle analysis.
+CASE-120,ACC-049,CON-195,Feature_Request,Content performance benchmarking,New,Low,Portal,Enhancement,Request for industry benchmark overlays on Content Hub performance charts.

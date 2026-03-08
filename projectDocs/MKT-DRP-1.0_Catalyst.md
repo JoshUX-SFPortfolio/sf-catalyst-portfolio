@@ -70,7 +70,7 @@ This document is the final SDLC artefact before active metadata build begins. It
 | Release Type | Initial deployment (greenfield) |
 | Target Org | Developer Edition — `sf-portfolio` alias |
 | Target Branch | `vertical/marketing` (source of truth) |
-| Planned Deploy Date | TBD — post scratch org build completion |
+| Planned Deploy Date | 2026-03-08 — all phases deployed to `sf-portfolio` org |
 | Release Manager | Portfolio Architect |
 
 ### 2.2 Release Goals

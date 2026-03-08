@@ -1,0 +1,327 @@
+Title,UrlName,Summary,ArticleBody,PublishStatus,Language
+Getting Started with Campaign Intelligence,getting-started-campaign-intelligence,"A step-by-step guide to setting up your first campaign in Campaign Intelligence, including channel configuration, budget allocation, and launch checklist.","## Getting Started with Campaign Intelligence
+
+Campaign Intelligence is Catalyst's multi-channel campaign planning and execution module. This article walks you through setting up your first campaign.
+
+### Prerequisites
+- Admin access to your Catalyst organisation
+- At least one connected ad channel (Google Ads, Meta, LinkedIn, or Programmatic)
+- A campaign budget approved in your account plan
+
+### Step 1 — Create a Campaign
+1. Navigate to **Campaigns > New Campaign**
+2. Enter a Campaign Name, Start Date, and End Date
+3. Select the primary channel from the Channel dropdown
+4. Set your Total Budget and allocate by channel if running multi-channel
+
+### Step 2 — Connect Your Channels
+Each channel requires a connector credential. Navigate to **Settings > Integrations** and follow the OAuth flow for each platform. Connector status is shown as a green tick when active.
+
+### Step 3 — Configure Targeting
+Use the Audience selector to attach a saved Audience Studio segment, or define a new audience inline using demographics, firmographics, or intent signals.
+
+### Step 4 — Launch
+Click **Review & Launch**. Campaign Intelligence runs a pre-launch validation check. Any warnings (budget pacing, missing creative) are surfaced before you confirm.
+
+### Next Steps
+- Set up automated reporting in Attribution Engine
+- Schedule a weekly performance digest in your notification preferences
+
+If you need help at any step, open a support case or use the Aria chat assistant.",Online,en_US
+Setting Up Attribution Engine Multi-Touch Models,setting-up-attribution-engine-multi-touch,"How to configure multi-touch attribution models in Attribution Engine, choose between linear, time-decay, and data-driven models, and export ROI reports.","## Setting Up Attribution Engine Multi-Touch Models
+
+Attribution Engine supports four attribution models. This article explains how to configure them and interpret the results.
+
+### Available Models
+
+| Model | Description | Best For |
+|---|---|---|
+| **Last Touch** | 100% credit to the final touchpoint | Brand campaigns with short sales cycles |
+| **Linear** | Equal credit across all touchpoints | Awareness plays with long consideration windows |
+| **Time Decay** | More credit to recent touchpoints | High-velocity B2B deals |
+| **Data-Driven** | ML model trained on your conversion data | Accounts with 1,000+ conversions/month |
+
+### Configuring Your Model
+1. Go to **Attribution > Model Configuration**
+2. Select your Conversion Event (form fill, demo request, closed-won opportunity)
+3. Choose your attribution window (default: 90 days)
+4. Select the model type
+5. Click **Apply Model**
+
+Attribution Engine processes historical data retroactively for the chosen window. Results appear in the Attribution dashboard within 24 hours.
+
+### Exporting Reports
+Navigate to **Reports > Attribution Summary** and click **Export**. Supported formats: CSV, PDF, Salesforce Report sync.
+
+### Data-Driven Model Requirements
+The data-driven model requires a minimum of 1,000 attributed conversions in the past 90 days. If your account does not meet this threshold, the model selector will show a yellow warning — use Time Decay as an alternative.
+
+Contact support if you see discrepancies greater than 15% between Attribution Engine and your ad platform native reporting.",Online,en_US
+How to Build an Audience Segment in Audience Studio,how-to-build-audience-segment-audience-studio,"Create, refine, and export audience segments using Audience Studio's visual segment builder, including first-party data uploads and intent signal enrichment.","## How to Build an Audience Segment in Audience Studio
+
+Audience Studio lets you combine first-party CRM data, third-party intent signals, and behavioural data into reusable audience segments.
+
+### Opening the Segment Builder
+Navigate to **Audience Studio > Segments > New Segment**.
+
+### Adding Conditions
+Conditions are grouped into AND/OR logic blocks:
+- **AND** — the audience member must meet all conditions in the group
+- **OR** — the audience member meets at least one condition
+
+**Example:** Target accounts with more than 200 employees AND in the Technology industry who have visited your pricing page in the last 30 days.
+
+### Data Sources Available
+- **CRM Sync** — Salesforce Account, Contact, Lead fields (syncs every 4 hours)
+- **Intent Signals** — G2, Bombora, and TechTarget intent topics
+- **Web Behaviour** — Page visits, form fills, content downloads (requires pixel installed)
+- **Uploaded Lists** — CSV upload of matched email or domain lists
+
+### Saving and Using Segments
+1. Click **Save Segment** and give it a descriptive name
+2. Segments are available immediately in Campaign Intelligence for targeting
+3. Segment size estimate appears in the right panel (refreshes every 6 hours)
+
+### Exporting a Segment
+Go to **Actions > Export** to download a matched list as CSV, or push directly to a connected ad platform via **Activate > Platform Push**.
+
+Note: Segment sizes over 500,000 profiles may take up to 2 hours to process.",Online,en_US
+Connecting Salesforce CRM to Catalyst,connecting-salesforce-crm-to-catalyst,"Step-by-step instructions for installing the Catalyst managed package, configuring the Salesforce connector, and verifying bi-directional data sync.","## Connecting Salesforce CRM to Catalyst
+
+Catalyst integrates natively with Salesforce Sales Cloud via a managed package. This article covers the installation and configuration steps.
+
+### Before You Start
+- You must be a Salesforce System Administrator
+- Your Catalyst subscription must include the CRM Connector (available on Professional and Enterprise tiers)
+- Ensure your Salesforce org is on API version 55.0 or later
+
+### Step 1 — Install the Managed Package
+1. Log in to Catalyst as an Admin
+2. Go to **Settings > Integrations > Salesforce**
+3. Click **Install Managed Package** — this opens the Salesforce AppExchange installer
+4. Select **Install for All Users** and accept the package permissions
+5. Return to Catalyst and click **Verify Installation**
+
+### Step 2 — Authorise the Connection
+1. Click **Connect Salesforce Org**
+2. Complete the OAuth flow — log in with your Salesforce System Administrator credentials
+3. Approve the requested permissions (Read/Write on Leads, Contacts, Accounts, Opportunities, Campaigns)
+
+### Step 3 — Configure Field Mappings
+Navigate to **Settings > Integrations > Salesforce > Field Mappings**. The default mappings cover standard fields. Add custom field mappings for any vertical-specific fields.
+
+### Step 4 — Verify Sync
+1. Navigate to a test Contact in Salesforce — you should see a **Catalyst** section on the record page showing campaign engagement history
+2. In Catalyst, navigate to **Audience Studio > CRM Sync** — the sync status should show **Active** with the last sync timestamp
+
+### Sync Frequency
+- Contacts, Leads: every 4 hours
+- Accounts, Opportunities: every 6 hours
+- Opportunity stage updates: near real-time (webhook)
+
+If the sync shows errors, check the **Integration Logs** in Catalyst Settings for detailed error messages.",Online,en_US
+Troubleshooting Attribution Discrepancies,troubleshooting-attribution-discrepancies,"Common reasons for attribution data discrepancies between Catalyst Attribution Engine and ad platform native reporting, and how to resolve them.","## Troubleshooting Attribution Discrepancies
+
+It is normal to see some difference between Catalyst Attribution Engine and ad platform (Google, Meta, LinkedIn) native reporting. This article explains common causes and resolutions.
+
+### Expected Variance
+A variance of up to 10–15% is expected due to:
+- Different attribution windows (platform default vs. your configured window)
+- Cross-device matching (Catalyst uses deterministic matching; platforms use probabilistic)
+- View-through vs. click-through credit differences
+
+### Common Issues
+
+#### Issue 1 — Large discrepancy (>20%) in Google Ads conversions
+**Cause:** Google's auto-tagging may be disabled, preventing GCLID capture.
+**Fix:** In Google Ads, go to **Account Settings > Auto-Tagging** and enable it. Allow 48 hours for data to reprocess.
+
+#### Issue 2 — Meta conversions showing zero in Attribution Engine
+**Cause:** The Meta Pixel is not firing on the thank-you / confirmation page.
+**Fix:** Verify pixel installation on the conversion page using the Meta Pixel Helper browser extension. Confirm the conversion event name matches what is configured in Catalyst (**Settings > Conversion Events**).
+
+#### Issue 3 — LinkedIn conversions under-reported
+**Cause:** LinkedIn uses a 30-day view-through window by default; Catalyst defaults to click-through only.
+**Fix:** In Catalyst, go to **Attribution > Model Configuration > Advanced** and enable **Include View-Through** for LinkedIn.
+
+#### Issue 4 — Opportunities not appearing in ROI reports
+**Cause:** The Salesforce CRM sync may be delayed or the Opportunity stage is not in the configured closed-won mapping.
+**Fix:** Check **Settings > Integrations > Salesforce > Sync Logs** for errors. Verify that the closed-won stage name in Salesforce exactly matches the value in **Attribution > Conversion Events > Salesforce Opportunity Stage**.
+
+### Still Seeing Issues?
+Open a support case with your Attribution Engine report export and the platform native report for the same date range. Our support team will review within your SLA window.",Online,en_US
+Content Hub — Uploading and Organising Assets,content-hub-uploading-organising-assets,"How to upload creative assets to Content Hub, organise them into collections, apply metadata tags, and share assets with campaign managers.","## Content Hub — Uploading and Organising Assets
+
+Content Hub is Catalyst's digital asset management module. This article explains how to upload, organise, and share creative assets.
+
+### Supported File Types
+- Images: JPG, PNG, GIF, WebP, SVG (max 50 MB per file)
+- Video: MP4, MOV, AVI (max 2 GB per file)
+- Documents: PDF, DOCX, PPTX (max 100 MB per file)
+- HTML5 display: ZIP bundle (max 10 MB)
+
+### Uploading Assets
+1. Navigate to **Content Hub > Upload**
+2. Drag and drop files or click **Browse**
+3. Add metadata: Asset Name, Campaign Tag, Channel, Language, Expiry Date
+4. Click **Upload**
+
+Bulk uploads of up to 500 files are supported via the bulk upload panel.
+
+### Organising into Collections
+Collections are folders for grouping related assets:
+1. Go to **Content Hub > Collections > New Collection**
+2. Name the collection (e.g. Q3 Campaign — Display UK)
+3. Drag assets into the collection, or use **Add to Collection** from the asset detail view
+
+### Tagging and Searchability
+Apply tags from the asset detail view. Tags are searchable across Content Hub and surfaced in Campaign Intelligence when selecting creative.
+
+### Sharing Assets
+Use **Share > Generate Link** to produce a read-only shareable URL (expires in 7 or 30 days). For internal team members, use **Share > Assign to User** to grant access without a link.
+
+### Asset Versions
+When uploading a revised version of an existing asset, open the original asset and click **Upload New Version**. Version history is retained and previous versions remain accessible.",Online,en_US
+Understanding Your Health Score,understanding-your-health-score,"What the Catalyst Health Score measures, how it is calculated, what score ranges mean for your account, and actions you can take to improve it.","## Understanding Your Health Score
+
+Your Catalyst Health Score is a 0–100 index that reflects your account's overall adoption, engagement, and outcomes. It is visible on your portal dashboard and updated weekly.
+
+### What Goes Into the Score
+
+| Component | Weight | Description |
+|---|---|---|
+| Platform Usage Index | 30% | Logins, feature activations, campaigns run in the past 30 days |
+| Campaign Performance | 25% | Click-through rate, conversion rate vs. benchmark |
+| Attribution Coverage | 20% | Percentage of spend with attribution tracking enabled |
+| Support Case Volume | 15% | Frequency and severity of open cases |
+| CSAT | 10% | Average satisfaction score from post-case surveys |
+
+### Score Ranges
+
+| Range | Status | What it means |
+|---|---|---|
+| 80–100 | Excellent | Strong adoption and performance — on track for renewal |
+| 60–79 | Good | Healthy overall with some improvement areas |
+| 40–59 | At Risk | Low usage or performance issues — Customer Success will reach out |
+| 0–39 | Critical | Significant intervention needed |
+
+### How to Improve Your Score
+- **Increase usage:** Log in and run campaigns consistently. Idle accounts score lower.
+- **Enable attribution:** Connect all active channels to Attribution Engine.
+- **Reduce open cases:** Resolve outstanding support cases. High open case counts reduce the support component score.
+- **Respond to surveys:** CSAT scores are only counted when surveys are completed.
+
+### Viewing Your Score Trend
+Navigate to **Portal > Dashboard > Health Score** to see a 12-week trend chart.
+
+Your Customer Success Manager reviews accounts with scores below 60 every fortnight. If your score has dropped unexpectedly, contact your CSM or open a support case.",Online,en_US
+Onboarding Checklist — Enterprise Tier,onboarding-checklist-enterprise,"The complete onboarding checklist for Enterprise tier customers, covering technical setup, user provisioning, training, and go-live verification steps.","## Onboarding Checklist — Enterprise Tier
+
+This article is your reference guide for the Catalyst Enterprise onboarding journey. Your onboarding is tracked in the Catalyst portal under **My Onboarding**.
+
+### Phase 1 — Technical Setup (Week 1–2)
+- [ ] Salesforce managed package installed and CRM sync verified
+- [ ] All active ad platforms connected (Google, Meta, LinkedIn, programmatic DSP)
+- [ ] Catalyst tracking pixel deployed on all key web properties
+- [ ] Conversion events configured and test conversions verified
+- [ ] Admin users provisioned (max 5 Admin seats on Enterprise)
+- [ ] SSO configured (if applicable — Okta, Azure AD, or SAML 2.0)
+
+### Phase 2 — Data Configuration (Week 2–3)
+- [ ] First-party audience segment built in Audience Studio
+- [ ] Attribution model selected and historical data processed
+- [ ] Field mappings verified for CRM sync (Leads, Contacts, Opportunities)
+- [ ] Content Hub collections set up and assets uploaded
+
+### Phase 3 — Training (Week 3–4)
+- [ ] Campaign Intelligence training session completed (Campaign Manager role)
+- [ ] Attribution Engine training completed (Analytics / RevOps role)
+- [ ] Audience Studio training completed (Demand Gen role)
+- [ ] Admin training completed (IT / RevOps role)
+
+Training sessions are booked through your onboarding project in the portal.
+
+### Phase 4 — Go-Live (Week 4)
+- [ ] First live campaign launched in Campaign Intelligence
+- [ ] Attribution dashboard showing data for at least one channel
+- [ ] Health Score above 60
+- [ ] Kickoff call with Customer Success Manager completed
+
+### Tracking Progress
+Your onboarding completion percentage is visible on the portal dashboard and updated in real time as steps are marked complete.
+
+Contact your onboarding specialist if any phase is blocked — the expected onboarding duration for Enterprise is 4–6 weeks.",Online,en_US
+Managing User Access and Permissions,managing-user-access-permissions,"How to invite users, assign roles, configure permission levels, and remove access in your Catalyst account.","## Managing User Access and Permissions
+
+This article covers user management for Catalyst account administrators.
+
+### User Roles
+
+| Role | Access Level |
+|---|---|
+| **Admin** | Full access to all modules, settings, and billing |
+| **Campaign Manager** | Create and manage campaigns; read-only access to Attribution and Audience Studio |
+| **Analyst** | Read-only access to Attribution Engine and reporting; no campaign management |
+| **Viewer** | Dashboard and report view only; no create/edit permissions |
+
+### Inviting a New User
+1. Go to **Settings > Users > Invite User**
+2. Enter the user's email address
+3. Select their role
+4. Click **Send Invitation**
+
+The user receives an email invitation valid for 72 hours. If they do not accept, resend from the same screen.
+
+### Seat Limits by Subscription Tier
+
+| Tier | Admin | Campaign Manager | Analyst | Viewer |
+|---|---|---|---|---|
+| Starter | 1 | 2 | 1 | Unlimited |
+| Professional | 2 | 5 | 3 | Unlimited |
+| Enterprise | 5 | Unlimited | Unlimited | Unlimited |
+
+### Editing a User's Role
+Go to **Settings > Users**, click the user's name, and change their role from the dropdown. Changes take effect immediately.
+
+### Removing Access
+Click **Deactivate** on the user record. Deactivated users lose access immediately. Their historical activity is retained for audit purposes. Seats are released within 24 hours.
+
+### SSO and SCIM Provisioning
+Enterprise accounts can configure SCIM provisioning for automatic user lifecycle management. Navigate to **Settings > Security > SCIM** for setup instructions.",Online,en_US
+How to Submit and Track a Support Case,how-to-submit-track-support-case,"Instructions for submitting a support case through the Catalyst portal, setting priority and category, tracking progress, and understanding SLA response times.","## How to Submit and Track a Support Case
+
+The fastest way to get help is through the Catalyst Client Portal. This article explains how to create and monitor your support cases.
+
+### Submitting a New Case
+1. Log in to the Catalyst Client Portal
+2. Click **Support > New Case** in the navigation
+3. Complete the case form:
+   - **Subject:** Brief one-line description of the issue
+   - **Category:** Select the most relevant category (Technical, Billing, Feature Request, Onboarding, General)
+   - **Affected Module:** Select the Catalyst module affected (Campaign Intelligence, Attribution Engine, Audience Studio, Content Hub)
+   - **Urgency:** Select Low, Medium, or High based on business impact
+   - **Description:** Provide as much detail as possible — steps to reproduce, screenshots, error messages
+4. Click **Submit Case**
+
+### Response Times by Subscription Tier
+
+| Tier | First Response | Resolution Target |
+|---|---|---|
+| Enterprise | 1 business hour | 4 business hours |
+| Professional | 4 business hours | 2 business days |
+| Starter | 8 business hours | 5 business days |
+
+Response times apply to business hours (Monday–Friday, 9am–6pm in your account's time zone).
+
+### Tracking Your Cases
+Go to **Support > My Cases** to see all open and closed cases. Each case shows its current status:
+- **New** — received, not yet assigned
+- **In Progress** — actively being worked on by our support team
+- **Waiting on Customer** — we need more information from you
+- **Resolved** — solution provided; case closes after 5 business days if no response
+
+### Providing Additional Information
+Open the case and click **Add Comment** to provide updates, screenshots, or log files. Avoid opening duplicate cases — adding a comment re-opens a resolved case automatically.
+
+### Escalating a Case
+If a case has not been responded to within your SLA window, click **Escalate** on the case record. This flags the case to a senior support engineer and notifies your Customer Success Manager.",Online,en_US

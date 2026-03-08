@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<RecordType xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Billing</fullName>
+    <active>true</active>
+    <description>Billing and invoicing cases — payment disputes, subscription changes, and billing queries.</description>
+    <label>Billing</label>
+    <businessProcess>Catalyst_Support_Process</businessProcess>
+</RecordType>

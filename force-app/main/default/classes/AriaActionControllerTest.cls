@@ -35,6 +35,7 @@ private class AriaActionControllerTest {
 
     @IsTest
     static void testGetCaseStatus_nullAccount() {
+        // Sys admin has no AccountId — returns single result with graceful message
         Test.startTest();
         List<AriaGetCaseStatus.Request> reqs = new List<AriaGetCaseStatus.Request>{
             new AriaGetCaseStatus.Request()
@@ -42,7 +43,8 @@ private class AriaActionControllerTest {
         List<AriaGetCaseStatus.Result> results = AriaGetCaseStatus.getCaseStatus(reqs);
         Test.stopTest();
 
-        System.assertEquals(0, results.size(), 'Expected empty list when AccountId is null');
+        System.assertEquals(1, results.size(), 'Should return one result even when AccountId is null');
+        System.assertNotEquals(null, results[0].casesSummary, 'casesSummary should not be null');
     }
 
     @IsTest
@@ -71,9 +73,8 @@ private class AriaActionControllerTest {
         Test.stopTest();
 
         System.assertEquals(1, results.size(), 'Should return one result even with no project');
-        System.assertEquals(0, results[0].percentComplete, 'Percent should be 0 when no project');
-        System.assertNotEquals(null, results[0].nextStepLabel, 'nextStepLabel should not be null');
-        System.assertEquals('', results[0].projectName, 'projectName should be empty string');
+        System.assertNotEquals(null, results[0].onboardingSummary, 'onboardingSummary should not be null');
+        System.assert(results[0].onboardingSummary.contains('No onboarding'), 'Summary should indicate no project found');
     }
 
     // ── AriaEscalateToAgent ───────────────────────────────────────────────────

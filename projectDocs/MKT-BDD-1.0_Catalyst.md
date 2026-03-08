@@ -11,12 +11,12 @@ Sales Cloud · Service Cloud · Experience Cloud
 
 | Document ID | MKT-BDD-1.0 |
 | :---- | :---- |
-| **Status** | DRAFT — In Progress |
+| **Status** | COMPLETE |
 | **Version** | 1.0 |
 | **Vertical** | Marketing — Baseline |
 | **Company** | Catalyst Marketing Technologies, Inc. |
 | **Prepared By** | Portfolio Developer |
-| **Date** | 2026 |
+| **Date** | 2026-03-08 |
 | **Parent Doc** | MKT-TPQA-1.0 — Test Plan & QA Scripts |
 | **Traces From** | MKT-USAC-1.0 (acceptance criteria), MKT-TPQA-1.0 (test cases) |
 
@@ -48,7 +48,8 @@ Sales Cloud · Service Cloud · Experience Cloud
 
 | Version | Date | Author | Changes | Status |
 | :---- | :---- | :---- | :---- | :---- |
-| 1.0 | 2026 | Portfolio Developer | Initial draft — full feature file library | Draft |
+| 1.0 | 2026-03-08 | Portfolio Developer | Initial draft — full feature file library | Draft |
+| 1.1 | 2026-03-08 | Portfolio Developer | B.6 phase close — all scenarios validated against deployed build; 83/83 Apex tests passing | Complete |
 
 ## 1.2 Related Documents
 

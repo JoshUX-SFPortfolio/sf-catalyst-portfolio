@@ -91,6 +91,17 @@ This document records every technical problem encountered during development, it
 | LL-055 | A.8 — Agentforce | GenAiPromptTemplate type is a restricted picklist — requires UI configuration |
 | LL-056 | A.8 — Agentforce | PermissionSet fieldPermissions on required MasterDetail fields rejected |
 | LL-057 | A.9 — MTF Stabilisation | No A.9-specific deploy issues — phase was documentation and test verification only |
+| LL-058 | B.3 — Vertical Configuration | BillingState/BillingCountry fail in orgs with state/country picklists enabled |
+| LL-059 | B.4 — Sample Data Load | Bulk API 2.0 enforces FLS even for System Administrator — explicit profile metadata required |
+| LL-060 | B.4 — Sample Data Load | sf project deploy start returns "Unchanged" when org alias points to different org than source tracking |
+| LL-061 | B.4 — Sample Data Load | Hardcoded RecordTypeIds from one org fail in all other orgs — resolve at runtime via SOQL |
+| LL-062 | B.4 — Sample Data Load | MultiselectPicklist Bulk API import must use semicolon separators, not commas |
+| LL-063 | B.4 — Sample Data Load | numberRecordsProcessed:None is a Bulk API 2.0 display quirk — verify counts via SOQL |
+| LL-064 | B.5 — Per-Vertical Agent | Agentforce Builder rejects Apex invocable actions with collection outputs — error -1458072159 |
+| LL-065 | B.5 — Per-Vertical Agent | GenAiPlanner metadata deploys GenAiPlannerDefinition but does NOT create an AIApplication in Agentforce Studio |
+| LL-066 | B.6 — SDLC Phase 3: Quality | SDLC quality docs (TPQA, BDD, DDT, PTS) authored in B.1 as living documents — mark Complete at B.6 gate with actual test run evidence |
+| LL-067 | B.7 — SDLC Phase 4: Delivery | DRP and PTS authored ahead of deployment in B.1 — fill in confirmed deploy date at B.7 gate; no TBD values should remain in released docs |
+| LL-068 | B.8 — Portfolio Publish | Case study narrative is the B.8 deliverable — captures what was built, decisions made, and skills demonstrated; written as a recruiter-facing portfolio artefact |
 
 ---
 
@@ -803,3 +814,176 @@ This document records every technical problem encountered during development, it
 **Root Cause:** A.9's scope was: full test suite verification, documentation updates (CLAUDE.md, README.md), and tagging `develop` as `v1.0`. No new Salesforce metadata was authored or deployed.
 
 **Solution:** A.9 closed clean. 77/77 Apex tests passing at phase gate (100% pass rate, Run ID: `707gL00000dTLNr`). `develop` tagged `v1.0` as the MTF baseline snapshot.
+
+---
+
+## B.3 — Vertical Configuration
+
+### LL-058 — BillingState/BillingCountry fail in orgs with state/country picklists enabled
+
+**Phase:** B.3 — Vertical Configuration / B.4 — Sample Data Load
+
+**Problem:** Attempted to import Account records with `BillingState` values such as `"CA"`, `"NY"`, `"TX"`. The Bulk API 2.0 job returned validation errors for every record.
+
+**Root Cause:** Developer Edition orgs have state and country picklists enabled by default. When this feature is on, `BillingState` and `BillingCountry` are restricted picklist fields — free-text ISO abbreviations are rejected. The platform expects the picklist's internal value (a specific string tied to the enabled picklist dataset).
+
+**Solution:** Remove `BillingCity`, `BillingState`, and `BillingCountry` from both the CSV import file and the import script's field list. These fields are not essential for the portfolio's functional demonstrations and are safer to omit entirely.
+
+---
+
+## B.4 — Sample Data Load
+
+### LL-059 — Bulk API 2.0 enforces FLS even for System Administrator
+
+**Phase:** B.4 — Sample Data Load
+
+**Problem:** Imported Account records via Bulk API 2.0 using the System Administrator profile. All records failed with `InvalidBatch: Field name not found` for every Catalyst custom Account field (`Subscription_Tier__c`, `Modules_Purchased__c`, etc.) despite the fields existing in the org.
+
+**Root Cause:** Bulk API 2.0 enforces Field-Level Security (FLS) regardless of profile admin status. A custom field is invisible to the Bulk API unless the running user's profile has explicit `readable` and `editable` permissions granted via profile metadata. The System Administrator profile does not automatically receive FLS on custom fields deployed from metadata — they must be explicitly added.
+
+**Solution:** Add `<fieldPermissions>` entries to `force-app/main/default/profiles/Admin.profile-meta.xml` for each custom Account field. For editable fields set both `<editable>true</editable>` and `<readable>true</readable>`. For roll-up summaries (`Open_Case_Count__c`) and formula fields (`Duplicate_Domain_Flag__c`) set `<editable>false</editable>`. Deploy the profile metadata, then re-run the import.
+
+---
+
+### LL-060 — sf project deploy returns "Unchanged" when org alias differs from source-tracked org
+
+**Phase:** B.4 — Sample Data Load
+
+**Problem:** Running `sf project deploy start --source-dir force-app/main/default/profiles/Admin.profile-meta.xml` returned status `Unchanged` immediately. The custom Account fields were not being deployed even though they were missing from the org.
+
+**Root Cause:** The `sf-portfolio` alias points to org `00DgL00000MSWt7UAH`, but local SFDX source-tracking data in `.sf/orgs/` was for a different org (`00DAw00000CoHI9MAN`). SFDX compared the local source hash against the wrong org's tracking data, concluded nothing had changed, and skipped the deploy.
+
+**Solution:** Add `--ignore-conflicts` to force a fresh deploy regardless of tracking state: `sf project deploy start --source-dir force-app/main/default/profiles/Admin.profile-meta.xml --ignore-conflicts`. Independently verify field existence using the Tooling API: `SELECT QualifiedApiName FROM FieldDefinition WHERE EntityDefinition.QualifiedApiName = 'Account'` — this bypasses any stale describe cache.
+
+---
+
+### LL-061 — Hardcoded RecordTypeIds are org-specific and fail in every other org
+
+**Phase:** B.4 — Sample Data Load
+
+**Problem:** Opportunity and Case CSV files contained RecordTypeId values like `012Aw000007f3HKIAY`. The import script passed these directly to the Bulk API, which rejected every record with `INVALID_CROSS_REFERENCE_KEY`.
+
+**Root Cause:** Salesforce RecordType IDs are org-specific 18-character identifiers that differ between every org (scratch org, Developer Edition, sandbox, production). A CSV generated against one org will always fail in another org.
+
+**Solution:** Replace hardcoded IDs in CSVs with the RecordType `DeveloperName` (e.g. `Technical_Support`, `New_Business`). In the import script, query `RecordType` by `DeveloperName` and `SobjectType` at runtime to build a lookup map, then resolve the ID before submitting to the Bulk API:
+
+```python
+rt_records = sf_query(
+    "SELECT Id, DeveloperName, SobjectType FROM RecordType "
+    "WHERE SobjectType IN ('Opportunity','Case') LIMIT 50"
+)
+rt_map = {(r['SobjectType'], r['DeveloperName']): r['Id'] for r in rt_records}
+```
+
+---
+
+### LL-062 — MultiselectPicklist Bulk API import must use semicolon separators
+
+**Phase:** B.4 — Sample Data Load
+
+**Problem:** Initial drafts of the `Modules_Purchased__c` values used comma separators (e.g. `Campaign Intelligence,Attribution Engine`). The Bulk API accepted the records but stored the value as a single concatenated string rather than two selected picklist values.
+
+**Root Cause:** Salesforce MultiselectPicklist fields use semicolons as the delimiter between selected values — both in the UI and in the API. The Bulk API respects this convention: a comma is treated as part of the value string, not as a separator.
+
+**Solution:** Use semicolons in CSV data for MultiselectPicklist fields: `Campaign Intelligence;Attribution Engine`. Validate the import result by running a SOQL query with `INCLUDES()` to confirm each value resolves correctly.
+
+---
+
+### LL-063 — numberRecordsProcessed: None is a Bulk API 2.0 display quirk
+
+**Phase:** B.4 — Sample Data Load
+
+**Problem:** The Python import script printed `Leads: numberRecordsFailed=60` and `numberRecordsProcessed=None` after the Leads import step, suggesting all 60 records failed.
+
+**Root Cause:** The Bulk API 2.0 `jobInfo` endpoint returns `null` for `numberRecordsProcessed` during and immediately after certain job states when the script uses a temp-file upload approach. The Python `simple_salesforce` library serialises `null` as Python `None`, which the script formatted as "failed". The actual record counts were not reflected in this field at query time.
+
+**Solution:** Do not rely solely on the `jobInfo` response fields for import verification. After each step, run a SOQL count query with `WHERE CreatedDate = TODAY` to confirm actual record creation: `SELECT COUNT() FROM Lead WHERE CreatedDate = TODAY`. In the Leads case, 59 of 60 records were successfully created despite the misleading `numberRecordsFailed` display value.
+
+---
+
+## B.5 — Per-Vertical Agent
+
+### LL-064 — Agentforce Builder rejects Apex invocable actions with collection outputs
+
+**Phase:** B.5 — Per-Vertical Agent
+
+**Problem:** Adding Apex invocable actions (GetCaseStatus, GetOnboardingProgress, SearchKnowledge) to a topic in Agentforce Builder via the Actions picker failed with internal server error `-1458072159`. The `EscalateToAgent` action added successfully. Selecting and clicking "Add to Agent" consistently produced the error regardless of whether `callout=true` was set or `@InvocableVariable` labels were added.
+
+**Root Cause:** Agentforce Builder in Developer Edition orgs (Winter '26 / Spring '26) cannot add Apex invocable actions that return a `List<Result>` where `Result` contains multiple `@InvocableVariable` fields. The platform appears to require either: (a) a single output string, or (b) is affected by an unresolved platform bug specific to DE orgs. `EscalateToAgent` worked because its output shape is a single `Result` with two simple string fields (`caseId`, `caseNumber`), while the failing actions had 4+ output fields or returned data with no guaranteed single-record output.
+
+Restructuring the three failing actions to return a single `Result` with one `String` field (the data serialised as plain text) did not resolve the error — it persists regardless of output shape.
+
+**Solution:** Agent deployed with `EscalateToAgent` only for B.5. The other three actions (GetCaseStatus, GetOnboardingProgress, SearchKnowledge) remain deployed as Apex invocable actions and are verified via the REST API (`/actions/custom/apex`). They can be wired in Agentforce Builder when the platform bug is resolved or when tested in a non-DE org. Logged as a known platform limitation for Developer Edition.
+
+**Workaround for future verticals:** Test action addition in a scratch org or sandbox rather than DE. Alternatively, expose actions via Flow instead of direct Apex to bypass the Builder UI restriction.
+
+---
+
+### LL-065 — GenAiPlanner metadata does not create an AIApplication in Agentforce Studio
+
+**Phase:** B.5 — Per-Vertical Agent
+
+**Problem:** After deploying `GenAiPlanner` metadata (Aria, `plannerType: AiCopilot__ReAct`), Agentforce Studio showed "0 agents". The `GenAiPlanner` was not visible anywhere in the UI.
+
+**Root Cause:** The `GenAiPlanner` Metadata API type deploys a `GenAiPlannerDefinition` Tooling API record — but Agentforce Studio lists `AIApplication` records, which are a separate object. No `AIApplication` is created by deploying a `GenAiPlanner`. The two are not automatically linked.
+
+**Solution:** Create the agent manually in Agentforce Studio (New Agent > describe purpose in the text prompt > agent is created with default topics). Then attach the deployed `ClientSelfService` `GenAiPlugin` topic via the Topics panel. The `GenAiPlannerDefinition` record created by the metadata deploy appears unused by the UI — it may be a legacy or internal record type. For all future agents, treat Agentforce Builder as the authoritative creation path; use metadata only for the `GenAiPlugin` (Topic) and `GenAiFunction` records.
+
+---
+
+## B.6 — SDLC Phase 3: Quality
+
+### LL-066 — SDLC quality documents authored as living drafts in B.1 — close at B.6 gate
+
+**Phase:** B.6 — SDLC Phase 3: Quality
+
+**Problem:** The four B.6 quality documents (MKT-TPQA-1.0, MKT-BDD-1.0, MKT-DDT-1.0, MKT-PTS-1.0) were produced in full during B.1 (SDLC Phase 1: Business) to demonstrate documentation breadth early in the project. They were committed with status "DRAFT — In Progress" and a placeholder date of 2026. By B.6, these documents needed to be stamped Complete with real test evidence.
+
+**Root Cause:** The project plan calls for SDLC documents to be produced per phase, but in practice the quality docs were drafted ahead of the build to front-load portfolio artefact production. This is a deliberate choice — it front-loads the documentation signal — but it means the B.6 gate is administrative (status update + test evidence) rather than a fresh authoring task.
+
+**Solution:**
+
+- Updated MKT-TPQA-1.0, MKT-BDD-1.0, MKT-DDT-1.0 status from "DRAFT — In Progress" → "COMPLETE"
+- Added version 1.1 history entry referencing Run ID `707gL00000dWsJo` (83/83 Apex tests passing, 100% pass rate)
+- MKT-PTS-1.0 was already marked Complete in a prior session
+- B.6 gate ("All tests pass") formally met: 83 tests, 0 failures, Run ID `707gL00000dWsJo`
+
+**For future verticals:** Continue the same pattern — author quality docs early, stamp Complete at B.6 with the actual test run ID as evidence. This preserves documentation breadth while maintaining audit traceability.
+
+---
+
+## B.7 — SDLC Phase 4: Delivery
+
+### LL-067 — DRP authored ahead of deployment — confirm deploy date at B.7 gate
+
+**Phase:** B.7 — SDLC Phase 4: Delivery
+
+**Problem:** MKT-DRP-1.0 was produced in full during B.1 to front-load portfolio artefacts. The "Planned Deploy Date" field was left as "TBD — post scratch org build completion" since the build had not started. By B.7, all metadata had been deployed across B.2–B.5.
+
+**Root Cause:** Same living-document pattern as B.6 quality docs. The DRP is authored as a planning document and stamped with actuals at the delivery gate.
+
+**Solution:** Updated the Planned Deploy Date to `2026-03-08` with the note "all phases deployed to `sf-portfolio` org". No other TBD values remained in the document.
+
+**For future verticals:** The DRP is the appropriate place to record: (1) the confirmed deploy date, (2) any deviations from the planned deployment sequence, (3) rollback decisions taken. Review all TBD fields before closing B.7.
+
+---
+
+## B.8 — Portfolio Publish
+
+### LL-068 — Case study narrative is the B.8 core deliverable
+
+**Phase:** B.8 — Portfolio Publish
+
+**Problem:** The master plan defines B.8 as "Screenshots, case study narrative, Experience Cloud site updated." The portfolio site UI/UX (SF-PORTFOLIO-UX-1.0) and its public LWR build are pinned for a follow-up project (Figma + React/Next.js phase). The "Experience Cloud site updated" deliverable cannot be completed until the portfolio site design system is ready.
+
+**Root Cause:** The portfolio site (meta-portfolio layer) is a separate build from the vertical client portals. The Catalyst Client Portal (Catalyst's own Experience Cloud site) is complete, but the recruiter-facing portfolio site — which would surface the case study — is deferred.
+
+**Solution:** Scoped B.8 to what is deliverable now:
+
+1. `MKT-CASESTUDY-1.0_Catalyst.md` — complete case study narrative capturing the fictional scenario, what was built, key technical decisions, test results, known limitations, and skills demonstrated
+2. CLAUDE.md and LL updated to mark Track B complete
+3. `vertical/marketing` PR raised to formally close the branch
+
+The case study document serves as the source content for the portfolio site case study page when the SF-PORTFOLIO-UX-1.0 build begins.
+
+**For future verticals:** Produce the case study at B.8 in the same format. The case study is the primary recruiter-facing artefact — write it for a technical hiring manager, not for an internal audience. Emphasise decisions, trade-offs, and what makes the build production-grade.
