@@ -1,15 +1,15 @@
 /**
  * AriaSearchKnowledgeTest
  * Tests for the AriaSearchKnowledge invocable action.
- * Knowledge is not enabled in this org — the SOSL catch path returns an empty
- * list gracefully. Tests validate input guards and null safety.
+ * Knowledge is not enabled in this org — the SOSL catch path returns a graceful
+ * message. Tests validate input guards and the single-Result output shape.
  * MKT-REQ-EXP-012, MKT-REQ-EXP-013
  */
 @IsTest
 private class AriaSearchKnowledgeTest {
 
     @IsTest
-    static void testSearch_blankTerm_returnsEmpty() {
+    static void testSearch_blankTerm_returnsMessage() {
         AriaSearchKnowledge.Request req = new AriaSearchKnowledge.Request();
         req.searchTerm = '   ';
 
@@ -20,11 +20,12 @@ private class AriaSearchKnowledgeTest {
             );
         Test.stopTest();
 
-        System.assertEquals(0, results.size(), 'Blank search term should return empty list');
+        System.assertEquals(1, results.size(), 'Should return one result for blank term');
+        System.assertNotEquals(null, results[0].articlesSummary, 'articlesSummary should not be null');
     }
 
     @IsTest
-    static void testSearch_shortTerm_returnsEmpty() {
+    static void testSearch_shortTerm_returnsMessage() {
         AriaSearchKnowledge.Request req = new AriaSearchKnowledge.Request();
         req.searchTerm = 'a';
 
@@ -35,11 +36,12 @@ private class AriaSearchKnowledgeTest {
             );
         Test.stopTest();
 
-        System.assertEquals(0, results.size(), 'Single-char term should return empty list');
+        System.assertEquals(1, results.size(), 'Should return one result for short term');
+        System.assertNotEquals(null, results[0].articlesSummary, 'articlesSummary should not be null');
     }
 
     @IsTest
-    static void testSearch_emptyRequestList_returnsEmpty() {
+    static void testSearch_emptyRequestList_returnsMessage() {
         Test.startTest();
         List<AriaSearchKnowledge.Result> results =
             AriaSearchKnowledge.searchKnowledge(
@@ -47,22 +49,22 @@ private class AriaSearchKnowledgeTest {
             );
         Test.stopTest();
 
-        System.assertEquals(0, results.size(), 'Empty request list should return empty list');
+        System.assertEquals(1, results.size(), 'Empty request list should return one graceful result');
     }
 
     @IsTest
-    static void testSearch_nullRequestList_returnsEmpty() {
+    static void testSearch_nullRequestList_returnsMessage() {
         Test.startTest();
         List<AriaSearchKnowledge.Result> results =
             AriaSearchKnowledge.searchKnowledge(null);
         Test.stopTest();
 
-        System.assertEquals(0, results.size(), 'Null request list should return empty list');
+        System.assertEquals(1, results.size(), 'Null request list should return one graceful result');
     }
 
     @IsTest
     static void testSearch_validTerm_returnsNonNull() {
-        // Knowledge not enabled — SOSL throws, catch returns empty list gracefully
+        // Knowledge not enabled — SOSL throws, catch returns graceful message
         AriaSearchKnowledge.Request req = new AriaSearchKnowledge.Request();
         req.searchTerm = 'Campaign Intelligence setup';
 
@@ -74,10 +76,12 @@ private class AriaSearchKnowledgeTest {
         Test.stopTest();
 
         System.assertNotEquals(null, results, 'searchKnowledge should never return null');
+        System.assertEquals(1, results.size(), 'Should always return exactly one result');
+        System.assertNotEquals(null, results[0].articlesSummary, 'articlesSummary should not be null');
     }
 
     @IsTest
-    static void testSearch_sqlInjectionAttempt_returnsEmpty() {
+    static void testSearch_sqlInjectionAttempt_doesNotThrow() {
         // Confirms escapeSingleQuotes sanitisation — should not throw
         AriaSearchKnowledge.Request req = new AriaSearchKnowledge.Request();
         req.searchTerm = '\'; DELETE FROM KnowledgeArticleVersion WHERE Id != null; --';
@@ -90,5 +94,6 @@ private class AriaSearchKnowledgeTest {
         Test.stopTest();
 
         System.assertNotEquals(null, results, 'Should handle injected input without throwing');
+        System.assertEquals(1, results.size(), 'Should return one result for any input');
     }
 }
