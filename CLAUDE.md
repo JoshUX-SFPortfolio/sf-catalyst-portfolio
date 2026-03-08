@@ -22,8 +22,10 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 
 ## Current Status
 
-**Active phase:** A.9 — MTF Stabilisation
-**Next:** TBD
+**Active phase:** B.1 — Catalyst Vertical: SDLC Phase 1 (Business)
+**Next:** B.2 — Catalyst Vertical: SDLC Phase 2 (Technical)
+
+**Track A — Master Template Foundation: COMPLETE (`develop` tagged `v1.0`)**
 
 **Completed phases:**
 
@@ -35,6 +37,7 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 - A.6 Reports & Dashboards ✅ — PR #7 merged to `develop`
 - A.7 Experience Cloud ✅ — PR #8 merged to `develop`
 - A.8 Agentforce ✅ — PR #9 merged to `develop`
+- A.9 MTF Stabilisation ✅ — PR #10 merged to `develop`, tagged `v1.0`
 
 **Pinned for follow-up project (do not suggest):**
 - Figma design / design system

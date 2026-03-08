@@ -6,7 +6,7 @@
 | **Document** | Lessons Learned — All Phases |
 | **Owner** | Portfolio Developer |
 | **Status** | Active — Living Document |
-| **Last Updated** | A.8 Agentforce |
+| **Last Updated** | A.9 MTF Stabilisation |
 
 ---
 
@@ -90,6 +90,7 @@ This document records every technical problem encountered during development, it
 | LL-054 | A.8 — Agentforce | GenAiPlanner→GenAiPlugin link set via Agentforce Builder UI (not Metadata API) |
 | LL-055 | A.8 — Agentforce | GenAiPromptTemplate type is a restricted picklist — requires UI configuration |
 | LL-056 | A.8 — Agentforce | PermissionSet fieldPermissions on required MasterDetail fields rejected |
+| LL-057 | A.9 — MTF Stabilisation | No A.9-specific deploy issues — phase was documentation and test verification only |
 
 ---
 
@@ -788,3 +789,17 @@ This document records every technical problem encountered during development, it
 **Root Cause:** `Project__c.Account__c` is a required `MasterDetail` field — the platform does not allow modifying FLS grants on required fields. Required fields always have implicit read access regardless of FLS settings.
 
 **Solution:** Remove all `fieldPermissions` entries for required fields (MasterDetail relationship fields, required custom fields). Only include FLS grants for optional/nullable fields.
+
+---
+
+## A.9 — MTF Stabilisation
+
+### LL-057 — No deploy issues in A.9 — documentation and test verification only
+
+**Phase:** A.9 — MTF Stabilisation
+
+**Problem:** N/A — A.9 contained no new metadata deployments.
+
+**Root Cause:** A.9's scope was: full test suite verification, documentation updates (CLAUDE.md, README.md), and tagging `develop` as `v1.0`. No new Salesforce metadata was authored or deployed.
+
+**Solution:** A.9 closed clean. 77/77 Apex tests passing at phase gate (100% pass rate, Run ID: `707gL00000dTLNr`). `develop` tagged `v1.0` as the MTF baseline snapshot.
