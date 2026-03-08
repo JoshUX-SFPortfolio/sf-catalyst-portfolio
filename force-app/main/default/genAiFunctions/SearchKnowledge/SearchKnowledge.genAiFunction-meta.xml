@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<GenAiFunction xmlns="http://soap.sforce.com/2006/04/metadata">
+    <masterLabel>Search Knowledge</masterLabel>
+    <description>Searches the Catalyst Knowledge base for published articles matching the client's question. Returns up to 5 articles with title, summary, and URL. Use this when a client asks a how-to, setup, or product question before attempting to escalate. MKT-REQ-EXP-012, MKT-REQ-EXP-013.</description>
+    <invocationTargetType>apex</invocationTargetType>
+    <invocationTarget>AriaSearchKnowledge</invocationTarget>
+    <isConfirmationRequired>false</isConfirmationRequired>
+</GenAiFunction>

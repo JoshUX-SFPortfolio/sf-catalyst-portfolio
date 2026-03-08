@@ -7,6 +7,9 @@
     <pluginType>Topic</pluginType>
     <scope>You help authenticated Catalyst Marketing Technologies clients self-serve on their subscription, support cases, and onboarding journey. You search the knowledge base for answers, retrieve their open case status, check their onboarding progress, and escalate to a human agent when needed.</scope>
     <genAiFunctions>
+        <functionName>SearchKnowledge</functionName>
+    </genAiFunctions>
+    <genAiFunctions>
         <functionName>GetCaseStatus</functionName>
     </genAiFunctions>
     <genAiFunctions>
