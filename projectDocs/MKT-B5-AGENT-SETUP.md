@@ -42,21 +42,32 @@ All metadata is deployed. The following steps must be completed in the Agentforc
 
 ---
 
-## Step 1 — Link the Topic to Aria in Agentforce Builder
+## Step 1 — Create the Aria Agent in Agentforce Studio
 
-The `GenAiPlanner → GenAiPlugin` link cannot be set via Metadata API v62.0. It must be wired in the Agentforce Builder UI.
+> **Note:** `GenAiPlanner` metadata deploys the underlying planner record (`GenAiPlannerDefinition`) but does NOT create an `AIApplication` record — which is what Agentforce Studio displays as an "Agent". The agent must be created from the UI, then the deployed `ClientSelfService` topic attached.
 
-1. In the org, go to **Setup > Agentforce > Agents**
-2. Find **Aria** in the agents list (MasterLabel: `Aria`)
-3. Click **Open in Agentforce Builder**
-4. In the Topics panel, click **+ Add Topic**
-5. Select **Client Self-Service** from the list
-6. Confirm all 4 actions are shown under the topic:
+1. Go to **Agentforce Studio** (App Launcher > Agentforce Studio, or Setup > Agentforce)
+2. Click **Agents** in the left nav
+3. Click **New Agent** (top right)
+4. Select **Custom** as the agent type
+5. Set:
+   - **Agent Label:** `Aria`
+   - **Agent API Name:** `Aria`
+   - **Description:** `Catalyst Client Assistant — authenticated self-service agent for portal users. Handles knowledge search, case status, onboarding progress, and human escalation.`
+6. Click **Create**
+
+### Step 1b — Add the Client Self-Service Topic
+
+After the agent is created and you are in Agentforce Builder:
+
+1. In the **Topics** panel, click **+ Add Topic**
+2. Select **Client Self-Service** (this is the deployed `GenAiPlugin`)
+3. Confirm all 4 actions are shown under the topic:
    - Search Knowledge
    - Get Case Status
    - Get Onboarding Progress
    - Escalate To Agent
-7. Click **Save**
+4. Click **Save**
 
 ---
 
@@ -152,7 +163,8 @@ Until Knowledge is enabled, `AriaSearchKnowledge` returns an empty list graceful
 - [x] `SearchKnowledge` GenAiFunction deployed
 - [x] `ClientSelfService` GenAiPlugin updated — all 4 functions linked
 - [x] All 4 invocable actions verified via REST `/actions/custom/apex`
-- [ ] Aria → Client Self-Service topic linked in Agentforce Builder
+- [ ] Aria agent created in Agentforce Studio (New Agent > Custom > API name: Aria)
+- [ ] Client Self-Service topic attached to Aria in Agentforce Builder
 - [ ] System prompt type set in Prompt Builder
 - [ ] Agent activated
 - [ ] Portal launcher connected to Aria
