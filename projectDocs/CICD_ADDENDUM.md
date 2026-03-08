@@ -132,10 +132,10 @@ The following branch protection rules are configured in GitHub (some already act
 | Branch | Rule | Status |
 |---|---|---|
 | `main` | Require PR to merge — no direct pushes | ✅ Active |
-| `main` | Require Workflow 3 to pass before merge | Planned — post v1.0 |
-| `develop` | Require PR to merge — no direct pushes | Planned |
-| `develop` | Require Workflow 1 to pass before merge | Planned |
-| `vertical/*` | Require Workflow 1 to pass before merge | Planned |
+| `main` | Require Workflow 3 to pass before merge | 🔲 Post-Catalyst |
+| `develop` | Require PR to merge — no direct pushes | ✅ Active |
+| `develop` | Require Workflow 1 to pass before merge | ✅ Active — enable in GitHub Settings → Branches → Status checks → `validate` |
+| `vertical/*` | Require Workflow 1 to pass before merge | 🔲 Post-Catalyst |
 
 ---
 
@@ -146,10 +146,11 @@ The following can be added to the repo immediately, before CI is formally stood 
 | File | Purpose | Status |
 |---|---|---|
 | `.github/PULL_REQUEST_TEMPLATE.md` | Enforces consistent PR descriptions and checklists | ✅ Created |
-| `.github/CODEOWNERS` | Auto-assigns reviewers by path | Planned |
-| `README.md` | Portfolio-facing project overview | Planned |
-| `CONTRIBUTING.md` | Documents branching and commit conventions | Planned |
-| `.github/workflows/` | CI workflow YAML files | Planned — post v1.0 |
+| `.github/CODEOWNERS` | Auto-assigns reviewers by path | ✅ Created |
+| `README.md` | Portfolio-facing project overview | ✅ Created |
+| `CONTRIBUTING.md` | Documents branching and commit conventions | ✅ Created |
+| `.github/workflows/pr-validation.yml` | Workflow 1 — PR Validation | ✅ Created — awaiting JWT secrets |
+| `.github/workflows/develop-integration.yml` | Workflow 2 — Develop Integration | ✅ Created — awaiting JWT secrets |
 
 ---
 
@@ -166,12 +167,20 @@ The CI/CD setup will be documented as a standalone deliverable in the SDLC suite
 ## Delivery Timeline
 
 ```
-Now          A.9 (v1.0 tag)      Post-Catalyst        Vertical 2+
- │                │                    │                   │
- ├── PR Template  ├── Workflow 1+2     ├── Workflow 3+4    ├── All workflows
- ├── Branch rules ├── Secrets setup    ├── CODEOWNERS      ├── active from
- └── This doc     └── CI user in org   └── CI design doc   └── branch creation
+Now (complete)      Post-Catalyst        Vertical 2+
+ │                       │                   │
+ ├── PR Template ✅      ├── Workflow 3+4    ├── All workflows
+ ├── Branch rules ✅     ├── CODEOWNERS ✅   ├── active from
+ ├── CONTRIBUTING ✅     ├── CI design doc   └── branch creation
+ ├── Workflow 1+2 ✅     └── Vertical drift
+ └── v1.0 on main ✅         check (W4)
 ```
+
+**Remaining manual steps to activate Workflows 1+2:**
+
+1. Generate a Connected App + JWT key pair in the Salesforce org (see Secrets & Authentication above)
+2. Add 4 secrets to GitHub: Settings → Secrets → Actions → `SF_CLIENT_ID`, `SF_USERNAME`, `SF_SERVER_KEY`, `SF_INSTANCE_URL`
+3. Enable branch protection on `develop`: Settings → Branches → Add rule → Require status checks → select `validate`
 
 ---
 
