@@ -1,0 +1,38 @@
+<template>
+    <section class="frontdoor" aria-label="Portfolio landing">
+        <div class="frontdoor__hero">
+            <p class="frontdoor__eyebrow">Salesforce Portfolio Framework</p>
+            <h1 class="frontdoor__title">From one master org to many vertical stories.</h1>
+            <p class="frontdoor__lede">
+                A consulting-grade portfolio that demonstrates architecture, delivery discipline, and
+                production-quality UX across Sales Cloud, Service Cloud, and Experience Cloud.
+            </p>
+            <div class="frontdoor__actions">
+                <a class="action action--primary" href="/portfolio" data-id="cta-portfolio">Explore Portfolio</a>
+                <a class="action action--ghost" href="/about" data-id="cta-about">About This Build</a>
+            </div>
+        </div>
+
+        <div class="frontdoor__highlights" data-id="highlights">
+            <template for:each={highlights} for:item="item">
+                <article key={item.id} class="highlight">
+                    <p class="highlight__label">{item.label}</p>
+                    <p class={item.toneClass}>{item.value}</p>
+                </article>
+            </template>
+        </div>
+
+        <div class="frontdoor__verticals" data-id="vertical-grid">
+            <template for:each={verticals} for:item="vertical">
+                <article key={vertical.id} class="vertical-card">
+                    <div class="vertical-card__meta">
+                        <span class={vertical.stageClass}>{vertical.stage}</span>
+                    </div>
+                    <h2 class="vertical-card__title">{vertical.title}</h2>
+                    <p class="vertical-card__blurb">{vertical.blurb}</p>
+                    <a class="vertical-card__link" href={vertical.route}>Open Story</a>
+                </article>
+            </template>
+        </div>
+    </section>
+</template>
