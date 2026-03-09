@@ -39,7 +39,7 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 - A.8 Agentforce ✅ — PR #9 merged to `develop`
 - A.9 MTF Stabilisation ✅ — PR #10 merged to `develop`
 - v1.0 Promotion ✅ — PR #11 merged `develop` → `main`, `v1.0` tag on `main`
-- CI/CD Workflows ✅ — Workflow 1+2 committed, CODEOWNERS + CONTRIBUTING.md added (pending secrets)
+- CI/CD Workflows ✅ — Workflow 1+2 committed, CODEOWNERS + CONTRIBUTING.md added; runtime hardening deferred post-MKT
 - B.1 Catalyst Vertical: Business ✅ — SDLC documents (BRD, USAC, TDD, DD, TPQA, BDD, DDT, PTS, DRP) committed
 - B.2 Catalyst Vertical: Technical ✅ — Custom fields, objects, validation rules deployed
 - B.3 Vertical Configuration ✅ — Record types, business processes, picklist values, page layouts committed on `vertical/marketing` (`cb75114`)
@@ -54,6 +54,7 @@ This is not a throwaway demo. Every decision should reflect real-world Salesforc
 - React / Next.js frontend
 - Custom headless dashboard
 - SF-PORTFOLIO-UX-1.0 implementation
+- CI/Actions/Automation hardening (JWT auth recovery + Workflow 3/4 rollout) — execute after all MKT closeout work
 
 The Experience Cloud LWR site (Phase A.7) built with SLDS 2 
 is the portfolio presentation layer for this project.
@@ -238,6 +239,8 @@ Modules: `SALES` · `SRVC` · `EXP` · `NFR`
 | JWT Connected App for CI auth | 🔲 Manual setup required (see CICD_ADDENDUM.md) |
 
 `main` is tagged `v1.0`. Workflows 1+2 are live once JWT secrets are added to GitHub. See `projectDocs/CICD_ADDENDUM.md`.
+
+JWT CI memory note (Salesforce newer UI): for Connected App auth used by `sf` CLI, include OAuth scopes `api` + `refresh_token/offline_access` + `web`, and keep **Issue JSON Web Token (JWT)-based access tokens for named users** disabled to avoid SOAP/metadata failures.
 
 ---
 

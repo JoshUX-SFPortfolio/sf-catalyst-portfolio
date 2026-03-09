@@ -1,7 +1,7 @@
 # CI/CD Strategy Addendum
 **Document ID:** SF-PORTFOLIO-CICD-1.0  
 **Parent:** SF Portfolio Framework — Master Project Plan v1.0  
-**Status:** Active — Stage 1 Stabilization + Stage 2 Auth Rebuild in progress  
+**Status:** Deferred — Pinned Post-MKT Action Item (non-blocking for MKT closeout)  
 **Last Updated:** 2026-03-09
 
 ---
@@ -14,6 +14,12 @@ As of 2026-03-09, Track A is complete (`main` tagged `v1.0`) and Workflows 1+2 e
 
 1. Stabilize engineering baseline (tests + branch hygiene) before auth changes.
 2. Rebuild JWT auth cleanly on a Connected App with canonical secret names and deterministic workflow guards.
+
+Execution decision (2026-03-09):
+
+- CI/Actions/Automation hardening remains documented and ready, but execution is **deferred** until all remaining MKT closeout work is complete.
+- This item is **pinned** as the first post-MKT technical backlog action.
+- MKT delivery decisions are not blocked by the current CI auth defect (`C-1016`) while this deferment is in effect.
 
 ---
 
@@ -84,8 +90,9 @@ Use **repository-level Actions secrets only** for this project. Org-level secret
 ### Connected App setup standard
 
 - App type: **Connected App** (not External Client App for this release cycle).
-- OAuth enabled + JWT Bearer Flow enabled.
+- OAuth enabled with scopes: `api`, `refresh_token/offline_access`, `web`.
 - Upload matching `server.crt` to the Connected App.
+- In Salesforce newer UI, keep **Issue JSON Web Token (JWT)-based access tokens for named users** disabled for CLI compatibility.
 - Consumer Key from this Connected App populates `SF_CLIENT_ID`.
 - `SF_USERNAME` and `SF_INSTANCE_URL` must target the same org where that Connected App exists.
 

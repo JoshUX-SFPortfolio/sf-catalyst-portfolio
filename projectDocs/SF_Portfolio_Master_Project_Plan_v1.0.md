@@ -326,7 +326,17 @@ The following actions initiate Track A of the project. They are sequenced to unb
 | **7** | Generate Marketing Vertical TDD (MKT-TDD-1.0) and Data Dictionary (MKT-DD-1.0) | Claude \+ Developer | Step 4 |
 | **8** | Begin Phase A.2: Core Object Model build in scratch org | Portfolio Developer | Step 7 |
 
-## **9.1 How Claude Supports This Project**
+## **9.1 Pinned Post-MKT Action Item**
+
+The following item is intentionally deferred until all MKT closeout work is complete:
+
+| \# | Action | Owner | Dependency |
+| :---- | :---- | :---- | :---- |
+| **P1** | CI/Actions/Automation hardening (JWT Connected App recovery, Workflow 1+2 stabilization, Workflow 3+4 activation readiness) | Portfolio Developer \+ Codex | MKT closeout complete |
+
+**Execution rule:** This item is tracked as first-priority post-MKT backlog work and does not block MKT artefact completion.
+
+## **9.2 How Claude Supports This Project**
 
 Claude will generate each SDLC document on request, using the framework defined in this plan. For every new vertical, the following will be produced in order:
 
