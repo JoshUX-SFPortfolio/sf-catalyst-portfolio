@@ -1,0 +1,206 @@
+.frontdoor {
+    --shell-ink: #102a1f;
+    --shell-forest: #0f5a43;
+    --shell-sand: #f6f2e8;
+    --shell-gold: #d88731;
+    --shell-sky: #dff2ff;
+    font-family: 'Avenir Next', 'Segoe UI', 'Helvetica Neue', sans-serif;
+    color: var(--shell-ink);
+    background:
+        radial-gradient(circle at 15% 5%, rgba(216, 135, 49, 0.28), transparent 35%),
+        radial-gradient(circle at 92% 0%, rgba(15, 90, 67, 0.22), transparent 28%),
+        linear-gradient(160deg, #fffdfa 0%, var(--shell-sand) 60%, #efe6d7 100%);
+    border-radius: 1rem;
+    border: 1px solid #d7d0c0;
+    padding: 2rem;
+}
+
+.frontdoor__hero {
+    max-width: 48rem;
+}
+
+.frontdoor__eyebrow {
+    margin: 0;
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.72rem;
+    color: var(--shell-forest);
+    font-weight: 700;
+}
+
+.frontdoor__title {
+    margin: 0.6rem 0 0;
+    font-size: clamp(1.75rem, 3.8vw, 2.7rem);
+    line-height: 1.08;
+    font-weight: 750;
+    max-width: 18ch;
+}
+
+.frontdoor__lede {
+    margin: 0.85rem 0 0;
+    max-width: 56ch;
+    line-height: 1.5;
+    color: #254a3b;
+}
+
+.frontdoor__actions {
+    display: flex;
+    gap: 0.75rem;
+    margin-top: 1.2rem;
+    flex-wrap: wrap;
+}
+
+.action {
+    text-decoration: none;
+    border-radius: 999px;
+    padding: 0.62rem 1.05rem;
+    font-weight: 700;
+    letter-spacing: 0.01em;
+    transition: transform 0.16s ease, box-shadow 0.16s ease;
+}
+
+.action:hover,
+.action:focus {
+    transform: translateY(-1px);
+}
+
+.action--primary {
+    background: linear-gradient(135deg, #126d51, #0f5a43);
+    color: #fff;
+    box-shadow: 0 10px 22px rgba(15, 90, 67, 0.22);
+}
+
+.action--ghost {
+    border: 1px solid #1f5f4a;
+    color: #184836;
+    background: rgba(255, 255, 255, 0.72);
+}
+
+.frontdoor__highlights {
+    margin-top: 1.35rem;
+    display: grid;
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+    gap: 0.75rem;
+}
+
+.highlight {
+    background: rgba(255, 255, 255, 0.72);
+    border: 1px solid #d4cec0;
+    border-radius: 0.8rem;
+    padding: 0.8rem;
+}
+
+.highlight__label {
+    margin: 0;
+    font-size: 0.74rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #5c695e;
+    font-weight: 700;
+}
+
+.chip {
+    margin: 0.45rem 0 0;
+    display: inline-block;
+    border-radius: 999px;
+    padding: 0.2rem 0.55rem;
+    font-size: 0.78rem;
+    font-weight: 700;
+}
+
+.chip--live {
+    background: #daf2e7;
+    color: #0e5a40;
+}
+
+.chip--queued {
+    background: #ffe8cf;
+    color: #8b4f16;
+}
+
+.frontdoor__verticals {
+    margin-top: 1.35rem;
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 0.9rem;
+}
+
+.vertical-card {
+    background: linear-gradient(180deg, rgba(255, 255, 255, 0.88), rgba(255, 255, 255, 0.67));
+    border: 1px solid #cec6b5;
+    border-radius: 0.9rem;
+    padding: 1rem;
+    box-shadow: 0 12px 22px rgba(16, 42, 31, 0.05);
+}
+
+.vertical-card__meta {
+    margin-bottom: 0.45rem;
+}
+
+.badge {
+    border-radius: 999px;
+    padding: 0.19rem 0.52rem;
+    font-size: 0.72rem;
+    font-weight: 700;
+}
+
+.badge--live {
+    color: #fff;
+    background: #14674e;
+}
+
+.badge--queued {
+    color: #7f3d09;
+    background: #ffdebf;
+}
+
+.badge--planned {
+    color: #2b4f6b;
+    background: var(--shell-sky);
+}
+
+.vertical-card__title {
+    margin: 0;
+    font-size: 1.05rem;
+}
+
+.vertical-card__blurb {
+    margin: 0.52rem 0 0;
+    line-height: 1.45;
+    color: #315545;
+    min-height: 3.1rem;
+}
+
+.vertical-card__link {
+    display: inline-block;
+    margin-top: 0.8rem;
+    color: #0f5a43;
+    font-weight: 700;
+    text-decoration: none;
+    border-bottom: 2px solid transparent;
+}
+
+.vertical-card__link:hover,
+.vertical-card__link:focus {
+    border-bottom-color: #0f5a43;
+}
+
+@media (max-width: 980px) {
+    .frontdoor__highlights {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .frontdoor__verticals {
+        grid-template-columns: 1fr;
+    }
+}
+
+@media (max-width: 640px) {
+    .frontdoor {
+        padding: 1.15rem;
+    }
+
+    .frontdoor__highlights {
+        grid-template-columns: 1fr;
+    }
+}
