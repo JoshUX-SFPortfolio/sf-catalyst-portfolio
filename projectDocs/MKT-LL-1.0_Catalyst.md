@@ -102,6 +102,8 @@ This document records every technical problem encountered during development, it
 | LL-066 | B.6 — SDLC Phase 3: Quality | SDLC quality docs (TPQA, BDD, DDT, PTS) authored in B.1 as living documents — mark Complete at B.6 gate with actual test run evidence |
 | LL-067 | B.7 — SDLC Phase 4: Delivery | DRP and PTS authored ahead of deployment in B.1 — fill in confirmed deploy date at B.7 gate; no TBD values should remain in released docs |
 | LL-068 | B.8 — Portfolio Publish | Case study narrative is the B.8 deliverable — captures what was built, decisions made, and skills demonstrated; written as a recruiter-facing portfolio artefact |
+| LL-069 | Post-B.8 — CI/CD Recovery | Connected App OAuth scope and token-mode drift can pass JWT login but fail scratch create (C-1016) and SOAP metadata operations |
+| LL-070 | Post-B.8 — Delivery Governance | CI/Actions/Automation is pinned as deferred post-MKT backlog work; non-blocking for MKT closeout |
 
 ---
 
@@ -987,3 +989,43 @@ Restructuring the three failing actions to return a single `Result` with one `St
 The case study document serves as the source content for the portfolio site case study page when the SF-PORTFOLIO-UX-1.0 build begins.
 
 **For future verticals:** Produce the case study at B.8 in the same format. The case study is the primary recruiter-facing artefact — write it for a technical hiring manager, not for an internal audience. Emphasise decisions, trade-offs, and what makes the build production-grade.
+
+---
+
+## Post-B.8 — CI/CD Recovery
+
+### LL-069 — Connected App OAuth scope and token-mode drift can pass JWT login but break CI
+
+**Phase:** Post-B.8 — CI/CD Recovery
+
+**Problem:** JWT auth (`sf org login jwt`) succeeded for the CI Connected App, but scratch org creation failed with `RemoteOrgSignupFailed` / `C-1016`. In parallel, metadata/SOAP operations failed with: `SOAP API does not support JWT-based access tokens`.
+
+**Root Cause:** Connected App settings drifted from CLI-safe defaults. Two high-impact misconfigurations:
+1. Missing required OAuth scope `web` on the Connected App used by CLI.
+2. `Issue JSON Web Token (JWT)-based access tokens for named users` enabled, causing token mode that breaks SOAP/metadata operations used by `sf` workflows.
+
+**Solution:** Standardize CI Connected App settings:
+- OAuth scopes: `api`, `refresh_token/offline_access`, `web`
+- Callback URL: `http://localhost:1717/OauthRedirect`
+- Upload matching `server.crt` for the private key used in `SF_SERVER_KEY`
+- Policies: `Admin approved users are pre-authorized`, CI user included via profile/permission set
+- IP Relaxation: `Relax IP restrictions`
+- Keep `Issue JSON Web Token (JWT)-based access tokens for named users` **disabled**
+- Use org login host (`https://<mydomain>.my.salesforce.com`) for `SF_INSTANCE_URL`, not Lightning/setup URLs
+- Wait 5-10 minutes after policy changes before retest
+
+**Validation commands:**
+- `sf org login jwt --client-id "$SF_CLIENT_ID" --jwt-key-file /path/to/server.key --username "$SF_USERNAME" --instance-url "$SF_INSTANCE_URL" --alias ci-org-local`
+- `sf org create scratch --definition-file config/project-scratch-def.json --alias ci-org-local-scratch --duration-days 1 --wait 15 --target-dev-hub ci-org-local`
+
+---
+
+### LL-070 — CI/Actions/Automation deferred as post-MKT pinned backlog
+
+**Phase:** Post-B.8 — Delivery Governance
+
+**Problem:** CI auth recovery work (`C-1016` path) became a schedule sink during MKT closeout. Continuing deep CI debugging in parallel would delay completion of higher-priority MKT artefacts and handoff tasks.
+
+**Root Cause:** CI depends on Salesforce Connected App auth behavior in the newer UI, and the current failure mode is external/platform-policy sensitive rather than a straightforward metadata defect. This creates unpredictable iteration cost during phase close.
+
+**Solution:** Formally defer CI/Actions/Automation hardening as a pinned first post-MKT action item. Treat it as non-blocking for MKT closeout while preserving all technical notes and runbooks (`CICD_ADDENDUM.md`, `CI_JWT_RESET_RUNBOOK.md`, LL-069) for deterministic re-entry.

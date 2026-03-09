@@ -1,8 +1,8 @@
 # CI/CD Strategy Addendum
 **Document ID:** SF-PORTFOLIO-CICD-1.0  
 **Parent:** SF Portfolio Framework — Master Project Plan v1.0  
-**Status:** Planned — Implementation after MTF v1.0 stabilisation  
-**Last Updated:** 2025
+**Status:** Deferred — Pinned Post-MKT Action Item (non-blocking for MKT closeout)  
+**Last Updated:** 2026-03-09
 
 ---
 
@@ -10,169 +10,148 @@
 
 This addendum defines the GitHub Actions CI/CD strategy for the Salesforce Portfolio Framework. It supplements Section 4 (Git Branching & SFDX Strategy) and Section 6 (Phased Delivery Plan) of the Master Project Plan.
 
-CI/CD is intentionally deferred until the Master Template Foundation (MTF) reaches its `v1.0` stable tag (Phase A.9). Standing up automation before a known-good state exists creates pipeline noise rather than protection. Once `main` is stable and Apex test coverage is established, CI becomes a genuine quality gate rather than a configuration burden.
+As of 2026-03-09, Track A is complete (`main` tagged `v1.0`) and Workflows 1+2 exist. The active recovery path is now:
+
+1. Stabilize engineering baseline (tests + branch hygiene) before auth changes.
+2. Rebuild JWT auth cleanly on a Connected App with canonical secret names and deterministic workflow guards.
+
+Execution decision (2026-03-09):
+
+- CI/Actions/Automation hardening remains documented and ready, but execution is **deferred** until all remaining MKT closeout work is complete.
+- This item is **pinned** as the first post-MKT technical backlog action.
+- MKT delivery decisions are not blocked by the current CI auth defect (`C-1016`) while this deferment is in effect.
 
 ---
 
-## Insertion Point
+## Recovery Sequence
 
-CI/CD is introduced **after Phase A.9 — MTF Stabilisation**, when the following conditions are met:
+### Stage 1 — Baseline Stabilization (Pre-CI Auth)
 
-| Condition | Rationale |
-|---|---|
-| `main` branch tagged `v1.0` | A deployable state worth protecting exists |
-| Apex test classes written | Tests can actually run in a CI scratch org |
-| 85%+ coverage established | Coverage threshold is meaningful to enforce |
-| Scratch org definition file stable | CI can spin up a reproducible environment |
-| Catalyst vertical baselined | Sufficient metadata for deploy validation |
+Required before further CI auth iteration:
 
-From this point forward, every subsequent vertical branch benefits from CI from day one.
+- Local unit baseline is deterministic (`npm run test:unit` executable without ad-hoc flags).
+- Org validation target is confirmed and non-empty for Apex test execution.
+- Working tree is clean enough to avoid local source-tracking noise contaminating CI findings.
+
+### Stage 2 — JWT Auth Rebuild (Connected App)
+
+- Full reset of Salesforce CI auth secrets.
+- Canonical secret source of truth = repository-level Actions secrets only.
+- Connected App JWT path re-established with matching cert/private key pair.
+- CI workflows updated to fail fast on missing secrets and avoid cleanup false negatives.
 
 ---
 
 ## Workflow Suite
 
-Four GitHub Actions workflows will be implemented in priority order.
-
----
+Four GitHub Actions workflows are planned in priority order.
 
 ### Workflow 1 — PR Validation
 **Trigger:** `pull_request` targeting `develop`  
-**Purpose:** Validate every feature branch before it touches the integration branch
-
-```
-Steps:
-  1. Authenticate to Salesforce (JWT-based auth via GitHub Secrets)
-  2. Create scratch org from project-scratch-def.json
-  3. Deploy branch metadata to scratch org
-  4. Run all Apex tests
-  5. Assert coverage ≥ 85%
-  6. Report pass/fail as PR status check
-  7. Destroy scratch org
-```
-
-**Effect:** No unvalidated code reaches `develop`. Every PR shows a green or red deployment status inline.
-
----
+**Purpose:** Validate every feature branch before it reaches the integration branch.
 
 ### Workflow 2 — Develop Integration
 **Trigger:** `push` to `develop`  
-**Purpose:** Confirm the integrated state of `develop` is always deployable
-
-```
-Steps:
-  1–6. Same as Workflow 1
-  7. Post Slack/email notification on failure (optional)
-  8. Destroy scratch org
-```
-
-**Effect:** `develop` is always in a known-good state. Protects `main` from bad integration merges.
-
----
+**Purpose:** Validate the merged/integrated state of `develop`.
 
 ### Workflow 3 — Main Branch Protection
 **Trigger:** `pull_request` targeting `main`  
-**Purpose:** Full validation gate before anything reaches the Master Template Foundation
+**Purpose:** Full pre-merge quality gate for the Master Template Foundation.
 
-```
-Steps:
-  1. Authenticate to Salesforce
-  2. Create scratch org
-  3. Deploy full main + incoming branch metadata
-  4. Run all Apex tests
-  5. Assert coverage ≥ 85%
-  6. Run static analysis (PMD ruleset for Apex)
-  7. Require passing status to merge (enforced via branch protection rule)
-  8. Destroy scratch org
-```
-
-**Effect:** `main` is always deployable to the persistent Dev Edition org. The v1.0 tag and all subsequent tags are guaranteed clean.
-
----
-
-### Workflow 4 — Vertical Drift Check ⭐
+### Workflow 4 — Vertical Drift Check
 **Trigger:** `push` to `vertical/*`  
-**Purpose:** Enforce the framework's architectural rule that vertical branches stay in sync with the core layer and never modify core-layer metadata
-
-```
-Steps:
-  1. Compare vertical branch against main
-  2. Flag if vertical branch has drifted from main by > 30 commits (sync reminder)
-  3. Scan changed files — fail if any core-layer metadata path is modified
-     Core paths: force-app/main/default/objects/standard/
-                 force-app/main/default/permissionsets/core-*
-                 force-app/main/default/flows/core-*
-                 force-app/main/default/lwc/core-*
-  4. Post warning annotation on PR if drift threshold is approaching
-```
-
-**Effect:** The framework's core/vertical separation is machine-enforced, not just a convention. Demonstrates architectural governance thinking — a strong portfolio signal.
+**Purpose:** Enforce core/vertical separation and drift guardrails.
 
 ---
 
-## Secrets & Authentication
+## Secrets & Authentication (Canonical)
 
-CI authenticates to Salesforce using **JWT-based connected app auth** — no passwords stored in GitHub. The following secrets are required in the GitHub repository settings:
+CI authenticates using **JWT-based Connected App auth**.
+
+### Canonical secret scope
+
+Use **repository-level Actions secrets only** for this project. Org-level secrets are not source-of-truth for CI in this repository.
+
+### Required repository secrets
 
 | Secret Name | Description |
 |---|---|
-| `SF_CLIENT_ID` | Connected App consumer key |
+| `SF_CLIENT_ID` | Connected App Consumer Key |
 | `SF_USERNAME` | Salesforce username for CI user |
-| `SF_SERVER_KEY` | Base64-encoded JWT private key |
-| `SF_INSTANCE_URL` | Target org login URL |
+| `SF_INSTANCE_URL` | Login host for target org |
+| `SF_SERVER_KEY` | **Raw PEM private key text** (not base64) |
 
-A dedicated CI user with minimal permissions will be created in the Dev Edition org. This follows the principle of least privilege defined in MKT-REQ-NFR-004.
+### Key handling standard
+
+- `SF_SERVER_KEY` is stored as raw PEM content.
+- Workflow writes PEM directly to `server.key` and validates it with `openssl pkey`.
+- This removes recurring base64 copy/paste corruption failures.
+
+### Connected App setup standard
+
+- App type: **Connected App** (not External Client App for this release cycle).
+- OAuth enabled with scopes: `api`, `refresh_token/offline_access`, `web`.
+- Upload matching `server.crt` to the Connected App.
+- In Salesforce newer UI, keep **Issue JSON Web Token (JWT)-based access tokens for named users** disabled for CLI compatibility.
+- Consumer Key from this Connected App populates `SF_CLIENT_ID`.
+- `SF_USERNAME` and `SF_INSTANCE_URL` must target the same org where that Connected App exists.
 
 ---
 
 ## Branch Protection Rules
 
-The following branch protection rules are configured in GitHub (some already active):
+Current and target branch protections:
 
 | Branch | Rule | Status |
 |---|---|---|
 | `main` | Require PR to merge — no direct pushes | ✅ Active |
-| `main` | Require Workflow 3 to pass before merge | Planned — post v1.0 |
-| `develop` | Require PR to merge — no direct pushes | Planned |
-| `develop` | Require Workflow 1 to pass before merge | Planned |
-| `vertical/*` | Require Workflow 1 to pass before merge | Planned |
+| `develop` | Require status check context `validate` | ✅ Active |
+| `main` | Require Workflow 3 to pass before merge | Planned |
+| `vertical/*` | Require drift/validation checks | Planned |
 
 ---
 
-## Additional Repository Hygiene (Implement Now)
+## Repository Hygiene Status
 
-The following can be added to the repo immediately, before CI is formally stood up:
-
-| File | Purpose | Status |
-|---|---|---|
-| `.github/PULL_REQUEST_TEMPLATE.md` | Enforces consistent PR descriptions and checklists | ✅ Created |
-| `.github/CODEOWNERS` | Auto-assigns reviewers by path | Planned |
-| `README.md` | Portfolio-facing project overview | Planned |
-| `CONTRIBUTING.md` | Documents branching and commit conventions | Planned |
-| `.github/workflows/` | CI workflow YAML files | Planned — post v1.0 |
-
----
-
-## CI as a Portfolio Artefact
-
-The CI/CD setup will be documented as a standalone deliverable in the SDLC suite:
-
-- Workflow design decisions recorded in a `CI-DESIGN.md` file in the repo
-- Each workflow YAML will include inline comments explaining architectural choices
-- The Vertical Drift Check (Workflow 4) in particular demonstrates custom governance tooling — worth calling out explicitly in portfolio case studies and interviews
+| Item | Status |
+|---|---|
+| `.github/PULL_REQUEST_TEMPLATE.md` | ✅ Present |
+| `.github/workflows/pr-validation.yml` | ✅ Present (updated for preflight + raw PEM) |
+| `.github/workflows/develop-integration.yml` | ✅ Present (updated for preflight + raw PEM) |
+| `scripts/ci/stage1-baseline-check.sh` | ✅ Added (Stage 1 baseline gate script) |
+| `projectDocs/CI_JWT_RESET_RUNBOOK.md` | ✅ Added (secret reset + Connected App JWT runbook) |
+| `.github/CODEOWNERS` | On `develop`; not present on this branch |
+| `CONTRIBUTING.md` | On `develop`; not present on this branch |
 
 ---
 
-## Delivery Timeline
+## Acceptance Criteria
+
+### Stage 1 acceptance
+
+- `npm run test:unit` baseline passes locally without ad-hoc runner arguments.
+- Org-side Apex test baseline is confirmed for CI target org context.
+- Branch state is stable enough for deterministic CI verification.
+
+### Stage 2 acceptance
+
+- Manual local `sf org login jwt` succeeds with the four canonical secrets.
+- `Develop Integration` passes JWT auth and proceeds to scratch org creation.
+- `PR Validation` produces expected `validate` status check on PRs.
+- Missing secret negative test fails with explicit preflight error.
+
+---
+
+## Delivery Timeline (Updated)
 
 ```
-Now          A.9 (v1.0 tag)      Post-Catalyst        Vertical 2+
- │                │                    │                   │
- ├── PR Template  ├── Workflow 1+2     ├── Workflow 3+4    ├── All workflows
- ├── Branch rules ├── Secrets setup    ├── CODEOWNERS      ├── active from
- └── This doc     └── CI user in org   └── CI design doc   └── branch creation
+Now (2026-03-09)     Stage 1 Baseline      Stage 2 Auth Rebuild      Post-Recovery
+      |                      |                       |                     |
+      |                      |                       |                     |
+  Workflow 1+2 present   Test stability gate    Connected App JWT      Workflow 3+4
+  Rules on main/develop  + branch hygiene       + canonical secrets    rollout + hard gates
 ```
 
 ---
 
-*This addendum is a living document. Update the Delivery Timeline section as phases complete.*
+*This addendum is a living document. Update status and acceptance evidence as each stage is completed.*
