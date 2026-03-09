@@ -1,6 +1,6 @@
 {
   "orgName": "Catalyst Portfolio — Master Template",
-  "edition": "Developer",
+  "edition": "developer",
   "features": [
     "EnableSetPasswordInApi",
     "Communities",
