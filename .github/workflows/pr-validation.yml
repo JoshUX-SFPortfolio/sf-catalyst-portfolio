@@ -2,18 +2,10 @@
 # Trigger: any pull_request targeting the develop branch
 # Purpose: validate every feature branch before it touches the integration branch
 #
-# What this does:
-#   1. Authenticates to Salesforce using JWT-based auth (no passwords stored in GitHub)
-#   2. Creates a fresh scratch org from project-scratch-def.json
-#   3. Deploys branch metadata to the scratch org
-#   4. Runs all Apex tests with code coverage reporting
-#   5. Parses coverage output and fails if org-wide coverage < 85%
-#   6. Always deletes the scratch org (prevents runaway org consumption)
-#
-# Required GitHub Secrets (Settings → Secrets → Actions):
+# Required GitHub Repository Secrets:
 #   SF_CLIENT_ID     — Connected App consumer key
 #   SF_USERNAME      — Salesforce username for the CI user
-#   SF_SERVER_KEY    — Base64-encoded JWT private key (base64 -i server.key)
+#   SF_SERVER_KEY    — Raw PEM private key text (-----BEGIN ... PRIVATE KEY-----)
 #   SF_INSTANCE_URL  — Target org login URL
 
 name: PR Validation
@@ -35,14 +27,39 @@ jobs:
       - name: Install SF CLI
         run: npm install --global @salesforce/cli@latest
 
-      - name: JWT authenticate to Salesforce
+      - name: Preflight required secrets
+        env:
+          SF_CLIENT_ID: ${{ secrets.SF_CLIENT_ID }}
+          SF_USERNAME: ${{ secrets.SF_USERNAME }}
+          SF_INSTANCE_URL: ${{ secrets.SF_INSTANCE_URL }}
+          SF_SERVER_KEY: ${{ secrets.SF_SERVER_KEY }}
         run: |
-          echo "${{ secrets.SF_SERVER_KEY }}" | base64 -d > server.key
+          set -euo pipefail
+          REQUIRED=(SF_CLIENT_ID SF_USERNAME SF_INSTANCE_URL SF_SERVER_KEY)
+          for var in "${REQUIRED[@]}"; do
+            if [ -z "${!var:-}" ]; then
+              echo "FAIL: Missing required repository secret: ${var}"
+              exit 1
+            fi
+          done
+          echo "PASS: Required secrets are present."
+
+      - name: JWT authenticate to Salesforce
+        env:
+          SF_CLIENT_ID: ${{ secrets.SF_CLIENT_ID }}
+          SF_USERNAME: ${{ secrets.SF_USERNAME }}
+          SF_INSTANCE_URL: ${{ secrets.SF_INSTANCE_URL }}
+          SF_SERVER_KEY: ${{ secrets.SF_SERVER_KEY }}
+        run: |
+          set -euo pipefail
+          printf '%s\n' "$SF_SERVER_KEY" > server.key
+          chmod 600 server.key
+          openssl pkey -in server.key -noout
           sf org login jwt \
-            --client-id "${{ secrets.SF_CLIENT_ID }}" \
+            --client-id "$SF_CLIENT_ID" \
             --jwt-key-file server.key \
-            --username "${{ secrets.SF_USERNAME }}" \
-            --instance-url "${{ secrets.SF_INSTANCE_URL }}" \
+            --username "$SF_USERNAME" \
+            --instance-url "$SF_INSTANCE_URL" \
             --alias ci-org --set-default-dev-hub
           rm -f server.key
 
@@ -63,8 +80,8 @@ jobs:
             --wait 20
 
       - name: Run Apex tests with coverage
-        # --json output is parsed below to enforce 85% threshold
         run: |
+          mkdir -p test-results
           sf apex run test \
             --target-org ci-scratch \
             --code-coverage \
@@ -75,6 +92,7 @@ jobs:
 
       - name: Assert coverage >= 85%
         run: |
+          set -euo pipefail
           COVERAGE=$(jq -r '.result.summary.orgWideCoverage // "0%"' test-results/test-output.json | tr -d '%')
           PASS_COUNT=$(jq -r '.result.summary.passing // 0' test-results/test-output.json)
           FAIL_COUNT=$(jq -r '.result.summary.failing // 0' test-results/test-output.json)
@@ -84,7 +102,7 @@ jobs:
             echo "FAIL: ${FAIL_COUNT} Apex test(s) failed."
             exit 1
           fi
-          if [ "$(echo "$COVERAGE < 85" | bc -l)" -eq 1 ]; then
+          if awk "BEGIN {exit !($COVERAGE < 85)}"; then
             echo "FAIL: Coverage ${COVERAGE}% is below the 85% threshold."
             exit 1
           fi
@@ -99,4 +117,9 @@ jobs:
 
       - name: Delete scratch org
         if: always()
-        run: sf org delete scratch --target-org ci-scratch --no-prompt
+        run: |
+          if sf org display --target-org ci-scratch >/dev/null 2>&1; then
+            sf org delete scratch --target-org ci-scratch --no-prompt || true
+          else
+            echo "Scratch org alias ci-scratch not found; skipping delete."
+          fi
