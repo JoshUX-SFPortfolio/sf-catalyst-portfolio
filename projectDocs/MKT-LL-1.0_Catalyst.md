@@ -104,6 +104,7 @@ This document records every technical problem encountered during development, it
 | LL-068 | B.8 — Portfolio Publish | Case study narrative is the B.8 deliverable — captures what was built, decisions made, and skills demonstrated; written as a recruiter-facing portfolio artefact |
 | LL-069 | Post-B.8 — CI/CD Recovery | Connected App OAuth scope and token-mode drift can pass JWT login but fail scratch create (C-1016) and SOAP metadata operations |
 | LL-070 | Post-B.8 — Delivery Governance | CI/Actions/Automation is pinned as deferred post-MKT backlog work; non-blocking for MKT closeout |
+| LL-071 | Post-B.8 — CI/CD Hardening | Unconditional scratch creation causes avoidable CI failures when daily Dev Hub quota is exhausted |
 
 ---
 
@@ -1029,3 +1030,20 @@ The case study document serves as the source content for the portfolio site case
 **Root Cause:** CI depends on Salesforce Connected App auth behavior in the newer UI, and the current failure mode is external/platform-policy sensitive rather than a straightforward metadata defect. This creates unpredictable iteration cost during phase close.
 
 **Solution:** Formally defer CI/Actions/Automation hardening as a pinned first post-MKT action item. Treat it as non-blocking for MKT closeout while preserving all technical notes and runbooks (`CICD_ADDENDUM.md`, `CI_JWT_RESET_RUNBOOK.md`, LL-069) for deterministic re-entry.
+
+---
+
+### LL-071 — Unconditional scratch creation causes avoidable CI failures under daily quota limits
+
+**Phase:** Post-B.8 — CI/CD Hardening
+
+**Problem:** Even after JWT auth and SOAP probe were healthy, GitHub Actions runs could still fail when `DailyScratchOrgs` reached zero because workflows always attempted scratch creation.
+
+**Root Cause:** Workflows had no runtime control switch or quota-aware gating. Scratch creation was mandatory in all runs, so temporary platform quota exhaustion produced hard pipeline failures.
+
+**Solution:** Add quota-hardening with manual mode control:
+- Introduce repository variable `CI_SCRATCH_MODE` with values `stabilize` and `full`
+- Default to `stabilize` so workflows run preflight + JWT + SOAP probe without scratch creation
+- In `full` mode, attempt scratch creation only when `DailyScratchOrgs` remaining is greater than zero
+- If quota is exhausted (or quota probe is unavailable), skip scratch stages and publish an explicit mode/quota summary artifact instead of failing
+- Re-enable `full` mode only by manual confirmation after stabilization evidence is accepted

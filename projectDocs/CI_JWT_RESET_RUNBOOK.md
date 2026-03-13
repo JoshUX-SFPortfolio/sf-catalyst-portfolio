@@ -67,6 +67,21 @@ Set exactly these repository secrets:
 - `SF_INSTANCE_URL` = login host for that same org
 - `SF_SERVER_KEY` = raw PEM private key text (`-----BEGIN ... PRIVATE KEY-----`)
 
+## 3b) Set CI mode variable (scratch quota gate)
+
+Configure repository variable:
+
+- `CI_SCRATCH_MODE=stabilize` (default)
+
+Modes:
+
+- `stabilize`: run secret preflight + JWT login + SOAP probe only (no scratch creation).
+- `full`: allow scratch org creation path. If daily quota is exhausted, workflow falls back to non-scratch path and exits success with warning summary.
+
+Re-enable policy:
+
+- Only switch to `CI_SCRATCH_MODE=full` after manual confirmation that stabilization runs are reliable and ready for full deploy/test gates.
+
 ## 4) Local JWT smoke test (before GitHub rerun)
 
 ```bash
@@ -87,16 +102,22 @@ Important:
 
 ## 5) CI validation sequence
 
-1. Re-run `Develop Integration` on `develop`.
-2. Confirm JWT auth step passes and scratch org creation starts.
-3. Open/update a test PR to `develop` and confirm `validate` check status is produced.
-4. Perform negative test by temporarily clearing one secret and verify preflight fails with explicit message.
+1. Set `CI_SCRATCH_MODE=stabilize`.
+2. Re-run `Develop Integration` on `develop`.
+3. Confirm preflight + JWT auth + SOAP probe pass, and scratch stages are skipped by design.
+4. Open/update a test PR to `develop` and confirm `validate` check status is produced and green.
+5. Switch to `CI_SCRATCH_MODE=full` only when ready for full scratch-path validation.
+6. In `full` mode, verify behavior:
+   - Quota available: scratch create/deploy/test/delete runs.
+   - Quota exhausted: workflow falls back with explicit summary artifact and does not hard-fail.
+7. Perform negative test by temporarily clearing one secret and verify preflight fails with explicit message.
 
 ## 6) Acceptance evidence to capture
 
 - Screenshot/log of successful local JWT smoke test.
-- GitHub Actions run link with successful JWT auth step.
+- GitHub Actions run link with successful JWT auth + SOAP probe steps.
 - PR check screenshot showing `validate` status.
+- Artifact showing mode/quota decision (`ci-mode-summary-*`).
 - Short note in `projectDocs/CICD_ADDENDUM.md` with date and final status.
 
 ## 7) C-1016 troubleshooting checklist

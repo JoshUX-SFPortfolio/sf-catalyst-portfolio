@@ -7,12 +7,19 @@
 #   SF_USERNAME      — Salesforce username for the CI user
 #   SF_SERVER_KEY    — Raw PEM private key text (-----BEGIN ... PRIVATE KEY-----)
 #   SF_INSTANCE_URL  — Target org login URL
+#
+# Required GitHub Repository Variable:
+#   CI_SCRATCH_MODE  — stabilize (default) or full
 
 name: Develop Integration
 
 on:
   push:
     branches: [develop]
+
+concurrency:
+  group: develop-integration-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   integrate:
@@ -61,7 +68,70 @@ jobs:
             --instance-url "$SF_INSTANCE_URL" \
             --alias ci-org --set-default-dev-hub
 
+      - name: Auth health probe (SOAP metadata API)
+        run: |
+          set -euo pipefail
+          sf force mdapi listmetadata \
+            --metadata-type ApexClass \
+            --target-org ci-org \
+            >/dev/null
+
+      - name: Resolve scratch mode and daily quota
+        id: scratch_gate
+        env:
+          CI_SCRATCH_MODE: ${{ vars.CI_SCRATCH_MODE }}
+        run: |
+          set -euo pipefail
+          mkdir -p ci-status
+          MODE_RAW="${CI_SCRATCH_MODE:-stabilize}"
+          MODE=$(printf '%s' "$MODE_RAW" | tr '[:upper:]' '[:lower:]')
+          case "$MODE" in
+            stabilize|full) ;;
+            *)
+              echo "WARN: Unsupported CI_SCRATCH_MODE='${MODE_RAW}'. Defaulting to stabilize."
+              MODE="stabilize"
+              ;;
+          esac
+
+          LIMITS_JSON="$(sf limits api display --target-org ci-org --json || true)"
+          REMAINING="$(printf '%s' "$LIMITS_JSON" | jq -r '.result[]? | select(.name=="DailyScratchOrgs") | .remaining' | head -n1)"
+          if ! [[ "$REMAINING" =~ ^[0-9]+$ ]]; then
+            REMAINING="unknown"
+          fi
+
+          SHOULD_CREATE="false"
+          REASON="stabilization_mode"
+          if [ "$MODE" = "full" ]; then
+            if [ "$REMAINING" = "unknown" ]; then
+              REASON="quota_probe_unavailable"
+            elif [ "$REMAINING" -gt 0 ]; then
+              SHOULD_CREATE="true"
+              REASON="scratch_enabled"
+            else
+              REASON="daily_quota_exhausted"
+            fi
+          fi
+
+          {
+            echo "mode=$MODE"
+            echo "quota_remaining=$REMAINING"
+            echo "should_create_scratch=$SHOULD_CREATE"
+            echo "reason=$REASON"
+          } >> "$GITHUB_OUTPUT"
+
+          {
+            echo "Workflow mode: $MODE"
+            echo "DailyScratchOrgs remaining: $REMAINING"
+            echo "Scratch stages enabled: $SHOULD_CREATE"
+            echo "Reason: $REASON"
+          } > ci-status/mode-summary.txt
+
+      - name: Scratch stage decision
+        if: steps.scratch_gate.outputs.should_create_scratch != 'true'
+        run: cat ci-status/mode-summary.txt
+
       - name: Create scratch org
+        if: steps.scratch_gate.outputs.should_create_scratch == 'true'
         run: |
           sf org create scratch \
             --definition-file config/project-scratch-def.json \
@@ -71,6 +141,7 @@ jobs:
             --target-dev-hub ci-org
 
       - name: Deploy metadata
+        if: steps.scratch_gate.outputs.should_create_scratch == 'true'
         run: |
           sf project deploy start \
             --source-dir force-app \
@@ -78,6 +149,7 @@ jobs:
             --wait 20
 
       - name: Run Apex tests with coverage
+        if: steps.scratch_gate.outputs.should_create_scratch == 'true'
         run: |
           mkdir -p test-results
           sf apex run test \
@@ -89,6 +161,7 @@ jobs:
             > test-results/test-output.json || true
 
       - name: Assert coverage >= 85%
+        if: steps.scratch_gate.outputs.should_create_scratch == 'true'
         run: |
           set -euo pipefail
           COVERAGE=$(jq -r '.result.summary.orgWideCoverage // "0%"' test-results/test-output.json | tr -d '%')
@@ -107,11 +180,18 @@ jobs:
           echo "PASS: All tests passing, coverage ${COVERAGE}% meets the 85% threshold."
 
       - name: Upload test results
-        if: always()
+        if: always() && steps.scratch_gate.outputs.should_create_scratch == 'true'
         uses: actions/upload-artifact@v4
         with:
           name: apex-test-results-develop
           path: test-results/
+
+      - name: Upload mode summary
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ci-mode-summary-develop
+          path: ci-status/
 
       - name: Delete scratch org
         if: always()
