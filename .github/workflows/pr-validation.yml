@@ -24,7 +24,7 @@ concurrency:
 
 jobs:
   validate:
-    name: Validate — Deploy & Test
+    name: validate
     runs-on: ubuntu-latest
 
     steps:
